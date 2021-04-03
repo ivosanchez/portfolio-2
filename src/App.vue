@@ -1,22 +1,55 @@
 <template>
-  <div class="container">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <div class="container" ref="containerRef">
+    <AsideLeft />
     <div class="column-line column-line-1"></div>
     <div class="column-line column-line-3"></div>
     <div class="column-line column-line-5"></div>
     <div class="column-line column-line-2"></div>
     <div class="column-line column-line-4"></div>
+    <AsideRight />
   </div>
   <router-view />
 </template>
+
+<script lang="ts">
+import gsap from 'gsap';
+import { defineComponent, onMounted, ref } from 'vue';
+import { onBeforeRouteUpdate } from 'vue-router';
+import AsideLeft from './components/AsideLeft.vue';
+import AsideRight from './components/AsideRight.vue';
+
+export default defineComponent({
+  name: 'App',
+  components: { AsideLeft, AsideRight },
+  setup() {
+    const containerRef = ref<HTMLDivElement | null>(null);
+
+    onBeforeRouteUpdate(() => {
+      if (containerRef.value) {
+        const lines = containerRef.value.querySelectorAll('div');
+        gsap.from(lines, { duration: 1, height: 0, stagger: 0.5 });
+      }
+    });
+
+    return { containerRef };
+  },
+});
+</script>
 
 <style lang="scss" scoped>
 .container {
   width: 100vw;
   height: 100vh;
   position: fixed;
+  z-index: -1;
   top: 0;
   left: 0;
   background-color: black;
+
   .column-line {
     @include column-line;
   }
