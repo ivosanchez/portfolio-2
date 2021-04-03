@@ -1,0 +1,7 @@
+@mixin column-line {
+  width: 1px;
+  height: 100vh;
+  background-color: rgb(29, 26, 21);
+  position: absolute;
+  top: 0;
+}

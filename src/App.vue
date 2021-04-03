@@ -1,30 +1,58 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div class="container">
+    <div class="column-line column-line-1"></div>
+    <div class="column-line column-line-3"></div>
+    <div class="column-line column-line-5"></div>
+    <div class="column-line column-line-2"></div>
+    <div class="column-line column-line-4"></div>
   </div>
-  <router-view/>
+  <router-view />
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<style lang="scss" scoped>
+.container {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: black;
+  .column-line {
+    @include column-line;
+  }
 }
 
-#nav {
-  padding: 30px;
+.column-line-1 {
+  left: $mobile-column-line-1-left;
+}
+.column-line-3 {
+  left: $mobile-column-line-3-left;
+}
+.column-line-5 {
+  right: $mobile-column-line-5-right;
+}
+.column-line-2 {
+  left: $column-line-2-left;
+  visibility: hidden;
+}
+.column-line-4 {
+  left: $column-line-4-left;
+  visibility: hidden;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+@media screen and (min-width: 1000px) {
+  .column-line-1 {
+    left: $column-line-1-left;
+  }
+  .column-line-3 {
+    left: $column-line-3-left;
+  }
+  .column-line-5 {
+    left: $column-line-5-left;
+  }
+  .column-line-2,
+  .column-line-4 {
+    visibility: visible;
   }
 }
 </style>
