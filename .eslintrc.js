@@ -14,5 +14,6 @@ module.exports = {
     'global-require': 'off',
     'object-curly-newline': 'off',
     'comma-dangle': 'off',
+    'implicit-arrow-linebreak': 'off',
   },
 };

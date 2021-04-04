@@ -1,41 +1,36 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import Home from '../views/Home.vue';
-import Polartypes from '../views/Polartypes.vue';
-import DjangoEats from '../views/DjangoEats.vue';
-import MediumRare from '../views/MediumRare.vue';
-import Covid19Dashboard from '../views/Covid19Dashboard.vue';
-import Pathfinder from '../views/Pathfinder.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Home',
-    component: Home,
+    component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
   },
   {
     path: '/polartypes',
     name: 'Polartypes',
-    component: Polartypes,
+    component: () => import(/* webpackChunkName: "polartypes" */ '../views/Polartypes.vue'),
   },
   {
     path: '/django-eats',
     name: 'DjangoEats',
-    component: DjangoEats,
+    component: () => import(/* webpackChunkName: "djangoeats" */ '../views/DjangoEats.vue'),
   },
   {
     path: '/medium-rare',
     name: 'MediumRare',
-    component: MediumRare,
+    component: () => import(/* webpackChunkName: "mediumrare" */ '../views/MediumRare.vue'),
   },
   {
     path: '/covid-19-dashboard',
     name: 'Covid19Dashboard',
-    component: Covid19Dashboard,
+    component: () =>
+      import(/* webpackChunkName: "covid19dashboard" */ '../views/Covid19Dashboard.vue'),
   },
   {
     path: '/pathfinder',
     name: 'Pathfinder',
-    component: Pathfinder,
+    component: () => import(/* webpackChunkName: "pathfinder" */ '../views/Pathfinder.vue'),
   },
 ];
 

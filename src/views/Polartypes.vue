@@ -1,7 +1,7 @@
 <template>
-  <ColumnLines />
+  <!-- <ColumnLines /> -->
   <LeaveAnimation />
-  <main>
+  <main ref="scrollRef">
     <div class="hero-img-container">
       <img src="@/assets/polartypes/screenshot.png" />
     </div>
@@ -73,19 +73,40 @@
 
 <script lang="ts">
 import LeaveAnimation from '@/components/LeaveAnimation.vue';
-import { defineComponent } from 'vue';
-import ColumnLines from '../components/ColumnLines.vue';
+import LocomotiveScroll from 'locomotive-scroll';
+import { defineComponent, nextTick, onMounted, onUnmounted, ref } from 'vue';
 import VisitButton from '../components/VisitButton.vue';
 
 export default defineComponent({
   name: 'Polartypes',
-  components: { ColumnLines, LeaveAnimation, VisitButton },
+  components: { VisitButton, LeaveAnimation },
+  setup() {
+    const scrollRef = ref<HTMLDivElement | null>(null);
+    const locoScroll = ref();
+
+    setTimeout(() => locoScroll.value.update(), 500);
+
+    onMounted(() => {
+      if (!scrollRef.value) return;
+      locoScroll.value = new LocomotiveScroll({
+        el: scrollRef.value,
+        smooth: true,
+      });
+    });
+
+    onUnmounted(() => {
+      if (!locoScroll.value) return;
+      locoScroll.value.destroy();
+    });
+
+    return { scrollRef };
+  },
 });
 </script>
 
 <style lang="scss" scoped>
 .hero-img-container {
-  margin-top: 25vh;
+  padding-top: 25vh;
   padding-left: $mobile-column-line-1-left;
   padding-right: $mobile-column-line-5-right;
   margin-bottom: 2.5rem;

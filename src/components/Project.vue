@@ -1,15 +1,15 @@
 <template>
   <div class="project">
     <div :class="['project__header', index % 2 === 0 ? 'align-left' : 'align-right']">
-      <span ref="numberRef">0{{ index + 1 }}.</span>
+      <span class="project__number">0{{ index + 1 }}.</span>
       <router-link :to="project.link">
-        <h3 ref="nameRef">
+        <h3 class="project__name">
           {{ project.name }}
         </h3>
       </router-link>
     </div>
-    <ul :class="['techs', index % 2 === 0 ? 'align-left' : 'align-right']" ref="techsRef">
-      <li v-for="tech in project.techs" v-bind:key="tech.name">{{ tech }}</li>
+    <ul :class="['techs', index % 2 === 0 ? 'align-left' : 'align-right']">
+      <li class="project__tech" v-for="tech in project.techs" v-bind:key="tech.name">{{ tech }}</li>
     </ul>
     <img :src="getAsset(project.imgUrl)" />
     <p class="desc">This is a description of the project.</p>
@@ -17,49 +17,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { defineComponent } from 'vue';
 
-gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(ScrollTrigger);
 
 export default defineComponent({
   name: 'Project',
   props: { project: Object, index: Number },
-  setup(props) {
+  setup() {
     const getAsset = (url: string) => require(`@/assets/${url}`);
-    const numberRef = ref<HTMLSpanElement | null>(null);
-    const nameRef = ref<HTMLHeadingElement | null>(null);
-    const techsRef = ref<HTMLUListElement | null>(null);
 
-    onMounted(() => {
-      if (numberRef.value && nameRef.value && techsRef.value && props.index !== undefined) {
-        gsap.from(numberRef.value, {
-          scrollTrigger: { trigger: nameRef.value },
-          duration: 0.5,
-          x:
-            props.index % 2 === 0
-              ? -numberRef.value.clientWidth * 2
-              : numberRef.value.clientWidth * 2,
-        });
-        gsap.from(nameRef.value, {
-          scrollTrigger: { trigger: nameRef.value },
-          duration: 1,
-          x: props.index % 2 === 0 ? -nameRef.value.clientWidth * 2 : nameRef.value.clientWidth * 2,
-        });
-        techsRef.value.querySelectorAll('li').forEach((li) => {
-          if (!nameRef.value) return;
-          gsap.from(li, {
-            scrollTrigger: { trigger: nameRef.value, scrub: 1, end: 'top center' },
-            duration: 0.4,
-            opacity: 0,
-            y: 20,
-          });
-        });
-      }
-    });
-
-    return { getAsset, techsRef, numberRef, nameRef };
+    return { getAsset };
   },
 });
 </script>

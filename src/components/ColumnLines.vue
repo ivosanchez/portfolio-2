@@ -2,10 +2,10 @@
   <AsideLeft />
   <div class="container" ref="containerRef">
     <div class="column-line column-line-1"></div>
-    <div class="column-line column-line-3"></div>
-    <div class="column-line column-line-5"></div>
     <div class="column-line column-line-2"></div>
+    <div class="column-line column-line-3"></div>
     <div class="column-line column-line-4"></div>
+    <div class="column-line column-line-5"></div>
   </div>
   <AsideRight />
 </template>
@@ -25,7 +25,7 @@ export default defineComponent({
     onMounted(() => {
       if (containerRef.value) {
         const lines = containerRef.value.querySelectorAll('div');
-        gsap.from(lines, { duration: 1, height: 0, stagger: 0.5 });
+        gsap.from(lines, { duration: 1, height: 0, stagger: 0.3 });
       }
     });
 
