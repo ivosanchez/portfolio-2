@@ -47,10 +47,6 @@ export default defineComponent({
           duration: 1,
           x: props.index % 2 === 0 ? -nameRef.value.clientWidth * 2 : nameRef.value.clientWidth * 2,
         });
-        gsap.from(nameRef.value, {
-          scrollTrigger: { trigger: nameRef.value, scrub: true },
-          // y: nameRef.value.offsetHeight
-        });
         techsRef.value.querySelectorAll('li').forEach((li) => {
           if (!nameRef.value) return;
           gsap.from(li, {

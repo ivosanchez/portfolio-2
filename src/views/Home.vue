@@ -1,6 +1,7 @@
 <template>
+  <ColumnLines />
+  <LeaveAnimation />
   <main>
-    <LeaveAnimation />
     <div class="intro">
       <h1 ref="h1Ref">Portfolio</h1>
     </div>
@@ -17,18 +18,19 @@ import { defineComponent, onMounted, ref } from 'vue';
 import gsap from 'gsap';
 import Project from '../components/Project.vue';
 import LeaveAnimation from '../components/LeaveAnimation.vue';
+import ColumnLines from '../components/ColumnLines.vue';
 import { projects } from '../constants/projects';
 
 export default defineComponent({
   name: 'Home',
-  components: { Project, LeaveAnimation },
+  components: { Project, LeaveAnimation, ColumnLines },
   setup() {
     const h1Ref = ref<HTMLHeadingElement | null>(null);
 
     onMounted(() => {
       if (h1Ref.value) {
         const tl = gsap.timeline();
-        tl.from(h1Ref.value, { duration: 1, delay: 2, x: -h1Ref.value.clientWidth - 5 });
+        tl.from(h1Ref.value, { duration: 1, delay: 1, x: -h1Ref.value.clientWidth - 5 });
       }
     });
     return { h1Ref, projects };

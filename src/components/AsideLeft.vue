@@ -1,6 +1,6 @@
 <template>
   <aside class="aside-left">
-    <div class="vertical">
+    <div class="vertical" ref="verticalRef">
       <span>Home</span>
       <span>Contact</span>
     </div>
@@ -8,17 +8,32 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import gsap from 'gsap';
+import { defineComponent, onMounted, ref } from 'vue';
 
-export default defineComponent({});
+export default defineComponent({
+  name: 'AsideLeft',
+  setup() {
+    const verticalRef = ref<HTMLDivElement | null>(null);
+    onMounted(() => {
+      if (verticalRef.value) {
+        const spans = verticalRef.value.querySelectorAll('span');
+        gsap.from(spans, { duration: 1, delay: 2, opacity: 0, y: 20 });
+      }
+    });
+    return { verticalRef };
+  },
+});
 </script>
 
 <style lang="scss" scoped>
 aside {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: $mobile-column-line-1-left;
   height: 100%;
   color: white;
-  position: absolute;
   display: flex;
   align-items: center;
   .vertical {
