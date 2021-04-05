@@ -10,66 +10,45 @@
       </li>
     </ul>
   </main>
+  <AsideLeft />
+  <AsideRight />
 </template>
 
 <script lang="ts">
+import useLocomitive from '@/hooks/useLocomotive.vue';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import LocomotiveScroll from 'locomotive-scroll';
-import { defineComponent, onMounted, onUnmounted, ref } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import LeaveAnimation from '../components/LeaveAnimation.vue';
 import Project from '../components/Project.vue';
 import { projects } from '../constants/projects';
-
-gsap.registerPlugin(ScrollTrigger);
+import AsideLeft from '../components/AsideLeft.vue';
+import AsideRight from '../components/AsideRight.vue';
 
 export default defineComponent({
   name: 'Home',
-  components: { Project, LeaveAnimation },
+  components: { Project, LeaveAnimation, AsideLeft, AsideRight },
   setup() {
-    const scrollRef = ref<HTMLDivElement | null>(null);
     const h1Ref = ref<HTMLHeadingElement | null>(null);
-    const locoScroll = ref();
 
-    const onRefresh = () => locoScroll.value.update();
-
-    // setTimeout(() => locoScroll.value.update(), 1000);
+    const { scrollRef, ScrollTrigger } = useLocomitive();
 
     onMounted(() => {
       if (!scrollRef.value) return;
-      locoScroll.value = new LocomotiveScroll({
-        el: scrollRef.value,
-        smooth: true,
-      });
-      locoScroll.value.on('scroll', ScrollTrigger.update);
-      ScrollTrigger.scrollerProxy(scrollRef.value, {
-        scrollTop(value) {
-          if (arguments.length) {
-            return locoScroll.value.scrollTo(value, 0, 0);
-          }
-          return locoScroll.value.scroll.instance.scroll.y;
-        },
-        getBoundingClientRect() {
-          return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
-        },
-        pinType: scrollRef.value.style.transform ? 'transform' : 'fixed',
-      });
-
       const numbers = document.querySelectorAll('.project__number');
       const names = document.querySelectorAll('.project__name');
       const techs = document.querySelectorAll('.project__tech');
+      const descs = document.querySelectorAll('.project__desc');
 
       numbers.forEach((number, index) => {
         if (!scrollRef.value) return;
         const animation = gsap.from(number, {
-          duration: 0.5,
+          duration: 0.7,
           x: index % 2 === 0 ? -number.clientWidth * 2 : number.clientWidth * 2,
         });
         ScrollTrigger.create({
           trigger: number,
           start: 'bottom 90%',
           scroller: scrollRef.value,
-          markers: true,
           animation,
         });
       });
@@ -77,7 +56,7 @@ export default defineComponent({
       names.forEach((name, index) => {
         if (!scrollRef.value) return;
         const animation = gsap.from(name, {
-          duration: 0.5,
+          duration: 0.7,
           x: index % 2 === 0 ? -name.clientWidth * 2 : name.clientWidth * 2,
         });
         ScrollTrigger.create({
@@ -91,7 +70,7 @@ export default defineComponent({
       techs.forEach((tech) => {
         if (!scrollRef.value) return;
         const animation = gsap.from(tech, {
-          duration: 0.4,
+          duration: 0.7,
           opacity: 0,
           y: 20,
         });
@@ -99,14 +78,24 @@ export default defineComponent({
           trigger: tech,
           scroller: scrollRef.value,
           start: 'bottom 90%',
-          end: 'top center',
-          scrub: 1,
           animation,
         });
       });
 
-      ScrollTrigger.addEventListener('refresh', onRefresh);
-      ScrollTrigger.refresh(true);
+      descs.forEach((desc) => {
+        if (!scrollRef.value) return;
+        const animation = gsap.from(desc, {
+          duration: 0.7,
+          opacity: 0,
+          y: 20,
+        });
+        ScrollTrigger.create({
+          trigger: desc,
+          scroller: scrollRef.value,
+          start: 'top 90%',
+          animation,
+        });
+      });
 
       if (h1Ref.value) {
         const tl = gsap.timeline();
@@ -114,11 +103,6 @@ export default defineComponent({
       }
     });
 
-    onUnmounted(() => {
-      ScrollTrigger.removeEventListener('refresh', onRefresh);
-      if (!locoScroll.value) return;
-      locoScroll.value.destroy();
-    });
     return { h1Ref, scrollRef, projects };
   },
 });
@@ -126,12 +110,17 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .intro {
+  @include mobile-23-desktop-2345__margins;
   height: 100vh;
   padding-top: 30vh;
-  margin-left: $mobile-column-line-1-left;
-  margin-right: $mobile-column-line-5-right;
   overflow-x: hidden;
   h1 {
+    @media screen and (min-width: 600px) {
+      font-size: 6rem;
+    }
+    @media screen and (min-width: 1000px) {
+      font-size: 9rem;
+    }
     display: inline-block;
     color: white;
     font-size: 3rem;

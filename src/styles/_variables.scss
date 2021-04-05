@@ -4,8 +4,9 @@ $mobile-column-line-1-left: 15vw;
 $mobile-column-line-3-left: 50vw;
 $mobile-column-line-5-right: 15vw;
 
-$column-line-1-left: calc(100vw / 6);
-$column-line-2-left: calc(100vw / 6 * 2);
-$column-line-3-left: calc(100vw / 6 * 3);
-$column-line-4-left: calc(100vw / 6 * 4);
-$column-line-5-left: calc(100vw / 6 * 5);
+$column-line-width: calc(100vw / 6);
+$column-line-1-left: $column-line-width;
+$column-line-2-left: calc(#{$column-line-width} * 2);
+$column-line-3-left: calc(#{$column-line-width} * 3);
+$column-line-4-left: calc(#{$column-line-width} * 4);
+$column-line-5-left: calc(#{$column-line-width} * 5);

@@ -1,14 +1,15 @@
 <template>
-  <!-- <ColumnLines /> -->
   <LeaveAnimation />
-  <main ref="scrollRef">
-    <div class="hero-img-container">
-      <img src="@/assets/polartypes/screenshot.png" />
-    </div>
-    <div class="heading">
-      <h1>Polartypes</h1>
-      <VisitButton />
-    </div>
+
+  <main v-if="!isLoading" ref="scrollRef">
+    <section class="landing">
+      <div class="hero-img-container">
+        <img src="@/assets/polartypes/screenshot.png" ref="heroImgRef" />
+      </div>
+      <div class="heading">
+        <h1 ref="nameRef">Polartypes</h1>
+      </div>
+    </section>
     <section class="desc__container">
       <div class="break" />
       <h3>Polartypes and Polarsteps</h3>
@@ -40,97 +41,122 @@
         프론트와 백엔드 모두에 typescript를 사용했어요.
       </p>
     </section>
-    <section class="frontend__container">
-      <div class="break" />
-      <h5>Frontend</h5>
-      <ul>
-        <li>React</li>
-        <li>Apollo</li>
-        <li>Moment</li>
-        <li>Mapbox</li>
-        <li>TailwindCSS</li>
-      </ul>
-    </section>
-    <section class="backend__container">
-      <div class="break" />
-      <h5>Backend</h5>
-      <ul>
-        <li>NestJS</li>
-        <li>GraphQL</li>
-        <li>TypeORM</li>
-        <li>PostgreSQL</li>
-        <li>Jest</li>
-      </ul>
-    </section>
-    <section class="next-project__container">
-      <span class="next-project">Next Project</span>
-      <div class="next-project__name">
-        <span>DjangoEats</span>
-      </div>
-    </section>
+    <DetailTechs
+      :scrollRef="scrollRef"
+      :isFront="true"
+      :techs="['React', 'Apollo', 'Moment', 'Mapbox', 'TailwindCSS']"
+    />
+    <DetailTechs
+      :scrollRef="scrollRef"
+      :isFront="false"
+      :techs="['NestJS', 'GraphQL', 'TypeORM', 'PostgreSQL', 'Jest']"
+    />
+    <ProjectFooter nextName="DjangoEats" to="django-eats" />
   </main>
+  <div class="visit-btn__wrapper">
+    <VisitButton :scrollRef="scrollRef" projectName="Polartypes" />
+  </div>
+  <AsideLeft />
+  <AsideRight />
 </template>
 
 <script lang="ts">
 import LeaveAnimation from '@/components/LeaveAnimation.vue';
-import LocomotiveScroll from 'locomotive-scroll';
-import { defineComponent, nextTick, onMounted, onUnmounted, ref } from 'vue';
+import useLocomitive from '@/hooks/useLocomotive.vue';
+import gsap from 'gsap';
+import { defineComponent, ref, onMounted, watch, nextTick } from 'vue';
 import VisitButton from '../components/VisitButton.vue';
+import AsideLeft from '../components/AsideLeft.vue';
+import AsideRight from '../components/AsideRight.vue';
+import DetailTechs from '../components/DeatilTechs.vue';
+import ProjectFooter from '../components/ProjectFooter.vue';
 
 export default defineComponent({
   name: 'Polartypes',
-  components: { VisitButton, LeaveAnimation },
+  components: { LeaveAnimation, AsideLeft, AsideRight, VisitButton, DetailTechs, ProjectFooter },
   setup() {
-    const scrollRef = ref<HTMLDivElement | null>(null);
-    const locoScroll = ref();
+    const { scrollRef } = useLocomitive();
+    const isLoading = ref(true);
+    const heroImgRef = ref<HTMLImageElement | null>(null);
+    const nameRef = ref<HTMLHeadingElement | null>(null);
 
-    setTimeout(() => locoScroll.value.update(), 500);
-
-    onMounted(() => {
-      if (!scrollRef.value) return;
-      locoScroll.value = new LocomotiveScroll({
-        el: scrollRef.value,
-        smooth: true,
-      });
+    onMounted(async () => {
+      const img = new Image();
+      img.src = require('@/assets/polartypes/screenshot.png');
+      img.onload = () => {
+        isLoading.value = false;
+      };
     });
 
-    onUnmounted(() => {
-      if (!locoScroll.value) return;
-      locoScroll.value.destroy();
-    });
+    watch(
+      () => isLoading.value,
+      () => {
+        if (isLoading.value) return;
+        nextTick(() => {
+          if (!nameRef.value) return;
+          const tl = gsap.timeline();
+          tl.from(heroImgRef.value, {
+            duration: 0.4,
+            opacity: 0,
+            y: '100px',
+          });
+          tl.from(
+            nameRef.value,
+            {
+              duration: 1,
+              x: -nameRef.value.getBoundingClientRect().right,
+            },
+            '+=0.5'
+          );
+        });
+      }
+    );
 
-    return { scrollRef };
+    return { isLoading, scrollRef, heroImgRef, nameRef };
   },
 });
 </script>
 
 <style lang="scss" scoped>
-.hero-img-container {
-  padding-top: 25vh;
-  padding-left: $mobile-column-line-1-left;
-  padding-right: $mobile-column-line-5-right;
-  margin-bottom: 2.5rem;
-  img {
-    width: 100%;
-    object-fit: cover;
-  }
+.visit-btn__wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
 }
-.heading {
-  position: relative;
-  height: 6rem;
-  padding-left: $mobile-column-line-1-left;
-  padding-right: $mobile-column-line-5-right;
-  margin-bottom: 4rem;
-  h1 {
-    color: white;
-    font-size: 2.5rem;
+.landing {
+  height: 100vh;
+  .hero-img-container {
+    @include mobile-23-desktop-345__paddings;
+    padding-top: 7rem;
+    margin-bottom: -5rem;
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  .heading {
+    overflow: hidden;
+    padding-bottom: 5rem;
+    @include mobile-23-desktop-2345__margins;
+    h1 {
+      @media screen and (min-width: 1000px) {
+        font-size: 8rem;
+      }
+      width: 100%;
+      text-shadow: 1px 1px 50px black;
+      color: white;
+      font-size: 2.5rem;
+      font-weight: 600;
+    }
   }
 }
 
 .desc__container {
-  margin: 15vh 0;
-  padding-left: $mobile-column-line-1-left;
-  padding-right: $mobile-column-line-5-right;
+  padding-bottom: 15vh;
+  @include mobile-23-desktop-23__margins;
   color: white;
   .break {
     width: 100%;
@@ -146,69 +172,6 @@ export default defineComponent({
     font-size: 0.8rem;
     font-weight: 300;
     line-height: 1.2rem;
-  }
-}
-
-.frontend__container {
-  margin: 15vh 0;
-  padding-left: $mobile-column-line-1-left;
-  padding-right: $mobile-column-line-3-left;
-  color: white;
-  .break {
-    width: 100%;
-    height: 1px;
-    background-color: white;
-    margin-bottom: 1rem;
-  }
-  h5 {
-    margin-bottom: 1rem;
-    font-size: 0.6rem;
-  }
-  ul {
-    li {
-      font-size: 1.1rem;
-    }
-  }
-}
-
-.backend__container {
-  margin: 15vh 0;
-  padding-left: $mobile-column-line-3-left;
-  padding-right: $mobile-column-line-5-right;
-  color: white;
-  .break {
-    width: 100%;
-    height: 1px;
-    background-color: white;
-    margin: 1rem 0;
-  }
-  h5 {
-    margin-bottom: 1rem;
-    font-size: 0.6rem;
-  }
-  ul {
-    li {
-      font-size: 1.1rem;
-    }
-  }
-}
-
-.next-project__container {
-  padding-left: $mobile-column-line-1-left;
-  padding-right: $mobile-column-line-5-right;
-  margin: 2rem 0 4rem 0;
-  .next-project {
-    display: inline-block;
-    color: black;
-    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
-    font-size: 2rem;
-  }
-  .next-project__name {
-    text-align: end;
-    margin-top: 0.4rem;
-    span {
-      color: white;
-    }
   }
 }
 </style>

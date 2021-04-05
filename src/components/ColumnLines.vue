@@ -1,5 +1,4 @@
 <template>
-  <AsideLeft />
   <div class="container" ref="containerRef">
     <div class="column-line column-line-1"></div>
     <div class="column-line column-line-2"></div>
@@ -7,18 +6,14 @@
     <div class="column-line column-line-4"></div>
     <div class="column-line column-line-5"></div>
   </div>
-  <AsideRight />
 </template>
 
 <script lang="ts">
 import gsap from 'gsap';
 import { defineComponent, onMounted, ref } from 'vue';
-import AsideLeft from './AsideLeft.vue';
-import AsideRight from './AsideRight.vue';
 
 export default defineComponent({
   name: 'App',
-  components: { AsideLeft, AsideRight },
   setup() {
     const containerRef = ref<HTMLDivElement | null>(null);
 
@@ -43,6 +38,7 @@ export default defineComponent({
   top: 0;
   left: 0;
   background-color: black;
+  pointer-events: none;
 
   .column-line {
     @include column-line;
