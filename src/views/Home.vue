@@ -3,12 +3,23 @@
   <main ref="scrollRef">
     <div class="intro">
       <h1 ref="h1Ref">Portfolio</h1>
+      <span class="arrow-down" ref="arrDownRef">
+        &darr;
+      </span>
     </div>
     <ul>
       <li v-for="(project, index) in projects" v-bind:key="index">
         <Project :project="project" :index="index" />
       </li>
     </ul>
+    <footer class="home__footer">
+      <div class="home__footer-left">
+        <div><span>Built with&nbsp;</span><img src="@/assets/logo.png" /></div>
+      </div>
+      <div class="home__footer-right">
+        <span>Copyright &copy; Jinseok Bang</span>
+      </div>
+    </footer>
   </main>
   <AsideLeft />
   <AsideRight />
@@ -29,6 +40,7 @@ export default defineComponent({
   components: { Project, LeaveAnimation, AsideLeft, AsideRight },
   setup() {
     const h1Ref = ref<HTMLHeadingElement | null>(null);
+    const arrDownRef = ref<HTMLSpanElement | null>(null);
 
     const { scrollRef, ScrollTrigger } = useLocomitive();
 
@@ -98,12 +110,22 @@ export default defineComponent({
       });
 
       if (h1Ref.value) {
-        const tl = gsap.timeline();
-        tl.from(h1Ref.value, { duration: 1, delay: 1, x: -h1Ref.value.clientWidth - 5 });
+        gsap.from(h1Ref.value, { duration: 1, delay: 1, x: -h1Ref.value.clientWidth - 5 });
       }
+
+      if (arrDownRef.value) {
+        gsap.from(arrDownRef.value, {
+          duration: 1,
+          delay: 2,
+          opacity: 0,
+          y: -20,
+        });
+      }
+
+      ScrollTrigger.refresh(true);
     });
 
-    return { h1Ref, scrollRef, projects };
+    return { h1Ref, arrDownRef, scrollRef, projects };
   },
 });
 </script>
@@ -113,6 +135,10 @@ export default defineComponent({
   @include mobile-23-desktop-2345__margins;
   height: 100vh;
   padding-top: 30vh;
+  padding-bottom: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   overflow-x: hidden;
   h1 {
     @media screen and (min-width: 600px) {
@@ -122,10 +148,42 @@ export default defineComponent({
       font-size: 9rem;
     }
     display: inline-block;
+    width: 100%;
     color: white;
     font-size: 3rem;
     font-weight: 600;
     box-sizing: content-box;
+  }
+  .arrow-down {
+    display: block;
+    text-align: center;
+    color: white;
+    font-size: 3rem;
+    opacity: 0.5;
+  }
+}
+.home__footer {
+  @include mobile-23-desktop-23__margins;
+  height: 10vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  .home__footer-left {
+    div {
+      display: flex;
+      align-items: center;
+    }
+  }
+  .home__footer-right {
+    padding-top: 2rem;
+  }
+  span {
+    font-size: 0.8rem;
+    color: white;
+    letter-spacing: 1px;
+  }
+  img {
+    width: 1rem;
   }
 }
 </style>

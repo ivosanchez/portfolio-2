@@ -6,15 +6,17 @@
   <router-view v-slot="{ Component }">
     <ColumnLines />
     <component :is="Component" />
+    <CustomCursor />
   </router-view>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import ColumnLines from './components/ColumnLines.vue';
+import CustomCursor from './components/CustomCursor.vue';
 
 export default defineComponent({
   name: 'App',
-  components: { ColumnLines },
+  components: { ColumnLines, CustomCursor },
 });
 </script>

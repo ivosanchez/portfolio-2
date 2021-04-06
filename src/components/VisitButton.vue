@@ -34,69 +34,18 @@
 </template>
 
 <script lang="ts">
-import gsap from 'gsap';
-import { defineComponent, nextTick, ref, watch } from 'vue';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   name: 'VisitButton',
   props: {
-    scrollRef: HTMLElement || null,
     projectName: String,
   },
-  setup(props) {
+  setup() {
     const containerRef = ref<HTMLDivElement | null>(null);
     const btnRef = ref<HTMLDivElement | null>(null);
     const spanRef = ref<HTMLSpanElement | null>(null);
     const svgRef = ref<SVGElement | null>(null);
-    watch(
-      () => props.scrollRef,
-      () => {
-        nextTick(() => {
-          if (containerRef.value && btnRef.value && svgRef.value) {
-            const tl = gsap.timeline({ defaults: { duration: 0.6 } });
-            tl.to(spanRef.value, { opacity: 0 });
-            tl.to(
-              containerRef.value,
-              {
-                top: '85vh',
-                right: '2rem',
-                paddingRight: 0,
-                paddingLeft: 0,
-                width: 100,
-                height: 100,
-              },
-              '-=0.4'
-            );
-            tl.to(
-              btnRef.value,
-              {
-                width: 0,
-                height: 0,
-                borderRadius: '50%',
-              },
-              '<'
-            );
-            tl.to(
-              svgRef.value,
-              {
-                opacity: 1,
-                pointerEvents: 'auto',
-              },
-              '-=0.3'
-            );
-            ScrollTrigger.create({
-              trigger: containerRef.value,
-              scroller: props.scrollRef,
-              start: 'center center',
-              toggleActions: 'play none none reverse',
-              animation: tl,
-              markers: true,
-            });
-          }
-        });
-      }
-    );
 
     return { containerRef, btnRef, spanRef, svgRef };
   },
@@ -108,28 +57,31 @@ export default defineComponent({
   @include mobile-23-desktop-45__paddings;
   display: block;
   position: absolute;
-  top: 70vh;
+  top: 65vh;
   right: 0;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  pointer-events: auto;
   .visit-btn {
+    pointer-events: auto;
     width: 100%;
     height: 100%;
-    padding: 0.5rem 0;
+    padding: 1rem 0;
     background-color: white;
     text-align: center;
     cursor: pointer;
+    box-shadow: 1px 1px 10px 0px gray;
     transition: background-color 0.5s, color 0.5s;
     span {
       color: black;
+      letter-spacing: 2px;
+      font-size: 1.2rem;
+      font-weight: 600;
     }
     &:hover {
-      background-color: $primary;
       span {
-        color: white;
+        color: $primary;
       }
     }
   }

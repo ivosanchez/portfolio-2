@@ -1,23 +1,57 @@
 <template>
   <footer class="next-project__container">
     <router-link :to="to">
-      <span class="next-project">Next Project</span>
+      <span class="next-project" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave"
+        >Next Project</span
+      >
       <div class="next-project__name">
         <span>{{ nextName }}</span>
       </div>
     </router-link>
+    <span class="test" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">Next Project</span>
   </footer>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   props: { nextName: String, to: String },
+  setup() {
+    const isBusy = ref(false);
+
+    const onMouseEnter = async (e: MouseEvent) => {
+      if (isBusy.value) return;
+      isBusy.value = true;
+      const el = e.currentTarget as HTMLSpanElement;
+      const text = 'DjangoEats';
+      const sleep = () => new Promise<void>((resolve) => setTimeout(resolve, 40));
+      for (let i = 0; i < 10; i += 1) {
+        const r = Math.random()
+          .toString(36)
+          .substring(2, 12);
+        el.innerText = r;
+        /* eslint-disable-next-line */
+        await sleep();
+      }
+      el.innerText = text;
+      isBusy.value = false;
+    };
+
+    const onMouseLeave = (e: MouseEvent) => {
+      const el = e.currentTarget as HTMLSpanElement;
+      el.innerText = 'Next Project';
+    };
+
+    return { onMouseEnter, onMouseLeave };
+  },
 });
 </script>
 
 <style lang="scss" scoped>
+.test {
+  color: white;
+}
 .next-project__container {
   @include mobile-23-desktop-234__paddings;
   padding-top: 2rem;

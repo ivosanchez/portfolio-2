@@ -1,7 +1,7 @@
 <template>
   <LeaveAnimation />
 
-  <main v-if="!isLoading" ref="scrollRef">
+  <main ref="scrollRef">
     <section class="landing">
       <div class="hero-img-container">
         <img src="@/assets/polartypes/screenshot.png" ref="heroImgRef" />
@@ -10,30 +10,8 @@
         <h1 ref="nameRef">Polartypes</h1>
       </div>
     </section>
-    <section class="desc__container">
-      <div class="break" />
-      <h3>Polartypes and Polarsteps</h3>
-      <p>
-        Polarsteps는 전세계의 여행자들과 모험가들을 위한 소셜 네트워크 서비스를 제공하고 있어요.
-        자바스크립트를 처음 배울 때부터 꼭 클론코딩을 해보고자 마음 먹었던 곳이에요. 그래서 저에겐
-        다른 프로젝트들보다도 더 의미가 깊어요.
-      </p>
-    </section>
-    <section class="desc__container">
-      <div class="break" />
-      <h3>Frontend</h3>
-      <p>
-        React를 사용해서
-      </p>
-    </section>
-    <section class="desc__container">
-      <div class="break" />
-      <h3>Backend</h3>
-      <p>
-        단순히 눈에 보이는 것만 클론코딩 한 것이 아니에요. Nestjs와 GraphQL을 사용해서 Account,
-        Trip, Step 그리고 Comment까지 CRUD를 구축했어요.
-      </p>
-    </section>
+    <Overview />
+    <Stack />
     <section class="desc__container">
       <div class="break" />
       <h3>Typescript</h3>
@@ -42,19 +20,14 @@
       </p>
     </section>
     <DetailTechs
-      :scrollRef="scrollRef"
       :isFront="true"
-      :techs="['React', 'Apollo', 'Moment', 'Mapbox', 'TailwindCSS']"
+      :techs="['React', 'Apollo', 'Moment Timezone', 'Mapbox', 'TailwindCSS']"
     />
-    <DetailTechs
-      :scrollRef="scrollRef"
-      :isFront="false"
-      :techs="['NestJS', 'GraphQL', 'TypeORM', 'PostgreSQL', 'Jest']"
-    />
+    <DetailTechs :isFront="false" :techs="['NestJS', 'GraphQL', 'TypeORM', 'PostgreSQL', 'Jest']" />
     <ProjectFooter nextName="DjangoEats" to="django-eats" />
   </main>
   <div class="visit-btn__wrapper">
-    <VisitButton :scrollRef="scrollRef" projectName="Polartypes" />
+    <VisitButton projectName="Polartypes" />
   </div>
   <AsideLeft />
   <AsideRight />
@@ -64,60 +37,142 @@
 import LeaveAnimation from '@/components/LeaveAnimation.vue';
 import useLocomitive from '@/hooks/useLocomotive.vue';
 import gsap from 'gsap';
-import { defineComponent, ref, onMounted, watch, nextTick } from 'vue';
-import VisitButton from '../components/VisitButton.vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import AsideLeft from '../components/AsideLeft.vue';
 import AsideRight from '../components/AsideRight.vue';
 import DetailTechs from '../components/DeatilTechs.vue';
+import Overview from '../components/Overview.vue';
 import ProjectFooter from '../components/ProjectFooter.vue';
+import Stack from '../components/Stack.vue';
+import VisitButton from '../components/VisitButton.vue';
 
 export default defineComponent({
   name: 'Polartypes',
-  components: { LeaveAnimation, AsideLeft, AsideRight, VisitButton, DetailTechs, ProjectFooter },
+  components: {
+    LeaveAnimation,
+    AsideLeft,
+    AsideRight,
+    VisitButton,
+    Overview,
+    Stack,
+    DetailTechs,
+    ProjectFooter,
+  },
   setup() {
-    const { scrollRef } = useLocomitive();
-    const isLoading = ref(true);
+    const { scrollRef, ScrollTrigger } = useLocomitive();
     const heroImgRef = ref<HTMLImageElement | null>(null);
     const nameRef = ref<HTMLHeadingElement | null>(null);
 
-    onMounted(async () => {
-      const img = new Image();
-      img.src = require('@/assets/polartypes/screenshot.png');
-      img.onload = () => {
-        isLoading.value = false;
-      };
-    });
+    onMounted(() => {
+      if (!nameRef.value) return;
+      const tl = gsap.timeline();
+      tl.from(heroImgRef.value, {
+        duration: 0.4,
+        opacity: 0,
+        y: '100px',
+      });
+      tl.from(
+        nameRef.value,
+        {
+          duration: 1,
+          x: -nameRef.value.getBoundingClientRect().right,
+        },
+        '+=0.5'
+      );
 
-    watch(
-      () => isLoading.value,
-      () => {
-        if (isLoading.value) return;
-        nextTick(() => {
-          if (!nameRef.value) return;
-          const tl = gsap.timeline();
-          tl.from(heroImgRef.value, {
-            duration: 0.4,
-            opacity: 0,
-            y: '100px',
-          });
-          tl.from(
-            nameRef.value,
-            {
-              duration: 1,
-              x: -nameRef.value.getBoundingClientRect().right,
-            },
-            '+=0.5'
-          );
+      const visitBtnWrapper = document.querySelector('.visit-btn__wrapper');
+      const visitBtnContainer = visitBtnWrapper?.querySelector('.visit-btn__container');
+      const visitBtn = visitBtnContainer?.querySelector('.visit-btn');
+      const visitBtnText = visitBtn?.querySelector('span');
+      const visitBtnSvg = visitBtnContainer?.querySelector('svg');
+
+      if (!scrollRef.value) return;
+      if (visitBtnContainer && visitBtn && visitBtnText && visitBtnSvg) {
+        const tl = gsap.timeline({ defaults: { duration: 0.6 } });
+        tl.to(visitBtnText, { opacity: 0 });
+        tl.to(
+          visitBtnContainer,
+          {
+            position: 'absolute',
+            top: '85vh',
+            right: '2rem',
+            padding: 0,
+            width: 100,
+            height: 100,
+          },
+          '-=0.4'
+        );
+        tl.to(
+          visitBtn,
+          {
+            width: 0,
+            height: 0,
+            borderRadius: '50%',
+          },
+          '<'
+        );
+        tl.to(
+          visitBtnSvg,
+          {
+            opacity: 1,
+            pointerEvents: 'auto',
+          },
+          '-=0.3'
+        );
+        ScrollTrigger.create({
+          trigger: visitBtnContainer,
+          scroller: scrollRef.value,
+          start: 'center 60%',
+          toggleActions: 'play none none reverse',
+          animation: tl,
+          markers: true,
         });
       }
-    );
 
-    return { isLoading, scrollRef, heroImgRef, nameRef };
+      const techsContainers = document.querySelectorAll('.techs__container');
+
+      if (!techsContainers) return;
+      techsContainers.forEach((container) => {
+        const techsUl = container?.querySelector('ul');
+        const arrowBtn = container.querySelector('.arrow-btn');
+        if (!techsUl || !arrowBtn) return;
+
+        const lists = techsUl.querySelectorAll('li');
+        lists.forEach((li) => {
+          if (!techsUl || !li || !scrollRef.value) return;
+          const animation = gsap.from(li, {
+            opacity: 0,
+            x: 100,
+          });
+          ScrollTrigger.create({
+            trigger: li,
+            scroller: scrollRef.value,
+            animation,
+          });
+        });
+        if (!arrowBtn || !scrollRef.value) return;
+        const animation = gsap.from(arrowBtn, {
+          clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)',
+        });
+        ScrollTrigger.create({
+          trigger: arrowBtn,
+          scroller: scrollRef.value,
+          animation,
+        });
+      });
+
+      ScrollTrigger.refresh(true);
+    });
+
+    return { scrollRef, heroImgRef, nameRef };
   },
 });
 </script>
 
 <style lang="scss" scoped>
+.landing {
+  height: 85vh;
+}
 .visit-btn__wrapper {
   position: fixed;
   top: 0;
@@ -126,31 +181,33 @@ export default defineComponent({
   height: 100vh;
   pointer-events: none;
 }
-.landing {
-  height: 100vh;
-  .hero-img-container {
-    @include mobile-23-desktop-345__paddings;
-    padding-top: 7rem;
-    margin-bottom: -5rem;
-    img {
-      width: 100%;
-      object-fit: cover;
-    }
+.hero-img-container {
+  @include mobile-23-desktop-3456__paddings;
+  opacity: 0.7;
+  img {
+    width: 100%;
+    min-height: 300px;
+    object-fit: cover;
+    object-position: left;
   }
-  .heading {
-    overflow: hidden;
-    padding-bottom: 5rem;
-    @include mobile-23-desktop-2345__margins;
-    h1 {
-      @media screen and (min-width: 1000px) {
-        font-size: 8rem;
-      }
-      width: 100%;
-      text-shadow: 1px 1px 50px black;
-      color: white;
-      font-size: 2.5rem;
-      font-weight: 600;
+}
+.heading {
+  @include mobile-23-desktop-23456__margins;
+  position: absolute;
+  top: 35vh;
+  padding: 2rem 0;
+  h1 {
+    @media screen and (min-width: 600px) {
+      font-size: 6rem;
     }
+    @media screen and (min-width: 1000px) {
+      font-size: 9rem;
+    }
+    width: 100%;
+    text-shadow: 1px 1px 50px black;
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 600;
   }
 }
 

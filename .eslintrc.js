@@ -15,5 +15,9 @@ module.exports = {
     'object-curly-newline': 'off',
     'comma-dangle': 'off',
     'implicit-arrow-linebreak': 'off',
+    'import/prefer-default-export': 'off',
+    'no-shadow': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    'no-plusplus': 'off',
   },
 };

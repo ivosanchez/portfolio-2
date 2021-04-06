@@ -10,14 +10,14 @@ export const projects: IProject[] = [
   {
     name: 'Polartypes',
     techs: ['React', 'NestJS'],
-    desc: 'This is a description of the project.',
+    desc: 'Fullstack cloning Polarsteps, where you can share your adventrues in awsome way.',
     imgUrl: 'polartypes/screenshot.png',
     link: 'polartypes',
   },
   {
     name: 'DjangoEats',
     techs: ['React', 'Rest Framework'],
-    desc: 'This is a description of the project.',
+    desc: 'Fullstack cloning UberEats.',
     imgUrl: 'djangoeats/screenshot.png',
     link: 'django-eats',
   },

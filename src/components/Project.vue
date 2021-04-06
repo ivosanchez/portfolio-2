@@ -11,32 +11,21 @@
     <ul class="techs">
       <li class="project__tech" v-for="tech in project.techs" v-bind:key="tech.name">{{ tech }}</li>
     </ul>
-    <video src="@/assets/polartypes/record.webm" @click="togglePlayVideo" />
-    <!-- <img :src="getAsset(project.imgUrl)" /> -->
-    <p class="project__desc">This is a description of the project.</p>
+    <div class="video__wrapper">
+      <Video :imgUrl="project.imgUrl" />
+    </div>
+    <p class="project__desc">{{ project.desc }}</p>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import Video from './Video.vue';
 
 export default defineComponent({
   name: 'Project',
+  components: { Video },
   props: { project: Object, index: Number },
-  setup() {
-    const getAsset = (url: string) => require(`@/assets/${url}`);
-
-    const togglePlayVideo = (e: Event) => {
-      const video = e.target as HTMLVideoElement;
-      if (video.paused) {
-        video.play();
-        return;
-      }
-      video.pause();
-    };
-
-    return { getAsset, togglePlayVideo };
-  },
 });
 </script>
 
@@ -44,12 +33,12 @@ export default defineComponent({
 .project {
   @include mobile-23-desktop-2345__paddings;
   width: 100%;
-  margin-bottom: 50vh;
+  margin-bottom: 30vh;
   display: grid;
   grid-template:
     'header' 1fr
     'list' auto
-    'image' auto
+    'video' auto
     'desc' 1fr / 1fr;
   .project__header {
     grid-area: header;
@@ -63,7 +52,7 @@ export default defineComponent({
       color: $primary;
       font-size: 1.5rem;
     }
-    h3 {
+    .project__name {
       @media screen and (min-width: 1000px) {
         font-size: 6rem;
       }
@@ -72,22 +61,27 @@ export default defineComponent({
       color: white;
       font-size: 2.5rem;
       font-weight: 600;
+      transition: color 0.3s;
+      &:hover {
+        color: $primary;
+      }
     }
   }
-  img,
-  video {
-    grid-area: image;
-    margin-bottom: 1rem;
-    width: 100%;
+  .video__wrapper {
+    grid-area: video;
   }
   ul {
     grid-area: list;
     align-self: center;
     margin-bottom: 1rem;
     li {
+      @media screen and (min-width: 1000px) {
+        font-size: 2rem;
+      }
       display: block;
       color: white;
-      font-size: 1rem;
+      font-size: 1.3rem;
+      font-weight: 300;
     }
   }
   .project__desc {
@@ -102,9 +96,9 @@ export default defineComponent({
   @media screen and (min-width: 1000px) {
     grid-template:
       'header header header header' auto
-      'list image image image' 1fr
-      'desc image image image' 1fr
-      'desc image image image' 1fr /1fr 1fr 1fr 1fr;
+      'list video video video' 1fr
+      'desc video video video' 1fr
+      'desc video video video' 1fr /1fr 1fr 1fr 1fr;
   }
   ul,
   .project__header {
@@ -120,9 +114,9 @@ export default defineComponent({
   @media screen and (min-width: 1000px) {
     grid-template:
       'header header header header' auto
-      'image image image list' 1fr
-      'image image image desc' 1fr
-      'image image image desc' 1fr /1fr 1fr 1fr 1fr;
+      'video video video list' 1fr
+      'video video video desc' 1fr
+      'video video video desc' 1fr /1fr 1fr 1fr 1fr;
   }
   ul,
   .project__header {

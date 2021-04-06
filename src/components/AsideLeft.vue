@@ -45,6 +45,7 @@ aside {
   height: 100%;
   display: flex;
   align-items: center;
+  pointer-events: none;
   .vertical {
     writing-mode: vertical-rl;
     text-orientation: upright;
@@ -55,6 +56,7 @@ aside {
     display: flex;
     justify-content: space-between;
     a {
+      pointer-events: auto;
       color: white;
       &:hover {
         color: $primary;

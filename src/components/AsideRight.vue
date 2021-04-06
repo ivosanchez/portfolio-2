@@ -1,9 +1,5 @@
 <template>
-  <aside class="aside-right">
-    <div class="">
-      <span>Right</span>
-    </div>
-  </aside>
+  <aside class="aside-right"></aside>
 </template>
 
 <script lang="ts">
@@ -13,14 +9,13 @@ export default defineComponent({});
 </script>
 
 <style lang="scss" scoped>
-aside {
+.aside-right {
   width: $mobile-column-line-5-right;
   height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
   color: white;
-  position: absolute;
-  text-align: right;
-}
-.aside-right {
-  right: 1rem;
+  pointer-events: none;
 }
 </style>
