@@ -2,19 +2,19 @@
   <div :class="[index % 2 === 0 ? 'project-left' : 'project-right', 'project']">
     <div class="project__header">
       <span class="project__number">0{{ index + 1 }}.</span>
-      <router-link :to="project.link">
+      <router-link :to="path">
         <h3 class="project__name">
-          {{ project.name }}
+          {{ name }}
         </h3>
       </router-link>
     </div>
     <ul class="techs">
-      <li class="project__tech" v-for="tech in project.techs" v-bind:key="tech.name">{{ tech }}</li>
+      <li class="project__tech" v-for="tech in techs" v-bind:key="tech.name">{{ tech }}</li>
     </ul>
     <div class="video__wrapper">
-      <Video :imgUrl="project.imgUrl" />
+      <Video :posterUrl="posterUrl" />
     </div>
-    <p class="project__desc">{{ project.desc }}</p>
+    <p class="project__desc">{{ desc }}</p>
   </div>
 </template>
 
@@ -25,7 +25,14 @@ import Video from './Video.vue';
 export default defineComponent({
   name: 'Project',
   components: { Video },
-  props: { project: Object, index: Number },
+  props: {
+    name: String,
+    path: String,
+    techs: Array,
+    posterUrl: String,
+    desc: String,
+    index: Number,
+  },
 });
 </script>
 

@@ -9,7 +9,14 @@
     </div>
     <ul>
       <li v-for="(project, index) in projects" v-bind:key="index">
-        <Project :project="project" :index="index" />
+        <Project
+          :name="project.name"
+          :path="project.path"
+          :techs="project.summary.techs"
+          :posterUrl="project.summary.posterUrl"
+          :desc="project.summary.desc"
+          :index="index"
+        />
       </li>
     </ul>
     <footer class="home__footer">
@@ -37,7 +44,7 @@ import AsideRight from '../components/AsideRight.vue';
 
 export default defineComponent({
   name: 'Home',
-  components: { Project, LeaveAnimation, AsideLeft, AsideRight },
+  components: { LeaveAnimation, Project, AsideLeft, AsideRight },
   setup() {
     const h1Ref = ref<HTMLHeadingElement | null>(null);
     const arrDownRef = ref<HTMLSpanElement | null>(null);
@@ -121,11 +128,12 @@ export default defineComponent({
           y: -20,
         });
       }
-
-      ScrollTrigger.refresh(true);
+      setTimeout(() => {
+        ScrollTrigger.refresh(true);
+      }, 100);
     });
 
-    return { h1Ref, arrDownRef, scrollRef, projects };
+    return { h1Ref, arrDownRef, scrollRef, projects: projects.values() };
   },
 });
 </script>
@@ -163,7 +171,7 @@ export default defineComponent({
   }
 }
 .home__footer {
-  @include mobile-23-desktop-23__margins;
+  @include mobile-23-desktop-34__margins;
   height: 10vh;
   display: grid;
   grid-template-columns: 1fr 1fr;

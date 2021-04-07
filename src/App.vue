@@ -3,7 +3,7 @@
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
     rel="stylesheet"
   /> -->
-  <router-view v-slot="{ Component }">
+  <router-view v-slot="{ Component }" :key="$route.fullPath">
     <ColumnLines />
     <component :is="Component" />
     <CustomCursor />

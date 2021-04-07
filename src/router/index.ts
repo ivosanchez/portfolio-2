@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import { projects } from '../constants/projects';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -7,30 +8,15 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
   },
   {
-    path: '/polartypes',
-    name: 'Polartypes',
-    component: () => import(/* webpackChunkName: "polartypes" */ '../views/Polartypes.vue'),
+    path: '/About',
+    name: 'About',
+    component: () => import(/* webpackChunkName: "home" */ '../views/About.vue'),
   },
   {
-    path: '/django-eats',
-    name: 'DjangoEats',
-    component: () => import(/* webpackChunkName: "djangoeats" */ '../views/DjangoEats.vue'),
-  },
-  {
-    path: '/medium-rare',
-    name: 'MediumRare',
-    component: () => import(/* webpackChunkName: "mediumrare" */ '../views/MediumRare.vue'),
-  },
-  {
-    path: '/covid-19-dashboard',
-    name: 'Covid19Dashboard',
-    component: () =>
-      import(/* webpackChunkName: "covid19dashboard" */ '../views/Covid19Dashboard.vue'),
-  },
-  {
-    path: '/pathfinder',
-    name: 'Pathfinder',
-    component: () => import(/* webpackChunkName: "pathfinder" */ '../views/Pathfinder.vue'),
+    path: '/:projectName',
+    name: 'Project',
+    props: { projects },
+    component: () => import(/* webpackChunkName: "polartypes" */ '../views/Project.vue'),
   },
 ];
 

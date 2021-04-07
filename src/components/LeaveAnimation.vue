@@ -5,9 +5,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import { onBeforeRouteLeave } from 'vue-router';
 import gsap from 'gsap';
+import { defineComponent, ref } from 'vue';
+import { onBeforeRouteLeave, onBeforeRouteUpdate, NavigationGuard } from 'vue-router';
 
 export default defineComponent({
   name: 'LeaveAnimation',
@@ -15,7 +15,8 @@ export default defineComponent({
     const fullWhiteRef = ref<HTMLDivElement | null>(null);
     const fullOrangeRef = ref<HTMLDivElement | null>(null);
     const fullBlackRef = ref<HTMLDivElement | null>(null);
-    onBeforeRouteLeave((_, __, next) => {
+
+    const navigationGuard: NavigationGuard = (_, __, next) => {
       if (fullWhiteRef.value && fullOrangeRef.value && fullBlackRef.value) {
         const tl = gsap.timeline({ defaults: { duration: 0.5 } });
         tl.to([fullWhiteRef.value, fullOrangeRef.value, fullBlackRef.value], {
@@ -37,7 +38,10 @@ export default defineComponent({
           '-=0.4'
         );
       }
-    });
+    };
+    onBeforeRouteLeave(navigationGuard);
+    onBeforeRouteUpdate(navigationGuard);
+
     return { fullWhiteRef, fullOrangeRef, fullBlackRef };
   },
 });

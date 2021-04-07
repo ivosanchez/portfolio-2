@@ -1,7 +1,7 @@
 <template>
   <video
     src="@/assets/polartypes/record.webm"
-    :poster="getAsset(imgUrl)"
+    :poster="getAsset(posterUrl)"
     @click="togglePlayVideo"
     @mouseenter="onMouseEnter"
     @mouseleave="onMouseLeave"
@@ -13,10 +13,11 @@
 <script lang="ts">
 import { CURSOR, MUTAIONS, useStore } from '@/store';
 import { defineComponent, ref } from 'vue';
+import { getAsset } from '../utils';
 
 export default defineComponent({
   name: 'Video',
-  props: { imgUrl: String },
+  props: { posterUrl: String },
   setup() {
     const videoRef = ref<HTMLVideoElement | null>(null);
     const videoCursor = document.getElementById('video-cursor');
@@ -25,8 +26,6 @@ export default defineComponent({
       commit,
       state: { cursor },
     } = useStore();
-
-    const getAsset = (url: string) => require(`@/assets/${url}`);
 
     const changeCursor = () => {
       if (!videoCursor || !videoRef.value) return;

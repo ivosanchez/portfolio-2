@@ -6,7 +6,7 @@
     target="_blank"
   >
     <div class="visit-btn" ref="btnRef" role="button">
-      <span ref="spanRef">Visit {{ projectName }}</span>
+      <span ref="spanRef">Visit {{ name }}</span>
     </div>
     <svg
       ref="svgRef"
@@ -26,7 +26,7 @@
       <rect width="100%" height="100%" fill="none" />
       <text>
         <textPath xlink:href="#textcircle" aria-label="Visit this project" textLength="942">
-          VISIT POLARTYPES&nbsp;
+          VISIT {{ name }}&nbsp;
         </textPath>
       </text>
     </svg>
@@ -39,7 +39,7 @@ import { defineComponent, ref } from 'vue';
 export default defineComponent({
   name: 'VisitButton',
   props: {
-    projectName: String,
+    name: String,
   },
   setup() {
     const containerRef = ref<HTMLDivElement | null>(null);
@@ -94,6 +94,7 @@ export default defineComponent({
     text {
       fill: white;
       font-size: 4rem;
+      text-transform: uppercase;
     }
     &:hover {
       text {

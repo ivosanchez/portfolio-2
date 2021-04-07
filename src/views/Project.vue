@@ -4,30 +4,21 @@
   <main ref="scrollRef">
     <section class="landing">
       <div class="hero-img-container">
-        <img src="@/assets/polartypes/screenshot.png" ref="heroImgRef" />
+        <img :src="getAsset(heroImgUrl)" ref="heroImgRef" />
       </div>
       <div class="heading">
-        <h1 ref="nameRef">Polartypes</h1>
+        <h1 ref="nameRef">{{ name }}</h1>
       </div>
     </section>
     <Overview />
-    <Stack />
-    <section class="desc__container">
-      <div class="break" />
-      <h3>Typescript</h3>
-      <p>
-        프론트와 백엔드 모두에 typescript를 사용했어요.
-      </p>
+    <DetailTechs :techArrays="techArrays" />
+    <section class="stacks__wrapper">
+      <Stack v-for="(desc, index) in descs" :key="index" :desc="desc" :index="index" />
     </section>
-    <DetailTechs
-      :isFront="true"
-      :techs="['React', 'Apollo', 'Moment Timezone', 'Mapbox', 'TailwindCSS']"
-    />
-    <DetailTechs :isFront="false" :techs="['NestJS', 'GraphQL', 'TypeORM', 'PostgreSQL', 'Jest']" />
-    <ProjectFooter nextName="DjangoEats" to="django-eats" />
+    <ProjectFooter :nextName="nextName" :to="nextPath" />
   </main>
   <div class="visit-btn__wrapper">
-    <VisitButton projectName="Polartypes" />
+    <VisitButton :name="name" />
   </div>
   <AsideLeft />
   <AsideRight />
@@ -35,9 +26,11 @@
 
 <script lang="ts">
 import LeaveAnimation from '@/components/LeaveAnimation.vue';
+import { IProject, PATH_KEY } from '@/constants/projects';
 import useLocomitive from '@/hooks/useLocomotive.vue';
 import gsap from 'gsap';
-import { defineComponent, onMounted, ref } from 'vue';
+import { computed, defineComponent, onMounted, PropType, reactive, ref } from 'vue';
+import { useRoute } from 'vue-router';
 import AsideLeft from '../components/AsideLeft.vue';
 import AsideRight from '../components/AsideRight.vue';
 import DetailTechs from '../components/DeatilTechs.vue';
@@ -45,9 +38,11 @@ import Overview from '../components/Overview.vue';
 import ProjectFooter from '../components/ProjectFooter.vue';
 import Stack from '../components/Stack.vue';
 import VisitButton from '../components/VisitButton.vue';
+import { getAsset } from '../utils';
 
 export default defineComponent({
   name: 'Polartypes',
+  props: { projects: { required: true, type: Map as PropType<Map<PATH_KEY, IProject>> } },
   components: {
     LeaveAnimation,
     AsideLeft,
@@ -58,8 +53,11 @@ export default defineComponent({
     DetailTechs,
     ProjectFooter,
   },
-  setup() {
+  setup(props) {
+    const route = useRoute();
     const { scrollRef, ScrollTrigger } = useLocomitive();
+    const projectName = computed(() => route.params.projectName as PATH_KEY);
+    const state = reactive({ project: props.projects.get(projectName.value) });
     const heroImgRef = ref<HTMLImageElement | null>(null);
     const nameRef = ref<HTMLHeadingElement | null>(null);
 
@@ -164,7 +162,20 @@ export default defineComponent({
       ScrollTrigger.refresh(true);
     });
 
-    return { scrollRef, heroImgRef, nameRef };
+    return {
+      scrollRef,
+      heroImgRef,
+      nameRef,
+      getAsset,
+      heroImgUrl: state.project?.detail.heroImgUrl,
+      name: state.project?.name,
+      techArrays: state.project?.detail.backendTechs
+        ? [state.project?.detail.frontendTechs, state.project?.detail.backendTechs]
+        : [state.project?.detail.frontendTechs],
+      descs: state.project?.detail.descs,
+      nextPath: state.project?.nextPath,
+      nextName: state.project ? props.projects.get(state.project.nextPath)?.name : '',
+    };
   },
 });
 </script>
@@ -194,7 +205,7 @@ export default defineComponent({
 .heading {
   @include mobile-23-desktop-23456__margins;
   position: absolute;
-  top: 35vh;
+  top: 30vh;
   padding: 2rem 0;
   h1 {
     @media screen and (min-width: 600px) {
@@ -204,31 +215,17 @@ export default defineComponent({
       font-size: 9rem;
     }
     width: 100%;
-    text-shadow: 1px 1px 50px black;
+    max-width: 1000px;
+    text-shadow: 1px 1px 200px black;
     color: white;
     font-size: 2.5rem;
     font-weight: 600;
   }
 }
 
-.desc__container {
-  padding-bottom: 15vh;
-  @include mobile-23-desktop-23__margins;
-  color: white;
-  .break {
-    width: 100%;
-    height: 1px;
-    background-color: white;
-    margin-bottom: 1rem;
-  }
-  h3 {
-    margin-bottom: 1rem;
-    font-size: 1.8rem;
-  }
-  p {
-    font-size: 0.8rem;
-    font-weight: 300;
-    line-height: 1.2rem;
-  }
+.stacks__wrapper {
+  @include mobile-23-desktop-2345__margins;
+  display: grid;
+  gap: 2rem;
 }
 </style>
