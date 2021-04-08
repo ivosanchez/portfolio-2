@@ -28,11 +28,11 @@ const useSpinString = ({ initial, output }: IUseSpinStringArgs) => {
     }
 
     if (isLeft.value) {
-      el.style.color = 'black';
+      // el.style.color = 'black';
       el.innerText = initial;
     } else {
       el.innerText = output;
-      el.style.color = 'white';
+      // el.style.color = 'white';
     }
 
     isBusy.value = false;
@@ -44,7 +44,7 @@ const useSpinString = ({ initial, output }: IUseSpinStringArgs) => {
     if (isBusy.value) return;
 
     const el = e.currentTarget as HTMLSpanElement;
-    el.style.color = 'black';
+    // el.style.color = 'black';
     el.innerText = initial;
   };
 

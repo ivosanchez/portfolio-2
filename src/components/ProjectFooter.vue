@@ -27,9 +27,10 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .next-project__container {
-  @include mobile-23-desktop-345__paddings;
-  padding-top: 2rem;
-  padding-bottom: 20vh;
+  /* @include mobile-23-desktop-345__paddings; */
+  display: flex;
+  justify-content: center;
+  padding: 25vh 0;
   a {
     display: block;
     .next-project {

@@ -22,6 +22,7 @@ const useLocomitive = () => {
         el: scrollRef.value,
         smooth: true,
       });
+
       locoScroll.value.stop();
       locoScroll.value.on('scroll', ScrollTrigger.update);
       ScrollTrigger.scrollerProxy(scrollRef.value, {

@@ -19,5 +19,6 @@ module.exports = {
     'no-shadow': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'no-plusplus': 'off',
+    yoda: 'off',
   },
 };

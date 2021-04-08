@@ -6,6 +6,18 @@
   top: 0;
 }
 
+@mixin aside {
+  @media screen and (min-width: 1000px) {
+    width: $column-line-width;
+  }
+  width: $mobile-column-line-1-left;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  padding: 0 1rem;
+  pointer-events: none;
+}
+
 @mixin mobile-23-desktop-23456__margins {
   margin-left: $mobile-column-line-1-left;
   margin-right: $mobile-column-line-5-right;
@@ -30,6 +42,15 @@
   @media screen and (min-width: 1000px) {
     padding-left: $column-line-width;
     padding-right: $column-line-width;
+  }
+}
+
+@mixin mobile-23-desktop-3456__margins {
+  margin-left: $mobile-column-line-1-left;
+  margin-right: $mobile-column-line-5-right;
+  @media screen and (min-width: 1000px) {
+    margin-left: $column-line-2-left;
+    margin-right: 0;
   }
 }
 

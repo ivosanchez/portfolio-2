@@ -10,12 +10,8 @@ export default defineComponent({});
 
 <style lang="scss" scoped>
 .aside-right {
-  width: $mobile-column-line-5-right;
-  height: 100%;
-  position: fixed;
-  top: 0;
+  @include aside;
   right: 0;
   color: white;
-  pointer-events: none;
 }
 </style>

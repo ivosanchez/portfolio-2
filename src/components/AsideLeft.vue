@@ -1,13 +1,13 @@
 <template>
-  <aside class="aside-left">
-    <div class="vertical" ref="verticalRef">
-      <router-link to="/">
-        <span>Home</span>
-      </router-link>
-      <router-link to="/">
-        <span>Contact</span>
-      </router-link>
-    </div>
+  <aside class="aside-left" ref="asideRef">
+    <div />
+    <router-link to="/">
+      <span>Home</span>
+    </router-link>
+    <router-link to="/about">
+      <span>About</span>
+    </router-link>
+    <div />
   </aside>
 </template>
 
@@ -18,12 +18,12 @@ import { defineComponent, onMounted, ref } from 'vue';
 export default defineComponent({
   name: 'AsideLeft',
   setup() {
-    const verticalRef = ref<HTMLDivElement | null>(null);
+    const asideRef = ref<HTMLDivElement | null>(null);
 
     const runAnim = () => {
-      if (verticalRef.value) {
-        const spans = verticalRef.value.querySelectorAll('span');
-        gsap.from(spans, { duration: 1, delay: 2, opacity: 0, y: 20 });
+      if (asideRef.value) {
+        const spans = asideRef.value.querySelectorAll('span');
+        gsap.from(spans, { duration: 1, delay: 2.5, opacity: 0, y: 20 });
       }
     };
 
@@ -31,40 +31,33 @@ export default defineComponent({
       runAnim();
     });
 
-    return { verticalRef };
+    return { asideRef };
   },
 });
 </script>
 
 <style lang="scss" scoped>
-aside {
-  position: fixed;
-  top: 0;
+.aside-left {
+  @include aside;
   left: 0;
-  width: $mobile-column-line-1-left;
-  height: 100%;
-  display: flex;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
   align-items: center;
-  pointer-events: none;
-  .vertical {
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-    text-transform: uppercase;
-    letter-spacing: 0.5rem;
-    font-size: 0.7rem;
-    height: 50%;
-    display: flex;
-    justify-content: space-between;
-    a {
-      pointer-events: auto;
-      color: white;
-      &:hover {
-        color: $primary;
-      }
+  a {
+    width: 50%;
+    pointer-events: auto;
+    color: white;
+    span {
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+      text-transform: uppercase;
+      letter-spacing: 0.5rem;
+      font-size: 0.7rem;
+      display: block;
+    }
+    &:hover {
+      color: $primary;
     }
   }
-}
-.aside-left {
-  left: 1rem;
 }
 </style>

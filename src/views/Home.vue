@@ -2,7 +2,14 @@
   <LeaveAnimation />
   <main ref="scrollRef">
     <div class="intro">
+      <div class="intro__top">
+        <div></div>
+        <div>
+          <span>{{ count }}개의 프로젝트가 기다리고 있어요.</span>
+        </div>
+      </div>
       <h1 ref="h1Ref">Portfolio</h1>
+      <div></div>
       <span class="arrow-down" ref="arrDownRef">
         &darr;
       </span>
@@ -28,8 +35,6 @@
       </div>
     </footer>
   </main>
-  <AsideLeft />
-  <AsideRight />
 </template>
 
 <script lang="ts">
@@ -39,12 +44,10 @@ import { defineComponent, onMounted, ref } from 'vue';
 import LeaveAnimation from '../components/LeaveAnimation.vue';
 import Project from '../components/Project.vue';
 import { projects } from '../constants/projects';
-import AsideLeft from '../components/AsideLeft.vue';
-import AsideRight from '../components/AsideRight.vue';
 
 export default defineComponent({
   name: 'Home',
-  components: { LeaveAnimation, Project, AsideLeft, AsideRight },
+  components: { LeaveAnimation, Project },
   setup() {
     const h1Ref = ref<HTMLHeadingElement | null>(null);
     const arrDownRef = ref<HTMLSpanElement | null>(null);
@@ -133,7 +136,7 @@ export default defineComponent({
       }, 100);
     });
 
-    return { h1Ref, arrDownRef, scrollRef, projects: projects.values() };
+    return { h1Ref, arrDownRef, scrollRef, projects: projects.values(), count: projects.size };
   },
 });
 </script>
@@ -142,12 +145,26 @@ export default defineComponent({
 .intro {
   @include mobile-23-desktop-2345__margins;
   height: 100vh;
-  padding-top: 30vh;
-  padding-bottom: 10vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  align-items: center;
   overflow-x: hidden;
+  .intro__top {
+    @media screen and (min-width: 1000px) {
+      padding-left: $column-line-2-left;
+    }
+    padding-top: 2rem;
+    display: grid;
+    align-self: flex-start;
+    grid-template-columns: 1fr 1fr;
+    span {
+      color: white;
+      font-size: 0.7rem;
+    }
+    img {
+      width: 1rem;
+    }
+  }
   h1 {
     @media screen and (min-width: 600px) {
       font-size: 6rem;

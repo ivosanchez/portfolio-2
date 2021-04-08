@@ -3,7 +3,7 @@
 
   <main ref="scrollRef">
     <section class="landing">
-      <div class="hero-img-container">
+      <div class="hero-img__container">
         <img :src="getAsset(heroImgUrl)" ref="heroImgRef" />
       </div>
       <div class="heading">
@@ -20,8 +20,6 @@
   <div class="visit-btn__wrapper">
     <VisitButton :name="name" />
   </div>
-  <AsideLeft />
-  <AsideRight />
 </template>
 
 <script lang="ts">
@@ -31,8 +29,6 @@ import useLocomitive from '@/hooks/useLocomotive.vue';
 import gsap from 'gsap';
 import { computed, defineComponent, onMounted, PropType, reactive, ref } from 'vue';
 import { useRoute } from 'vue-router';
-import AsideLeft from '../components/AsideLeft.vue';
-import AsideRight from '../components/AsideRight.vue';
 import DetailTechs from '../components/DeatilTechs.vue';
 import Overview from '../components/Overview.vue';
 import ProjectFooter from '../components/ProjectFooter.vue';
@@ -45,8 +41,6 @@ export default defineComponent({
   props: { projects: { required: true, type: Map as PropType<Map<PATH_KEY, IProject>> } },
   components: {
     LeaveAnimation,
-    AsideLeft,
-    AsideRight,
     VisitButton,
     Overview,
     Stack,
@@ -65,18 +59,15 @@ export default defineComponent({
       if (!nameRef.value) return;
       const tl = gsap.timeline();
       tl.from(heroImgRef.value, {
-        duration: 0.4,
+        delay: 0.2,
+        duration: 0.8,
         opacity: 0,
         y: '100px',
       });
-      tl.from(
-        nameRef.value,
-        {
-          duration: 1,
-          x: -nameRef.value.getBoundingClientRect().right,
-        },
-        '+=0.5'
-      );
+      tl.from(nameRef.value, {
+        duration: 0.8,
+        x: -nameRef.value.getBoundingClientRect().right,
+      });
 
       const visitBtnWrapper = document.querySelector('.visit-btn__wrapper');
       const visitBtnContainer = visitBtnWrapper?.querySelector('.visit-btn__container');
@@ -192,8 +183,9 @@ export default defineComponent({
   height: 100vh;
   pointer-events: none;
 }
-.hero-img-container {
-  @include mobile-23-desktop-3456__paddings;
+.hero-img__container {
+  @include mobile-23-desktop-3456__margins;
+  position: relative;
   opacity: 0.7;
   img {
     width: 100%;

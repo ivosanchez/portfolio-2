@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { CURSOR, MUTAIONS, useStore } from '@/store';
+import { CURSOR, GETTERS, MUTAIONS, useStore } from '@/store';
 import { defineComponent, ref } from 'vue';
 import { getAsset } from '../utils';
 
@@ -22,18 +22,15 @@ export default defineComponent({
     const videoRef = ref<HTMLVideoElement | null>(null);
     const videoCursor = document.getElementById('video-cursor');
 
-    const {
-      commit,
-      state: { cursor },
-    } = useStore();
+    const { commit, getters } = useStore();
 
     const changeCursor = () => {
       if (!videoCursor || !videoRef.value) return;
-      if (videoRef.value.paused && cursor !== CURSOR.PLAY) {
+      if (videoRef.value.paused && getters[GETTERS.GET_CURSOR] !== CURSOR.PLAY) {
         commit(MUTAIONS.SET_CURSOR, CURSOR.PLAY);
         return;
       }
-      if (!videoRef.value.paused && cursor !== CURSOR.PAUSE) {
+      if (!videoRef.value.paused && getters[GETTERS.GET_CURSOR] !== CURSOR.PAUSE) {
         commit(MUTAIONS.SET_CURSOR, CURSOR.PAUSE);
       }
     };
