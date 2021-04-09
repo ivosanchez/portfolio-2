@@ -6,7 +6,7 @@
         <li v-for="(tech, index) in techs" :key="index">{{ tech }}</li>
       </ul>
       <div class="arrow-btn__container">
-        <ArrowButton />
+        <ArrowButton text="Github" :href="index === 0 ? frontendGithubUrl : backendGithubUrl" />
       </div>
     </div>
   </section>
@@ -20,6 +20,8 @@ export default defineComponent({
   components: { ArrowButton },
   props: {
     techArrays: Array as PropType<string[][]>,
+    frontendGithubUrl: String,
+    backendGithubUrl: String,
   },
   setup() {
     const sectionRef = ref<HTMLDivElement | null>(null);

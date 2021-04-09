@@ -1,5 +1,5 @@
 <script lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue';
+import { onBeforeUnmount, onMounted, onUnmounted, ref } from 'vue';
 import LocomotiveScroll from 'locomotive-scroll';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
@@ -12,6 +12,7 @@ const useLocomitive = () => {
   const locoScroll = ref();
 
   const onRefresh = () => {
+    if (!locoScroll.value) return;
     locoScroll.value.update();
     locoScroll.value.start();
   };
@@ -22,7 +23,6 @@ const useLocomitive = () => {
         el: scrollRef.value,
         smooth: true,
       });
-
       locoScroll.value.stop();
       locoScroll.value.on('scroll', ScrollTrigger.update);
       ScrollTrigger.scrollerProxy(scrollRef.value, {
@@ -42,7 +42,7 @@ const useLocomitive = () => {
     }
   });
 
-  onUnmounted(() => {
+  onBeforeUnmount(() => {
     ScrollTrigger.removeEventListener('refresh', onRefresh);
     if (!locoScroll.value) return;
     locoScroll.value.destroy();

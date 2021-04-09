@@ -40,7 +40,6 @@ export default defineComponent({
 .project {
   @include mobile-23-desktop-2345__paddings;
   width: 100%;
-  margin-bottom: 30vh;
   display: grid;
   grid-template:
     'header' 1fr

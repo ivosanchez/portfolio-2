@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
 @mixin column-line {
   width: 1px;
   height: 100vh;
@@ -14,8 +16,14 @@
   position: fixed;
   top: 0;
   height: 100%;
-  padding: 0 1rem;
   pointer-events: none;
+}
+
+@mixin drawer {
+  @media screen and (min-width: 1000px) {
+    width: $column-line-3-left;
+  }
+  width: calc(100vw - #{$mobile-column-line-5-right});
 }
 
 @mixin mobile-23-desktop-23456__margins {
@@ -78,6 +86,15 @@
   @media screen and (min-width: 1000px) {
     padding-left: $column-line-2-left;
     padding-right: $column-line-1-left;
+  }
+}
+
+@mixin mobile-23-desktop-456__paddings {
+  padding-left: $mobile-column-line-1-left;
+  padding-right: $mobile-column-line-5-right;
+  @media screen and (min-width: 1000px) {
+    padding-left: $column-line-3-left;
+    padding-right: 0;
   }
 }
 

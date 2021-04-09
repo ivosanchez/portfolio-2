@@ -7,11 +7,29 @@ interface IUseSpinStringArgs {
   output: string;
 }
 
-const useSpinString = ({ initial, output }: IUseSpinStringArgs) => {
+const useSpinString = (input?: IUseSpinStringArgs) => {
   const isBusy = ref(false);
   const isLeft = ref(true);
 
   const sleep = () => new Promise<void>((resolve) => setTimeout(resolve, 30));
+
+  const shuffleString = async (
+    el: HTMLSpanElement | HTMLParagraphElement | null,
+    result: string,
+    isRoleBack: boolean
+  ) => {
+    if (!el) return;
+    const targetElement = el;
+    for (let i = 0; i < 6; i += 1) {
+      const randomOrder = cryptoRandomString({ length: result.length, characters: result });
+      targetElement.innerText = randomOrder;
+      /* eslint-disable-next-line */
+      await sleep();
+    }
+    if (isRoleBack) {
+      targetElement.innerText = result;
+    }
+  };
 
   const onMouseEnter = async (e: MouseEvent) => {
     isLeft.value = false;
@@ -19,13 +37,10 @@ const useSpinString = ({ initial, output }: IUseSpinStringArgs) => {
     isBusy.value = true;
 
     const el = e.currentTarget as HTMLSpanElement;
+    const initial = input?.initial ?? el.innerText;
+    const output = input?.output ?? el.innerText;
 
-    for (let i = 0; i < 6; i += 1) {
-      const r = cryptoRandomString({ length: output.length, characters: output });
-      el.innerText = r;
-      /* eslint-disable-next-line */
-      await sleep();
-    }
+    await shuffleString(el, output, false);
 
     if (isLeft.value) {
       // el.style.color = 'black';
@@ -42,13 +57,13 @@ const useSpinString = ({ initial, output }: IUseSpinStringArgs) => {
     isLeft.value = true;
 
     if (isBusy.value) return;
-
     const el = e.currentTarget as HTMLSpanElement;
+    const initial = input?.initial ?? el.innerText;
     // el.style.color = 'black';
     el.innerText = initial;
   };
 
-  return { onMouseEnter, onMouseLeave };
+  return { onMouseEnter, onMouseLeave, shuffleString };
 };
 
 export default useSpinString;

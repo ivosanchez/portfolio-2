@@ -39,7 +39,8 @@ import { defineComponent, ref } from 'vue';
 export default defineComponent({
   name: 'VisitButton',
   props: {
-    name: String,
+    name: { required: true, type: String },
+    href: { required: true, type: String },
   },
   setup() {
     const containerRef = ref<HTMLDivElement | null>(null);

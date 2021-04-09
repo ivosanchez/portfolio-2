@@ -9,13 +9,13 @@
 </template>
 
 <script lang="ts">
-import useSpinString from '@/hooks/useSpinString.vue';
+import useShuffleString from '@/hooks/useShuffleString.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
   props: { nextName: { required: true, type: String }, to: { required: true, type: String } },
   setup(props) {
-    const { onMouseEnter, onMouseLeave } = useSpinString({
+    const { onMouseEnter, onMouseLeave } = useShuffleString({
       initial: 'Next Project',
       output: props.nextName,
     });

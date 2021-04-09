@@ -14,7 +14,7 @@
         &darr;
       </span>
     </div>
-    <ul>
+    <ul class="home__projects">
       <li v-for="(project, index) in projects" v-bind:key="index">
         <Project
           :name="project.name"
@@ -28,7 +28,10 @@
     </ul>
     <footer class="home__footer">
       <div class="home__footer-left">
-        <div><span>Built with&nbsp;</span><img src="@/assets/logo.png" /></div>
+        <div>
+          <span>Built with&nbsp;</span>
+          <!-- <img src="@/assets/logo.png" /> -->
+        </div>
       </div>
       <div class="home__footer-right">
         <span>Copyright &copy; Jinseok Bang</span>
@@ -133,7 +136,7 @@ export default defineComponent({
       }
       setTimeout(() => {
         ScrollTrigger.refresh(true);
-      }, 100);
+      }, 1000);
     });
 
     return { h1Ref, arrDownRef, scrollRef, projects: projects.values(), count: projects.size };
@@ -185,6 +188,11 @@ export default defineComponent({
     color: white;
     font-size: 3rem;
     opacity: 0.5;
+  }
+}
+.home__projects {
+  li {
+    margin-bottom: 15rem;
   }
 }
 .home__footer {

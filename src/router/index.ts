@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import { projects } from '../constants/projects';
+import { aboutPanels } from '../constants/about';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -10,6 +11,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/about',
     name: 'About',
+    props: { aboutPanels },
     component: () => import(/* webpackChunkName: "home" */ '../views/About.vue'),
   },
   {

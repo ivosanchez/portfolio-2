@@ -1,7 +1,7 @@
 <template>
-  <a class="arrow-btn" role="button" href="www.google.com">
+  <a class="arrow-btn" role="button" :href="href" target="_blank">
     <div class="arrow-btn__mask">
-      <span>Github</span>
+      <span>{{ text }}</span>
     </div>
     <div class="arrow-btn__rarr">
       <svg
@@ -27,6 +27,7 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'ArrowButton',
+  props: { text: { required: true, type: String }, href: { required: true, type: String } },
 });
 </script>
 

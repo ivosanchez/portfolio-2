@@ -11,14 +11,18 @@
       </div>
     </section>
     <Overview />
-    <DetailTechs :techArrays="techArrays" />
+    <DetailTechs
+      :techArrays="techArrays"
+      :frontendGithubUrl="frontendGithubUrl"
+      :backendGithubUrl="backendGithubUrl"
+    />
     <section class="stacks__wrapper">
       <Stack v-for="(desc, index) in descs" :key="index" :desc="desc" :index="index" />
     </section>
     <ProjectFooter :nextName="nextName" :to="nextPath" />
   </main>
   <div class="visit-btn__wrapper">
-    <VisitButton :name="name" />
+    <VisitButton :name="name" :href="href" />
   </div>
 </template>
 
@@ -114,7 +118,7 @@ export default defineComponent({
           start: 'center 60%',
           toggleActions: 'play none none reverse',
           animation: tl,
-          markers: true,
+          invalidateOnRefresh: true,
         });
       }
 
@@ -160,9 +164,12 @@ export default defineComponent({
       getAsset,
       heroImgUrl: state.project?.detail.heroImgUrl,
       name: state.project?.name,
+      href: state.project?.href,
       techArrays: state.project?.detail.backendTechs
         ? [state.project?.detail.frontendTechs, state.project?.detail.backendTechs]
         : [state.project?.detail.frontendTechs],
+      frontendGithubUrl: state.project?.detail.frontendGithubUrl,
+      backendGithubUrl: state.project?.detail.backendGithubUrl,
       descs: state.project?.detail.descs,
       nextPath: state.project?.nextPath,
       nextName: state.project ? props.projects.get(state.project.nextPath)?.name : '',

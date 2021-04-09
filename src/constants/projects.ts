@@ -21,6 +21,8 @@ export interface IProject {
     overviews: { heading: string; paragraph: string }[];
     frontendTechs?: string[];
     backendTechs?: string[];
+    frontendGithubUrl?: string;
+    backendGithubUrl?: string;
     descs: { heading: string; imgUrl?: string; paragraph: string }[];
   };
 }
@@ -42,6 +44,7 @@ export const projects = new Map<PATH_KEY, IProject>([
         heroImgUrl: 'polartypes/screenshot.png',
         overviews: [{ heading: '', paragraph: '' }],
         frontendTechs: [
+          'Typescript',
           'React',
           'Apollo',
           'React Hook Form',
@@ -49,7 +52,9 @@ export const projects = new Map<PATH_KEY, IProject>([
           'Mapbox',
           'TailwindCSS',
         ],
-        backendTechs: ['NestJS', 'GraphQL', 'TypeORM', 'PostgreSQL', 'Jest'],
+        backendTechs: ['Typescript', 'NestJS', 'GraphQL', 'TypeORM', 'PostgreSQL', 'Jest'],
+        frontendGithubUrl: 'https://github.com/jonganebski/polartypes-frontend',
+        backendGithubUrl: 'https://github.com/jonganebski/polartypes-backend',
         descs: [
           { heading: 'Obstacles', paragraph: 'aaa' },
           { heading: 'Limitations and future plan', paragraph: 'bbb' },
@@ -72,8 +77,17 @@ export const projects = new Map<PATH_KEY, IProject>([
       detail: {
         heroImgUrl: 'djangoeats/screenshot.png',
         overviews: [{ heading: '', paragraph: '' }],
-        frontendTechs: ['React', 'Redux', 'React Hook Form', 'Chakra UI'],
-        backendTechs: ['Rest Framework', 'Django', 'Django Channels', 'PostgreSQL', 'Redis'],
+        frontendTechs: ['Typescript', 'React', 'Redux', 'React Hook Form', 'Chakra UI'],
+        backendTechs: [
+          'Python',
+          'Rest Framework',
+          'Django',
+          'Django Channels',
+          'PostgreSQL',
+          'Redis',
+        ],
+        frontendGithubUrl: 'https://github.com/jonganebski/django-eats-frontend',
+        backendGithubUrl: 'https://github.com/jonganebski/django-eats-backend',
         descs: [{ heading: '', paragraph: '' }],
       },
     },
@@ -93,8 +107,9 @@ export const projects = new Map<PATH_KEY, IProject>([
       detail: {
         heroImgUrl: 'mediumrare/screenshot.png',
         overviews: [{ heading: '', paragraph: '' }],
-        frontendTechs: ['Webpack', 'Pug', 'EditorJS', 'Sass'],
-        backendTechs: ['Fiber', 'MongoDB'],
+        frontendTechs: ['Typescript', 'Webpack', 'Pug', 'EditorJS', 'Sass'],
+        backendTechs: ['Go', 'Fiber', 'MongoDB'],
+        backendGithubUrl: 'https://github.com/jonganebski/medium-rare',
         descs: [{ heading: '', paragraph: '' }],
       },
     },
@@ -114,8 +129,10 @@ export const projects = new Map<PATH_KEY, IProject>([
       detail: {
         heroImgUrl: 'covid19/screenshot.png',
         overviews: [{ heading: '', paragraph: '' }],
-        frontendTechs: ['React', 'D3', 'React Leaflet', 'Chakra UI'],
-        backendTechs: ['Express', 'Cheerio'],
+        frontendTechs: ['Typescript', 'React', 'D3', 'React Leaflet', 'Chakra UI'],
+        backendTechs: ['Typescript', 'Express', 'Cheerio'],
+        frontendGithubUrl: 'https://github.com/jonganebski/covid-19-dashboard',
+        backendGithubUrl: 'https://github.com/jonganebski/covid-19-dashboard-backend',
         descs: [{ heading: '', paragraph: '' }],
       },
     },
@@ -128,7 +145,7 @@ export const projects = new Map<PATH_KEY, IProject>([
       path: PATH_KEY.PATHFINDER,
       nextPath: PATH_KEY.POLARTYPES,
       summary: {
-        techs: ['React'],
+        techs: ['Typescript', 'React'],
         desc: 'This is a description of the project.',
         posterUrl: 'pathfinder/screenshot.png',
       },
@@ -136,6 +153,7 @@ export const projects = new Map<PATH_KEY, IProject>([
         heroImgUrl: 'pathfinder/screenshot.png',
         overviews: [{ heading: '', paragraph: '' }],
         frontendTechs: ['React', 'Styled Components'],
+        frontendGithubUrl: 'https://github.com/jonganebski/pathfinder',
         descs: [{ heading: '', paragraph: '' }],
       },
     },

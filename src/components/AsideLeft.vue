@@ -7,23 +7,30 @@
     <router-link to="/about">
       <span>About</span>
     </router-link>
-    <div />
+    <div class="aside-left__bottom-row">
+      <ContactDrawer />
+      <div class="aside-left__icon-container">
+        <MailIcon />
+      </div>
+    </div>
   </aside>
 </template>
-
 <script lang="ts">
 import gsap from 'gsap';
 import { defineComponent, onMounted, ref } from 'vue';
+import ContactDrawer from './ContactDrawer.vue';
+import MailIcon from './Icons/Mail.vue';
 
 export default defineComponent({
   name: 'AsideLeft',
+  components: { ContactDrawer, MailIcon },
   setup() {
     const asideRef = ref<HTMLDivElement | null>(null);
 
     const runAnim = () => {
       if (asideRef.value) {
         const spans = asideRef.value.querySelectorAll('span');
-        gsap.from(spans, { duration: 1, delay: 2.5, opacity: 0, y: 20 });
+        gsap.from(spans, { duration: 0.5, delay: 2.5, height: 0 });
       }
     };
 
@@ -45,6 +52,7 @@ export default defineComponent({
   align-items: center;
   a {
     width: 50%;
+    padding-left: 1.4rem;
     pointer-events: auto;
     color: white;
     span {
@@ -54,9 +62,33 @@ export default defineComponent({
       letter-spacing: 0.5rem;
       font-size: 0.7rem;
       display: block;
+      overflow: hidden;
     }
     &:hover {
       color: $primary;
+    }
+  }
+  .aside-left__bottom-row {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    .aside-left__icon-container {
+      position: relative;
+      z-index: 10;
+      width: 50%;
+      cursor: pointer;
+      pointer-events: auto;
+      padding-left: 1rem;
+      svg {
+        fill: red;
+        width: 1.5rem;
+      }
+      &:hover {
+        svg {
+          fill: $primary;
+        }
+      }
     }
   }
 }
