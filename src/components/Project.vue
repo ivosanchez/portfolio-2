@@ -95,6 +95,7 @@ export default defineComponent({
     align-self: center;
     color: white;
     font-weight: 300;
+    line-height: 1.4rem;
   }
 }
 

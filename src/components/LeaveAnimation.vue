@@ -5,6 +5,7 @@
 </template>
 
 <script lang="ts">
+import { MUTAIONS, useStore } from '@/store';
 import gsap from 'gsap';
 import { defineComponent, ref } from 'vue';
 import { onBeforeRouteLeave, onBeforeRouteUpdate, NavigationGuard } from 'vue-router';
@@ -15,6 +16,7 @@ export default defineComponent({
     const fullWhiteRef = ref<HTMLDivElement | null>(null);
     const fullOrangeRef = ref<HTMLDivElement | null>(null);
     const fullBlackRef = ref<HTMLDivElement | null>(null);
+    const { commit } = useStore();
 
     const navigationGuard: NavigationGuard = (_, __, next) => {
       if (fullWhiteRef.value && fullOrangeRef.value && fullBlackRef.value) {
@@ -33,7 +35,10 @@ export default defineComponent({
           fullOrangeRef.value,
           {
             left: window.innerWidth,
-            onComplete: () => next(),
+            onComplete: () => {
+              commit(MUTAIONS.TOGGLE_MENU, false);
+              next();
+            },
           },
           '-=0.4'
         );

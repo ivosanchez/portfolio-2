@@ -1,17 +1,20 @@
 <template>
   <LeaveAnimation />
-  <main>
-    <article class="about__text-container">
-      <p ref="paragraphRef">
-        안녕하세요. 여러분은 지금 개발자가 되고자 하는 비전공 무경력자의 포트폴리오를 보고 있어요.
-        만약 여기서 창을 닫지 않았다면 계속 읽어주세요.
-      </p>
-    </article>
+  <Title />
+  <article class="about__text-container">
+    <p ref="paragraphRef">
+      안녕하세요. 여러분은 지금 개발자가 되고자 하는 비전공 무경력자의 포트폴리오를 보고 있어요.
+      만약 여기서 창을 닫지 않았다면 계속 읽어주세요.
+    </p>
+  </article>
+  <main ref="scrollRef">
     <article class="about__pannels-wrapper" ref="pannelsRef">
       <section class="about__panel" v-for="(panel, index) in aboutPanels" :key="index">
         <img :src="getAsset(panel.bgUrl)" />
         <div class="about__img-overlay">
           <ColumnLines />
+          <!-- <span>{{ panel.bgDesc }}</span> -->
+          <div class="about__img-desc" v-html="panel.bgDesc"></div>
         </div>
       </section>
     </article>
@@ -34,27 +37,32 @@
         치는건 어깨가 안 아프더라고요. 프로그래밍에 대한 열정, 사랑, 이런 거 없었어요. 그냥 먹고 살
         길은 있어야 겠으니까 시작했어요. 그런데 나쁘지 않아요. 재미있어요.
       </p> -->
+    <Footer />
   </main>
 </template>
 
 <script lang="ts">
 import LeaveAnimation from '@/components/LeaveAnimation.vue';
 import { IAboutPanel } from '@/constants/about';
+import useLocomitive from '@/hooks/useLocomotive.vue';
 import useShuffleString from '@/hooks/useShuffleString.vue';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { defineComponent, onMounted, PropType, ref } from 'vue';
+import { useRoute } from 'vue-router';
 import ColumnLines from '../components/ColumnLines.vue';
+import Footer from '../components/Footer.vue';
+import Title from '../components/Title.vue';
 import { getAsset } from '../utils';
 
-gsap.registerPlugin(ScrollTrigger);
-
 export default defineComponent({
-  components: { LeaveAnimation, ColumnLines },
+  components: { LeaveAnimation, Title, ColumnLines, Footer },
   props: { aboutPanels: { required: true, type: Array as PropType<IAboutPanel[]> } },
   setup(props) {
     const paragraphRef = ref<HTMLParagraphElement | null>(null);
     const pannelsRef = ref<HTMLDivElement | null>(null);
+    const routeName = useRoute().name;
+
+    const { scrollRef, ScrollTrigger } = useLocomitive();
 
     const { shuffleString } = useShuffleString();
 
@@ -62,10 +70,12 @@ export default defineComponent({
       if (!pannelsRef.value) return;
       const panels = pannelsRef.value.querySelectorAll('.about__panel');
       panels.forEach((panel, i) => {
+        if (!scrollRef.value) return;
         ScrollTrigger.create({
           trigger: panel,
           start: 'top top',
           end: 'bottom top',
+          scroller: scrollRef.value,
           pin: true,
           pinSpacing: false,
         });
@@ -79,6 +89,7 @@ export default defineComponent({
           animation: overlayAnim,
           start: 'top top',
           end: 'bottom top',
+          scroller: scrollRef.value,
           scrub: 0,
         });
 
@@ -86,6 +97,7 @@ export default defineComponent({
           trigger: panels[i],
           start: `top +=${window.innerHeight * 0.75}`,
           end: `top +=${window.innerHeight * 0.75}`,
+          scroller: scrollRef.value,
           markers: true,
           toggleActions: 'play reverse play reverse',
           onEnter: async () => {
@@ -100,10 +112,12 @@ export default defineComponent({
 
       gsap.from(paragraphRef.value, { duration: 1, delay: 1.8, opacity: 0 });
 
-      ScrollTrigger.refresh(true);
+      setTimeout(() => {
+        ScrollTrigger.refresh(true);
+      }, 1000);
     });
 
-    return { paragraphRef, pannelsRef, getAsset };
+    return { routeName, scrollRef, paragraphRef, pannelsRef, getAsset };
   },
 });
 </script>
@@ -116,6 +130,7 @@ export default defineComponent({
   left: 0;
   z-index: 10;
   transform: translateY(-50%);
+  pointer-events: none;
   p {
     @media screen and (min-width: 1000px) {
       font-size: 2rem;
@@ -128,23 +143,39 @@ export default defineComponent({
     line-height: 2rem;
   }
 }
+main {
+  overflow-y: hidden !important;
+}
 .about__pannels-wrapper {
   .about__panel {
     position: relative;
     height: 100vh;
+    overflow: hidden;
     img {
       position: absolute;
       top: 0;
       z-index: 0;
       filter: brightness(50%);
       width: 100%;
-      height: 100vh;
+      height: 100%;
       object-fit: cover;
     }
     .about__img-overlay {
       width: 100%;
-      height: 100vh;
+      height: 100%;
       background-color: black;
+      .about__img-desc {
+        @media screen and (min-width: 1000px) {
+          display: inline-block;
+        }
+        display: none;
+        position: absolute;
+        bottom: -3rem;
+        left: $column-line-5-left;
+        font-size: 0.8rem;
+        opacity: 0.8;
+        color: white;
+      }
     }
   }
 }

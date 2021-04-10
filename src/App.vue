@@ -4,6 +4,7 @@
     <component :is="Component" />
     <AsideLeft />
     <AsideRight />
+    <MenuModal />
   </router-view>
   <CustomCursor />
 </template>
@@ -14,9 +15,10 @@ import ColumnLines from './components/ColumnLines.vue';
 import CustomCursor from './components/CustomCursor.vue';
 import AsideLeft from './components/AsideLeft.vue';
 import AsideRight from './components/AsideRight.vue';
+import MenuModal from './components/Modals/Menu.vue';
 
 export default defineComponent({
   name: 'App',
-  components: { ColumnLines, CustomCursor, AsideLeft, AsideRight },
+  components: { ColumnLines, CustomCursor, AsideLeft, AsideRight, MenuModal },
 });
 </script>

@@ -13,7 +13,7 @@ export interface IProject {
   nextPath: PATH_KEY;
   summary: {
     techs: string[];
-    desc: string;
+    desc: { ko: string; en: string };
     posterUrl: string;
   };
   detail: {
@@ -37,7 +37,10 @@ export const projects = new Map<PATH_KEY, IProject>([
       nextPath: PATH_KEY.DJANGO_EATS,
       summary: {
         techs: ['React', 'NestJS'],
-        desc: 'Fullstack cloning Polarsteps, where you can share your adventrues in awesome way.',
+        desc: {
+          ko: 'Polarstep을 풀스택으로 클론 코딩했어요.',
+          en: 'Fullstack cloning Polarsteps, where you can share your adventures in awesome way.',
+        },
         posterUrl: 'polartypes/screenshot.png',
       },
       detail: {
@@ -71,7 +74,11 @@ export const projects = new Map<PATH_KEY, IProject>([
       nextPath: PATH_KEY.MEDIUM_RARE,
       summary: {
         techs: ['React', 'Rest Framework'],
-        desc: 'Fullstack cloning UberEats.',
+        desc: {
+          ko: '',
+          en:
+            'Fullstack cloning UberEats with 3 roles(Restaurant owner, Delivery and Customer) and real-time order through Django-channels.',
+        },
         posterUrl: 'djangoeats/screenshot.png',
       },
       detail: {
@@ -101,7 +108,7 @@ export const projects = new Map<PATH_KEY, IProject>([
       nextPath: PATH_KEY.COVID_19,
       summary: {
         techs: ['Typescript', 'Go'],
-        desc: 'This is a description of the project.',
+        desc: { ko: '', en: 'This is a description of the project.' },
         posterUrl: 'mediumrare/screenshot.png',
       },
       detail: {
@@ -109,6 +116,7 @@ export const projects = new Map<PATH_KEY, IProject>([
         overviews: [{ heading: '', paragraph: '' }],
         frontendTechs: ['Typescript', 'Webpack', 'Pug', 'EditorJS', 'Sass'],
         backendTechs: ['Go', 'Fiber', 'MongoDB'],
+        frontendGithubUrl: 'https://github.com/jonganebski/medium-rare',
         backendGithubUrl: 'https://github.com/jonganebski/medium-rare',
         descs: [{ heading: '', paragraph: '' }],
       },
@@ -123,7 +131,7 @@ export const projects = new Map<PATH_KEY, IProject>([
       nextPath: PATH_KEY.PATHFINDER,
       summary: {
         techs: ['React', 'Express'],
-        desc: 'This is a description of the project.',
+        desc: { ko: '', en: 'This is a description of the project.' },
         posterUrl: 'covid19/screenshot.png',
       },
       detail: {
@@ -146,7 +154,7 @@ export const projects = new Map<PATH_KEY, IProject>([
       nextPath: PATH_KEY.POLARTYPES,
       summary: {
         techs: ['Typescript', 'React'],
-        desc: 'This is a description of the project.',
+        desc: { ko: '', en: 'This is a description of the project.' },
         posterUrl: 'pathfinder/screenshot.png',
       },
       detail: {

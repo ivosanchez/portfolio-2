@@ -55,7 +55,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .visit-btn__container {
-  @include mobile-23-desktop-45__paddings;
   display: block;
   position: absolute;
   top: 65vh;
@@ -65,6 +64,7 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
   .visit-btn {
+    @include mobile-23-desktop-34__margins;
     pointer-events: auto;
     width: 100%;
     height: 100%;

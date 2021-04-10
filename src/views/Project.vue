@@ -1,7 +1,7 @@
 <template>
   <LeaveAnimation />
-
-  <main ref="scrollRef">
+  <Title :projectName="name" />
+  <main ref="scrollRef" v-if="isValid">
     <section class="landing">
       <div class="hero-img__container">
         <img :src="getAsset(heroImgUrl)" ref="heroImgRef" />
@@ -19,9 +19,10 @@
     <section class="stacks__wrapper">
       <Stack v-for="(desc, index) in descs" :key="index" :desc="desc" :index="index" />
     </section>
-    <ProjectFooter :nextName="nextName" :to="nextPath" />
+    <NextProject :nextName="nextName" :to="nextPath" />
+    <Footer />
   </main>
-  <div class="visit-btn__wrapper">
+  <div class="visit-btn__wrapper" v-if="isValid">
     <VisitButton :name="name" :href="href" />
   </div>
 </template>
@@ -32,32 +33,48 @@ import { IProject, PATH_KEY } from '@/constants/projects';
 import useLocomitive from '@/hooks/useLocomotive.vue';
 import gsap from 'gsap';
 import { computed, defineComponent, onMounted, PropType, reactive, ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import DetailTechs from '../components/DeatilTechs.vue';
 import Overview from '../components/Overview.vue';
-import ProjectFooter from '../components/ProjectFooter.vue';
+import NextProject from '../components/NextProject.vue';
 import Stack from '../components/Stack.vue';
 import VisitButton from '../components/VisitButton.vue';
+import Footer from '../components/Footer.vue';
+import Title from '../components/Title.vue';
 import { getAsset } from '../utils';
 
 export default defineComponent({
   name: 'Polartypes',
-  props: { projects: { required: true, type: Map as PropType<Map<PATH_KEY, IProject>> } },
+  props: {
+    projects: {
+      required: true,
+      type: Map as PropType<Map<PATH_KEY, IProject>>,
+    },
+  },
   components: {
     LeaveAnimation,
+    Title,
     VisitButton,
     Overview,
     Stack,
     DetailTechs,
-    ProjectFooter,
+    NextProject,
+    Footer,
   },
   setup(props) {
     const route = useRoute();
+    const router = useRouter();
     const { scrollRef, ScrollTrigger } = useLocomitive();
     const projectName = computed(() => route.params.projectName as PATH_KEY);
-    const state = reactive({ project: props.projects.get(projectName.value) });
+    const state = reactive({
+      project: props.projects.get(projectName.value),
+    });
     const heroImgRef = ref<HTMLImageElement | null>(null);
     const nameRef = ref<HTMLHeadingElement | null>(null);
+
+    if (!state.project) {
+      router.push('/not/found');
+    }
 
     onMounted(() => {
       if (!nameRef.value) return;
@@ -162,6 +179,7 @@ export default defineComponent({
       heroImgRef,
       nameRef,
       getAsset,
+      isValid: Boolean(state.project),
       heroImgUrl: state.project?.detail.heroImgUrl,
       name: state.project?.name,
       href: state.project?.href,
@@ -191,9 +209,9 @@ export default defineComponent({
   pointer-events: none;
 }
 .hero-img__container {
-  @include mobile-23-desktop-3456__margins;
+  @include mobile-23-desktop-2345__paddings;
   position: relative;
-  opacity: 0.7;
+  opacity: 0.5;
   img {
     width: 100%;
     min-height: 300px;
@@ -206,6 +224,7 @@ export default defineComponent({
   position: absolute;
   top: 30vh;
   padding: 2rem 0;
+  overflow: hidden;
   h1 {
     @media screen and (min-width: 600px) {
       font-size: 6rem;
@@ -215,7 +234,6 @@ export default defineComponent({
     }
     width: 100%;
     max-width: 1000px;
-    text-shadow: 1px 1px 200px black;
     color: white;
     font-size: 2.5rem;
     font-weight: 600;

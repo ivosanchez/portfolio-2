@@ -19,11 +19,12 @@
   pointer-events: none;
 }
 
-@mixin drawer {
+@mixin menu-modal {
+  @include mobile-23-desktop-23456__margins;
   @media screen and (min-width: 1000px) {
-    width: $column-line-3-left;
+    width: calc(100vw - #{$column-line-width});
   }
-  width: calc(100vw - #{$mobile-column-line-5-right});
+  width: calc(100vw - #{$mobile-column-line-1-left});
 }
 
 @mixin mobile-23-desktop-23456__margins {
@@ -113,6 +114,15 @@
   @media screen and (min-width: 1000px) {
     margin-left: $column-line-2-left;
     margin-right: $column-line-2-left;
+  }
+}
+
+@mixin mobile-23-desktop-34__paddings {
+  padding-left: $mobile-column-line-1-left;
+  padding-right: $mobile-column-line-5-right;
+  @media screen and (min-width: 1000px) {
+    padding-left: $column-line-2-left;
+    padding-right: $column-line-2-left;
   }
 }
 

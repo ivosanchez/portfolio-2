@@ -1,11 +1,11 @@
 <template>
-  <footer class="next-project__container">
+  <div class="next-project__container">
     <router-link :to="to">
       <span class="next-project" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave"
         >Next Project</span
       >
     </router-link>
-  </footer>
+  </div>
 </template>
 
 <script lang="ts">
@@ -13,6 +13,7 @@ import useShuffleString from '@/hooks/useShuffleString.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
+  name: 'NextProject',
   props: { nextName: { required: true, type: String }, to: { required: true, type: String } },
   setup(props) {
     const { onMouseEnter, onMouseLeave } = useShuffleString({

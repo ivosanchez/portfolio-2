@@ -1,61 +1,69 @@
 <template>
   <LeaveAnimation />
-  <main ref="scrollRef">
-    <div class="intro">
-      <div class="intro__top">
+  <Title />
+  <div ref="scrollRef">
+    <main>
+      <div class="intro">
+        <div class="intro__top">
+          <div>
+            <span>Optimized for Chrome</span>
+          </div>
+          <div>
+            <span>There are {{ count }} projects.</span>
+          </div>
+        </div>
+        <h1 ref="h1Ref">Portfolio</h1>
         <div></div>
-        <div>
-          <span>{{ count }}개의 프로젝트가 기다리고 있어요.</span>
-        </div>
+        <span class="arrow-down" ref="arrDownRef">
+          &darr;
+        </span>
       </div>
-      <h1 ref="h1Ref">Portfolio</h1>
-      <div></div>
-      <span class="arrow-down" ref="arrDownRef">
-        &darr;
-      </span>
-    </div>
-    <ul class="home__projects">
-      <li v-for="(project, index) in projects" v-bind:key="index">
-        <Project
-          :name="project.name"
-          :path="project.path"
-          :techs="project.summary.techs"
-          :posterUrl="project.summary.posterUrl"
-          :desc="project.summary.desc"
-          :index="index"
-        />
-      </li>
-    </ul>
-    <footer class="home__footer">
-      <div class="home__footer-left">
-        <div>
-          <span>Built with&nbsp;</span>
-          <!-- <img src="@/assets/logo.png" /> -->
-        </div>
-      </div>
-      <div class="home__footer-right">
-        <span>Copyright &copy; Jinseok Bang</span>
-      </div>
-    </footer>
-  </main>
+      <ul class="home__projects">
+        <li v-for="(project, index) in projects" v-bind:key="index">
+          <Project
+            :name="project.name"
+            :path="project.path"
+            :techs="project.summary.techs"
+            :posterUrl="project.summary.posterUrl"
+            :desc="project.summary.desc[language]"
+            :index="index"
+          />
+        </li>
+      </ul>
+    </main>
+    <Footer />
+  </div>
 </template>
 
 <script lang="ts">
 import useLocomitive from '@/hooks/useLocomotive.vue';
+import { GETTERS, TLanguage, useStore } from '@/store';
 import gsap from 'gsap';
-import { defineComponent, onMounted, ref } from 'vue';
+import { defineComponent, onMounted, ref, watch } from 'vue';
+import Footer from '../components/Footer.vue';
 import LeaveAnimation from '../components/LeaveAnimation.vue';
 import Project from '../components/Project.vue';
+import Title from '../components/Title.vue';
 import { projects } from '../constants/projects';
 
 export default defineComponent({
   name: 'Home',
-  components: { LeaveAnimation, Project },
+  components: { LeaveAnimation, Title, Project, Footer },
   setup() {
     const h1Ref = ref<HTMLHeadingElement | null>(null);
     const arrDownRef = ref<HTMLSpanElement | null>(null);
+    const language = ref<TLanguage>('ko');
+
+    const { getters } = useStore();
 
     const { scrollRef, ScrollTrigger } = useLocomitive();
+
+    watch(
+      () => getters[GETTERS.GET_LANGUAGE],
+      () => {
+        language.value = getters[GETTERS.GET_LANGUAGE];
+      }
+    );
 
     onMounted(() => {
       if (!scrollRef.value) return;
@@ -139,84 +147,70 @@ export default defineComponent({
       }, 1000);
     });
 
-    return { h1Ref, arrDownRef, scrollRef, projects: projects.values(), count: projects.size };
+    return {
+      h1Ref,
+      arrDownRef,
+      scrollRef,
+      projects: projects.values(),
+      count: projects.size,
+      language,
+    };
   },
 });
 </script>
 
 <style lang="scss" scoped>
-.intro {
-  @include mobile-23-desktop-2345__margins;
-  height: 100vh;
-  display: grid;
-  grid-template-rows: repeat(4, 1fr);
-  align-items: center;
-  overflow-x: hidden;
-  .intro__top {
-    @media screen and (min-width: 1000px) {
-      padding-left: $column-line-2-left;
-    }
-    padding-top: 2rem;
+main {
+  padding-bottom: 10vh;
+  .intro {
+    @include mobile-23-desktop-2345__margins;
+    height: 100vh;
     display: grid;
-    align-self: flex-start;
-    grid-template-columns: 1fr 1fr;
-    span {
+    grid-template-rows: repeat(4, 1fr);
+    align-items: center;
+    overflow-x: hidden;
+    .intro__top {
+      @media screen and (min-width: 1000px) {
+        padding-left: $column-line-2-left;
+      }
+      padding-top: 2rem;
+      display: grid;
+      align-self: flex-start;
+      grid-template-columns: 1fr 1fr;
+      span {
+        color: white;
+        font-size: 0.7rem;
+      }
+      img {
+        width: 1rem;
+      }
+    }
+    h1 {
+      @media screen and (min-width: 600px) {
+        font-size: 6rem;
+      }
+      @media screen and (min-width: 1000px) {
+        font-size: 9rem;
+      }
+      display: inline-block;
+      width: 100%;
       color: white;
-      font-size: 0.7rem;
+      font-size: 3rem;
+      font-weight: 600;
+      box-sizing: content-box;
     }
-    img {
-      width: 1rem;
-    }
-  }
-  h1 {
-    @media screen and (min-width: 600px) {
-      font-size: 6rem;
-    }
-    @media screen and (min-width: 1000px) {
-      font-size: 9rem;
-    }
-    display: inline-block;
-    width: 100%;
-    color: white;
-    font-size: 3rem;
-    font-weight: 600;
-    box-sizing: content-box;
-  }
-  .arrow-down {
-    display: block;
-    text-align: center;
-    color: white;
-    font-size: 3rem;
-    opacity: 0.5;
-  }
-}
-.home__projects {
-  li {
-    margin-bottom: 15rem;
-  }
-}
-.home__footer {
-  @include mobile-23-desktop-34__margins;
-  height: 10vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-
-  .home__footer-left {
-    div {
-      display: flex;
-      align-items: center;
+    .arrow-down {
+      display: block;
+      text-align: center;
+      color: white;
+      font-size: 3rem;
+      opacity: 0.5;
     }
   }
-  .home__footer-right {
-    padding-top: 2rem;
-  }
-  span {
-    font-size: 0.8rem;
-    color: white;
-    letter-spacing: 1px;
-  }
-  img {
-    width: 1rem;
+  .home__projects {
+    li {
+      margin-bottom: 15rem;
+    }
   }
 }
 </style>

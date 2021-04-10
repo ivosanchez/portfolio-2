@@ -1,5 +1,5 @@
 <script lang="ts">
-import { onBeforeUnmount, onMounted, onUnmounted, ref } from 'vue';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
 import LocomotiveScroll from 'locomotive-scroll';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
