@@ -1,0 +1,29 @@
+{
+  "name": "Pathfinder",
+  "href": "https://pathfinder-algorithms.netlify.app/#/pathfinder/",
+  "summary": {
+    "techs": ["React"],
+    "desc": {
+      "ko": "다익스트라 알고리즘, A* 알고리즘, 미로 생성을 시각화했어요.",
+      "en": "Visualizing Dijkstra's algorithm, A* algorithm and Maze Generation."
+    },
+    "posterUrl": "pathfinder/screenshot.png"
+  },
+  "detail": {
+    "heroImgUrl": "pathfinder/screenshot.png",
+    "overviews": [
+      {
+        "heading": { "ko": "", "en": "" },
+        "paragraphs": [{ "ko": "", "en": "" }]
+      }
+    ],
+    "frontendTechs": ["React", "Styled Components"],
+    "frontendGithubUrl": "https://github.com/jonganebski/pathfinder",
+    "descs": [
+      {
+        "heading": { "ko": "", "en": "" },
+        "paragraphs": [{ "ko": "", "en": "" }]
+      }
+    ]
+  }
+}

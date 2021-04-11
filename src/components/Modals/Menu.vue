@@ -7,44 +7,55 @@
       <div class="menu__bg-column menu__bg-column-4"></div>
       <div class="menu__bg-column menu__bg-column-5"></div>
     </div>
-    <nav>
-      <ul class="menu__links" ref="linksContainer">
-        <li>
-          <router-link to="/" active-class="active">
-            Works
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/about" active-class="active">
-            About
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/contact" active-class="active">
-            Contact
-          </router-link>
-        </li>
-      </ul>
-    </nav>
+    <div class="menu__contents">
+      <nav>
+        <ul class="menu__links" ref="linksContainerRef">
+          <li>
+            <router-link to="/" active-class="active">
+              {{ language === 'ko' ? '작업들' : 'Works' }}
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/about" active-class="active">
+              {{ language === 'ko' ? '소개' : 'About' }}
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/contact" active-class="active">
+              {{ language === 'ko' ? '연락처' : 'Contact' }}
+            </router-link>
+          </li>
+        </ul>
+      </nav>
+      <div class="menu__languages" ref="langContainerRef">
+        <span class="menu__language" @click="useKorean">한글</span>
+        <span> / </span>
+        <span class="menu__language" @click="useEnglish">English</span>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { GETTERS, useStore } from '@/store';
-import { defineComponent, onMounted, ref, watch } from 'vue';
+import { computed, defineComponent, onMounted, ref, watch } from 'vue';
 import gsap from 'gsap';
+import { useLanguage } from '@/hooks/useLanguage';
 
 export default defineComponent({
   name: 'MenuModal',
   setup() {
     const bgContainerRef = ref<HTMLDivElement | null>(null);
-    const linksContainer = ref<HTMLUListElement | null>(null);
+    const linksContainerRef = ref<HTMLUListElement | null>(null);
+    const langContainerRef = ref<HTMLDivElement | null>(null);
     const { getters } = useStore();
+    const { useKorean, useEnglish } = useLanguage();
+    const language = computed(() => getters[GETTERS.GET_LANGUAGE]);
 
     onMounted(() => {
       const columns = bgContainerRef.value?.querySelectorAll('.menu__bg-column');
-      const links = linksContainer.value?.querySelectorAll('a');
-      if (!columns || !links) return;
+      const links = linksContainerRef.value?.querySelectorAll('a');
+      if (!columns || !links || !langContainerRef.value) return;
       const open = gsap
         .timeline({ defaults: { duration: 0.3 } })
         .to(columns, {
@@ -58,6 +69,7 @@ export default defineComponent({
           },
           '+=0.3'
         )
+        .to(langContainerRef.value, { opacity: 1, pointerEvents: 'auto' }, '<')
         .pause();
 
       watch(
@@ -73,7 +85,7 @@ export default defineComponent({
       );
     });
 
-    return { bgContainerRef, linksContainer };
+    return { bgContainerRef, linksContainerRef, langContainerRef, useKorean, useEnglish, language };
   },
 });
 </script>
@@ -109,32 +121,54 @@ export default defineComponent({
       display: none;
     }
   }
-  nav {
+  .menu__contents {
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     display: flex;
-    align-items: center;
-    ul {
-      li {
-        a {
-          @media screen and (min-width: 1000px) {
-            font-size: 10rem;
+    flex-direction: column;
+    justify-content: space-evenly;
+    nav {
+      .menu__links {
+        li {
+          a {
+            @media screen and (min-width: 400px) {
+              font-size: 7rem;
+            }
+            @media screen and (min-width: 600px) {
+              font-size: 10rem;
+            }
+            display: block;
+            width: 0%;
+            overflow: hidden;
+            font-weight: 600;
+            font-size: 4rem;
+            color: black;
+            pointer-events: auto;
+            white-space: nowrap;
+            transition: color 0.1s ease-in-out;
+            &:hover {
+              color: $primary;
+            }
           }
-          display: block;
-          width: 0%;
-          overflow: hidden;
-          font-weight: 600;
-          font-size: 4rem;
-          color: black;
-          pointer-events: auto;
-          transition: color 0.1s ease-in-out;
-          &:hover {
+          .active {
             color: $primary;
           }
         }
-        .active {
+      }
+    }
+    .menu__languages {
+      @media screen and (min-width: 600px) {
+        font-size: 2rem;
+      }
+      opacity: 0;
+      pointer-events: none;
+      font-size: 1.2rem;
+      .menu__language {
+        font-weight: 500;
+        cursor: pointer;
+        &:hover {
           color: $primary;
         }
       }

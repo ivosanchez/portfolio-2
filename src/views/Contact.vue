@@ -4,41 +4,44 @@
   <main class="contact__wrapper" ref="mainRef">
     <div class="contact__email-container">
       <span class="contact__br" />
-      <h3>Email</h3>
+      <h3>{{ language === 'ko' ? '이메일' : 'Email' }}</h3>
       <div class="contact__copy-container" @click="copy">
-        <span class="contact__content">{{ contacts.email }}</span>
-        <span class="contact__copy">Copy</span>
+        <span class="contact__content">{{ CONTACT.email }}</span>
+        <span class="contact__copy">{{ language === 'ko' ? '복사하기' : 'Copy' }}</span>
       </div>
     </div>
     <div class="contact__mobile-container">
       <span class="contact__br" />
-      <h3>Mobile</h3>
+      <h3>{{ language === 'ko' ? '전화번호' : 'Mobile' }}</h3>
       <div class="contact__copy-container" @click="copy">
-        <span class="contact__content">{{ contacts.phone }}</span>
-        <span class="contact__copy">Copy</span>
+        <span class="contact__content">{{ CONTACT.phone }}</span>
+        <span class="contact__copy">{{ language === 'ko' ? '복사하기' : 'Copy' }}</span>
       </div>
     </div>
+    <Footer />
   </main>
-  <Footer />
 </template>
 
 <script lang="ts">
+import { GETTERS, TLanguage, useStore } from '@/store';
 import gsap from 'gsap';
-import { defineComponent, onMounted, ref } from 'vue';
+import { computed, defineComponent, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import Footer from '../components/Footer.vue';
 import LeaveAnimation from '../components/LeaveAnimation.vue';
+import Title from '../components/Title.vue';
 import useClipboard from '../hooks/useClipboard';
 import useShuffleString from '../hooks/useShuffleString.vue';
-import Title from '../components/Title.vue';
 
 export default defineComponent({
   name: 'Contact',
   components: { LeaveAnimation, Title, Footer },
-  props: { contacts: { required: true, type: Object } },
+  props: { CONTACT: { required: true, type: Object } },
   setup() {
-    const mainRef = ref<HTMLDivElement | null>(null);
+    const { getters } = useStore();
     const routeName = useRoute().name;
+    const mainRef = ref<HTMLDivElement | null>(null);
+    const language = computed<TLanguage>(() => getters[GETTERS.GET_LANGUAGE]);
     const { toClipboard } = useClipboard();
     const { shuffleString } = useShuffleString();
 
@@ -51,7 +54,8 @@ export default defineComponent({
       try {
         const cleaned = text.replaceAll('-', '');
         await toClipboard(cleaned);
-        await shuffleString(copy, 'Copied', true);
+        const shuffleTo = language.value === 'ko' ? '복사완료!' : 'Copied!';
+        await shuffleString(copy, shuffleTo, true);
       } catch (err) {
         console.error(err);
       }
@@ -68,13 +72,14 @@ export default defineComponent({
       tl.from(copyContainers, { opacity: 0 }, '+=0.2');
     });
 
-    return { mainRef, copy, routeName };
+    return { mainRef, copy, routeName, language };
   },
 });
 </script>
 
 <style lang="scss" scoped>
 .contact__wrapper {
+  position: relative;
   height: 100vh;
   align-items: center;
   display: grid;
@@ -106,6 +111,7 @@ export default defineComponent({
     margin-bottom: 1rem;
     font-size: 2rem;
     color: white;
+    white-space: nowrap;
   }
   .contact__copy-container {
     display: flex;
@@ -122,6 +128,7 @@ export default defineComponent({
       opacity: 0.6;
       font-size: 1rem;
       margin-left: 2rem;
+      white-space: nowrap;
     }
     &:hover {
       color: $primary;

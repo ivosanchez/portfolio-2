@@ -1,8 +1,9 @@
 <script lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue';
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import LocomotiveScroll from 'locomotive-scroll';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
+import { GETTERS, useStore } from '@/store';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,11 +12,20 @@ const useLocomitive = () => {
   const scrollRef = ref<HTMLDivElement | null>(null);
   const locoScroll = ref();
 
+  const { getters } = useStore();
+
   const onRefresh = () => {
     if (!locoScroll.value) return;
     locoScroll.value.update();
     locoScroll.value.start();
   };
+
+  watch(
+    () => getters[GETTERS.GET_LANGUAGE],
+    () => {
+      setTimeout(() => locoScroll.value.update(), 100);
+    }
+  );
 
   onMounted(() => {
     if (scrollRef.value) {

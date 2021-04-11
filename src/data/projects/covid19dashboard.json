@@ -1,0 +1,42 @@
+{
+  "name": "Covid 19 Dashboard",
+  "href": "https://see-covid19.netlify.app/",
+  "summary": {
+    "techs": ["React", "Express"],
+    "desc": { "ko": "", "en": "This is a description of the project." },
+    "posterUrl": "covid19/screenshot.png"
+  },
+  "detail": {
+    "heroImgUrl": "covid19/screenshot.png",
+    "overviews": [
+      {
+        "heading": { "ko": "전세계 코로나 진행상황과 관련 뉴스", "en": "" },
+        "paragraphs": [{ "ko": "", "en": "" }]
+      },
+      {
+        "heading": { "ko": "스스로 완성한 첫번째 프로젝트", "en": "" },
+        "paragraphs": [{ "ko": "", "en": "" }]
+      }
+    ],
+    "frontendTechs": [
+      "Typescript",
+      "React",
+      "D3",
+      "React Leaflet",
+      "Chakra UI"
+    ],
+    "backendTechs": ["Typescript", "Express", "Cheerio"],
+    "frontendGithubUrl": "https://github.com/jonganebski/covid-19-dashboard",
+    "backendGithubUrl": "https://github.com/jonganebski/covid-19-dashboard-backend",
+    "descs": [
+      {
+        "heading": { "ko": "", "en": "" },
+        "paragraphs": [{ "ko": "", "en": "" }]
+      },
+      {
+        "heading": { "ko": "한계와 앞으로의 계획", "en": "" },
+        "paragraphs": [{ "ko": "", "en": "" }]
+      }
+    ]
+  }
+}

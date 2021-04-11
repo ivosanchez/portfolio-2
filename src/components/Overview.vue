@@ -6,20 +6,13 @@
     </section>
     <section class="overview__right-column">
       <span>Overview</span>
-      <div class="overview">
-        <h5>Polartypes and Polarsteps</h5>
-        <p>
-          Polarsteps는 전세계의 여행자들과 모험가들을 위한 소셜 네트워크 서비스를 제공하고 있어요.
-          자바스크립트를 처음 배울 때부터 꼭 클론코딩을 해보고자 마음 먹었던 곳이에요. 그래서 저에겐
-          다른 프로젝트들보다도 더 의미가 깊어요.
-        </p>
-      </div>
-      <div class="overview">
-        <h5>Fullstack</h5>
-        <p>
-          단순히 눈에 보이는 것만 클론코딩 한 것이 아니에요. Nestjs와 GraphQL을 사용해서 Account,
-          Trip, Step 그리고 Comment까지 CRUD를 구축했어요.
-        </p>
+      <div class="overview" v-for="(overview, index) in overviews" :key="index">
+        <h5>{{ overview.heading[language] }}</h5>
+        <p
+          v-for="(paragraph, index) in overview.paragraphs"
+          v-html="paragraph[language]"
+          :key="index"
+        />
       </div>
     </section>
   </article>
@@ -30,6 +23,7 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'Overview',
+  props: { overviews: { required: true, type: Array }, language: { required: true, type: String } },
 });
 </script>
 
@@ -69,6 +63,7 @@ export default defineComponent({
         font-size: 0.9rem;
         font-weight: 300;
         line-height: 1.5rem;
+        white-space: pre-line;
       }
     }
   }

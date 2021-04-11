@@ -4,20 +4,22 @@
       <span class="menu-icon__line"></span>
       <span class="menu-icon__line"></span>
     </div>
-    <span class="menu-icon__text">Menu</span>
+    <span class="menu-icon__text">{{ language === 'ko' ? '메뉴' : 'Menu' }}</span>
   </div>
 </template>
 
 <script lang="ts">
-import { MUTAIONS, useStore } from '@/store';
-import { defineComponent, onMounted, ref } from 'vue';
+import { GETTERS, MUTAIONS, useStore } from '@/store';
+import { computed, defineComponent, onMounted, ref } from 'vue';
 import gsap from 'gsap';
 
 export default defineComponent({
   name: 'MenuIcon',
   setup() {
     const containerRef = ref<HTMLDivElement | null>(null);
-    const { commit } = useStore();
+    const { commit, getters } = useStore();
+    const language = computed(() => getters[GETTERS.GET_LANGUAGE]);
+
     const onMenuClick = () => {
       commit(MUTAIONS.TOGGLE_MENU);
     };
@@ -27,7 +29,7 @@ export default defineComponent({
       gsap.from(containerRef.value, { duration: 0.5, delay: 3.5, height: 0, overflow: 'hidden' });
     });
 
-    return { containerRef, onMenuClick };
+    return { containerRef, onMenuClick, language };
   },
 });
 </script>

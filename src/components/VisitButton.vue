@@ -1,10 +1,5 @@
 <template>
-  <a
-    class="visit-btn__container"
-    ref="containerRef"
-    href="https://polartypes.netlify.app/"
-    target="_blank"
-  >
+  <a class="visit-btn__container" ref="containerRef" :href="href" target="_blank">
     <div class="visit-btn" ref="btnRef" role="button">
       <span ref="spanRef">Visit {{ name }}</span>
     </div>
@@ -63,6 +58,7 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   align-items: center;
+  pointer-events: none;
   .visit-btn {
     @include mobile-23-desktop-34__margins;
     pointer-events: auto;

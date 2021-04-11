@@ -1,0 +1,80 @@
+{
+  "name": "Polartypes",
+  "href": "https://polartypes.netlify.app/",
+  "summary": {
+    "techs": ["React", "NestJS"],
+    "desc": {
+      "ko": "Polarstep을 풀스택으로 클론 코딩했어요. 여행을 기록하고 공유할 수 있는 서비스 중에선 최고라고 생각하는 사이트에요.",
+      "en": "Fullstack cloning Polarsteps, where you can share your adventures in awesome way."
+    },
+    "posterUrl": "polartypes/screenshot.png"
+  },
+  "detail": {
+    "heroImgUrl": "polartypes/screenshot.png",
+    "overviews": [
+      {
+        "heading": {
+          "ko": "Polartypes와 Polarsteps",
+          "en": "Polartypes and Polarsteps"
+        },
+        "paragraphs": [
+          {
+            "ko": "Polarsteps는 전세계의 여행자들과 모험가들을 위한 소셜 네트워크 서비스를 제공하고 있어요. 자바스크립트를 처음 배울 때부터 꼭 클론코딩을 해보고자 마음 먹었던 곳이에요. 그래서 저에겐 다른 프로젝트들보다도 더 의미가 깊어요. 그래서 지속적으로 코드를 개선하는 데에 더 신경을 쓰고 있어요.",
+            "en": "Polarsteps provides social network service for travelers and adventurers. Polartypes is special one cause it was my clone coding goal since I was learning javascript for loop. So I am more paying attention to maintaining and refactoring codes of this project."
+          }
+        ]
+      },
+      {
+        "heading": { "ko": "풀스택", "en": "Fullstack" },
+        "paragraphs": [
+          {
+            "ko": "단순히 눈에 보이는 것만 클론코딩 한 것이 아니에요. Nestjs와 GraphQL을 사용해서 Account, Trip, Step 그리고 Comment까지 CRUD를 구축했어요.",
+            "en": "Whole CRUD functionality on User Accounts, Trips, Steps and Comments is working on backend server. This is created with Nestjs and GraphQL."
+          }
+        ]
+      }
+    ],
+    "frontendTechs": [
+      "Typescript",
+      "React",
+      "Apollo",
+      "React Hook Form",
+      "Moment Timezone",
+      "Mapbox",
+      "TailwindCSS"
+    ],
+    "backendTechs": [
+      "Typescript",
+      "NestJS",
+      "GraphQL",
+      "TypeORM",
+      "PostgreSQL",
+      "Jest"
+    ],
+    "frontendGithubUrl": "https://github.com/jonganebski/polartypes-frontend",
+    "backendGithubUrl": "https://github.com/jonganebski/polartypes-backend",
+    "descs": [
+      {
+        "heading": { "ko": "힘들었던 것들", "en": "Obstacles" },
+        "paragraphs": [
+          {
+            "ko": "각 Trip들의 기간이 겹쳐지지 않게 다이나믹하게 검증하는 달력을 만드는 것이 기억에 남네요. 특히 여기에 타임존을 함께 고려해야 해서 바닐라 자바스크립트만으로는 한계가 있었는데, 이 부분은 Moment Timezone라이브러리를 사용해야 했어요.",
+            "en": "I struggled with creating a calendar dynamically compares and validates dates between Trips. Timezones also had to be considered. It was not a good deveoping experience with only pure javascript, so I ended up adopting Moment Timezone library."
+          }
+        ]
+      },
+      {
+        "heading": {
+          "ko": "한계와 앞으로의 계획",
+          "en": "Limitations and future plan"
+        },
+        "paragraphs": [
+          {
+            "ko": "최근 대대적인 리팩토링을 거쳤어요. 하지만 프론트엔드쪽에는 아직 수정할 코드들이 많이 남아 있어요. 그리고 테스팅도 주로 백엔드에서만 실행되고 있어요. 그래서 추가적인 프론트엔드 리팩토링과 테스팅(Jset와 Cypress)을 계획하고 있습니다. 그리고 건너뛰었던 스코롤바 구현도 마무리 짓고 싶어요",
+            "en": "Recently there was a big code refactoring. But many lines of codes are waiting for refining process on frontend. Testings are also mostly implemented on backend. So additional refactoring and testings(with Jest and Cypress) on frontend are on my todo list. Also I wanted to create Polarstep's scrollbar on my Polartypes."
+          }
+        ]
+      }
+    ]
+  }
+}

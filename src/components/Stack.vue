@@ -1,12 +1,8 @@
 <template>
   <article :class="['stack__container', index % 2 !== 0 && 'right-column']">
-    <h5>{{ desc.heading }}</h5>
-    <div>
-      <!-- <img :src="getAsset(desc.imgUrl)" /> -->
-    </div>
-    <p>
-      {{ desc.paragraph }}
-    </p>
+    <h5>{{ desc.heading[language] }}</h5>
+    <div></div>
+    <p v-for="(paragraph, index) in desc.paragraphs" v-html="paragraph[language]" :key="index" />
   </article>
 </template>
 
@@ -16,7 +12,11 @@ import { getAsset } from '../utils';
 
 export default defineComponent({
   name: 'Stack',
-  props: { desc: { required: true, type: Object }, index: { required: true, type: Number } },
+  props: {
+    desc: { required: true, type: Object },
+    index: { required: true, type: Number },
+    language: { required: true, type: String },
+  },
   setup() {
     return { getAsset };
   },
@@ -43,6 +43,9 @@ export default defineComponent({
     object-fit: center;
   }
   p {
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.5rem;
     width: 90%;
   }
 }

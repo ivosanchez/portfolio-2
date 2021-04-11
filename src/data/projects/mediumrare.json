@@ -1,0 +1,48 @@
+{
+  "name": "Medium-rare",
+  "href": "https://go-medium-rare.herokuapp.com/",
+  "summary": {
+    "techs": ["Typescript", "Go"],
+    "desc": {
+      "ko": "미디엄의 풀스택 클론 코딩이에요.",
+      "en": "Fullstack cloning Medium."
+    },
+    "posterUrl": "mediumrare/screenshot.png"
+  },
+  "detail": {
+    "heroImgUrl": "mediumrare/screenshot.png",
+    "overviews": [
+      {
+        "heading": { "ko": "", "en": "" },
+        "paragraphs": [{ "ko": "", "en": "" }]
+      }
+    ],
+    "frontendTechs": ["Typescript", "Webpack", "Pug", "EditorJS", "Sass"],
+    "backendTechs": ["Go", "Fiber", "MongoDB"],
+    "frontendGithubUrl": "https://github.com/jonganebski/medium-rare",
+    "backendGithubUrl": "https://github.com/jonganebski/medium-rare",
+    "descs": [
+      {
+        "heading": { "ko": "힘들었던 점", "en": "Obstacles" },
+        "paragraphs": [
+          {
+            "ko": "WYSIWYG 에디터를 구현하는 것이었어요. 결국 editorjs라는 라이브러리를 사용해야 했어요. 규모가 점점 커지면서 Pug와 Sass, Typescript만으로 모든걸 제어하기가 힘들었어요. React 생각이 많이 났어요. 파일 구조도 깔끔하게 정리가 되지 않았어요. ",
+            "en": ""
+          }
+        ]
+      },
+      {
+        "heading": {
+          "ko": "한계와 앞으로의 계획",
+          "en": "Limitations and future plan"
+        },
+        "paragraphs": [
+          {
+            "ko": "",
+            "en": ""
+          }
+        ]
+      }
+    ]
+  }
+}

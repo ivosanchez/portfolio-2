@@ -6,17 +6,16 @@
       <div class="intro">
         <div class="intro__top">
           <div>
-            <span>Optimized for Chrome</span>
+            <span>Optimized for Google Chrome.</span>
           </div>
           <div>
             <span>There are {{ count }} projects.</span>
+            <span>Developed on WSL2.</span>
           </div>
         </div>
         <h1 ref="h1Ref">Portfolio</h1>
         <div></div>
-        <span class="arrow-down" ref="arrDownRef">
-          &darr;
-        </span>
+        <span class="arrow-down" ref="arrDownRef"> &darr;</span>
       </div>
       <ul class="home__projects">
         <li v-for="(project, index) in projects" v-bind:key="index">
@@ -24,46 +23,49 @@
             :name="project.name"
             :path="project.path"
             :techs="project.summary.techs"
-            :posterUrl="project.summary.posterUrl"
             :desc="project.summary.desc[language]"
+            :posterUrl="project.summary.posterUrl"
             :index="index"
           />
         </li>
       </ul>
+      <Footer />
     </main>
-    <Footer />
   </div>
 </template>
 
 <script lang="ts">
 import useLocomitive from '@/hooks/useLocomotive.vue';
-import { GETTERS, TLanguage, useStore } from '@/store';
+import { GETTERS, useStore } from '@/store';
 import gsap from 'gsap';
-import { defineComponent, onMounted, ref, watch } from 'vue';
+import { computed, defineComponent, onMounted, PropType, ref } from 'vue';
 import Footer from '../components/Footer.vue';
 import LeaveAnimation from '../components/LeaveAnimation.vue';
 import Project from '../components/Project.vue';
 import Title from '../components/Title.vue';
-import { projects } from '../constants/projects';
+import { IProject } from '../data/projects';
 
 export default defineComponent({
   name: 'Home',
-  components: { LeaveAnimation, Title, Project, Footer },
-  setup() {
+  components: {
+    LeaveAnimation,
+    Title,
+    Project,
+    Footer,
+  },
+  props: {
+    PROJECTS: {
+      required: true,
+      type: Array as PropType<Array<IProject>>,
+    },
+  },
+  setup(props) {
+    const { getters } = useStore();
     const h1Ref = ref<HTMLHeadingElement | null>(null);
     const arrDownRef = ref<HTMLSpanElement | null>(null);
-    const language = ref<TLanguage>('ko');
-
-    const { getters } = useStore();
+    const language = computed(() => getters[GETTERS.GET_LANGUAGE]);
 
     const { scrollRef, ScrollTrigger } = useLocomitive();
-
-    watch(
-      () => getters[GETTERS.GET_LANGUAGE],
-      () => {
-        language.value = getters[GETTERS.GET_LANGUAGE];
-      }
-    );
 
     onMounted(() => {
       if (!scrollRef.value) return;
@@ -151,8 +153,8 @@ export default defineComponent({
       h1Ref,
       arrDownRef,
       scrollRef,
-      projects: projects.values(),
-      count: projects.size,
+      projects: props.PROJECTS,
+      count: props.PROJECTS.length,
       language,
     };
   },
@@ -161,6 +163,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 main {
+  position: relative;
   padding-bottom: 10vh;
   .intro {
     @include mobile-23-desktop-2345__margins;
@@ -178,6 +181,7 @@ main {
       align-self: flex-start;
       grid-template-columns: 1fr 1fr;
       span {
+        display: block;
         color: white;
         font-size: 0.7rem;
       }

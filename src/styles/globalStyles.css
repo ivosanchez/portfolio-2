@@ -12,3 +12,10 @@ body {
 a {
   text-decoration: none;
 }
+.v-html__anchor-white {
+  color: white;
+  text-decoration: underline;
+}
+.v-html__anchor-white:hover {
+  color: orange;
+}

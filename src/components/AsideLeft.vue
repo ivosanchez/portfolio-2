@@ -1,11 +1,12 @@
 <template>
-  <aside class="aside-left" ref="asideRef">
-    <h1>{{ routeName }}</h1>
+  <aside class="aside-left">
+    <h1 ref="routeNameRef">{{ routeName }}</h1>
     <MenuIcon />
   </aside>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref, onMounted } from 'vue';
+import gsap from 'gsap';
 import { useRoute } from 'vue-router';
 import MenuIcon from './Icons/Menu.vue';
 
@@ -14,9 +15,15 @@ export default defineComponent({
   components: { MenuIcon },
   setup() {
     const route = useRoute();
-    const routeName = route.name;
 
-    return { routeName };
+    const routeNameRef = ref<HTMLHeadingElement | null>(null);
+
+    onMounted(() => {
+      if (!routeNameRef.value) return;
+      gsap.from(routeNameRef.value, { duration: 2, delay: 3.5, width: 0 });
+    });
+
+    return { routeName: route.name ?? 'Works', routeNameRef };
   },
 });
 </script>
@@ -31,9 +38,11 @@ export default defineComponent({
       display: block;
     }
     display: none;
+    padding-bottom: 1rem;
     color: white;
     font-size: 2rem;
     font-weight: 600;
+    overflow: hidden;
   }
 }
 </style>

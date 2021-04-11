@@ -1,32 +1,23 @@
 <template>
   <aside class="aside-right">
-    <div>
-      <span @click="useKorean">ko</span>
+    <div class="aside-right__languages-container">
+      <span class="aside-right__lan" @click="useKorean">ko</span>
       <span> / </span>
-      <span @click="useEnglish">en</span>
+      <span class="aside-right__lan" @click="useEnglish">en</span>
     </div>
   </aside>
 </template>
 
 <script lang="ts">
-import { MUTAIONS, useStore } from '@/store';
 import { defineComponent } from 'vue';
+import { useLanguage } from '../hooks/useLanguage';
 
 export default defineComponent({
   name: 'AsideRight',
   setup() {
-    const { commit } = useStore();
+    const fns = useLanguage();
 
-    const useKorean = () => {
-      commit(MUTAIONS.TOGGLE_LANGUAGE, 'ko');
-    };
-
-    const useEnglish = () => {
-      console.log('to english');
-      commit(MUTAIONS.TOGGLE_LANGUAGE, 'en');
-    };
-
-    return { useKorean, useEnglish };
+    return { ...fns };
   },
 });
 </script>
@@ -36,10 +27,23 @@ export default defineComponent({
   @include aside;
   right: 0;
   padding-top: 2rem;
-  div {
+  padding-right: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  .aside-right__languages-container {
+    @media screen and (min-width: 1000px) {
+      display: block;
+    }
+    display: none;
     color: white;
     font-size: 0.9rem;
-    pointer-events: auto;
+    .aside-right__lan {
+      pointer-events: auto;
+      cursor: pointer;
+      &:hover {
+        color: $primary;
+      }
+    }
   }
 }
 </style>

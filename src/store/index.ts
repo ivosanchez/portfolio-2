@@ -9,6 +9,12 @@ export enum CURSOR {
 
 export type TLanguage = 'ko' | 'en';
 
+const getDefaultLang = (): TLanguage => {
+  const browserLang = navigator.language;
+  if (browserLang !== 'ko') return 'en';
+  return 'ko';
+};
+
 // ==============
 // STATES
 // ==============
@@ -24,7 +30,7 @@ export const key: InjectionKey<Store<IState>> = Symbol('Injection key to vuex st
 const state: IState = {
   cursor: CURSOR.DEFAULT,
   isMenuOpen: false,
-  language: 'ko',
+  language: getDefaultLang(),
 };
 
 // ==============

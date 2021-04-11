@@ -10,14 +10,20 @@
         <h1 ref="nameRef">{{ name }}</h1>
       </div>
     </section>
-    <Overview />
+    <Overview :overviews="overviews" :language="language" />
     <DetailTechs
       :techArrays="techArrays"
       :frontendGithubUrl="frontendGithubUrl"
       :backendGithubUrl="backendGithubUrl"
     />
     <section class="stacks__wrapper">
-      <Stack v-for="(desc, index) in descs" :key="index" :desc="desc" :index="index" />
+      <Stack
+        v-for="(desc, index) in descs"
+        :key="index"
+        :desc="desc"
+        :language="language"
+        :index="index"
+      />
     </section>
     <NextProject :nextName="nextName" :to="nextPath" />
     <Footer />
@@ -29,26 +35,36 @@
 
 <script lang="ts">
 import LeaveAnimation from '@/components/LeaveAnimation.vue';
-import { IProject, PATH_KEY } from '@/constants/projects';
+import { IProject, PATH_KEY } from '@/data/projects';
 import useLocomitive from '@/hooks/useLocomotive.vue';
+import { GETTERS, useStore } from '@/store';
 import gsap from 'gsap';
-import { computed, defineComponent, onMounted, PropType, reactive, ref } from 'vue';
+import {
+  computed,
+  defineComponent,
+  nextTick,
+  onMounted,
+  PropType,
+  reactive,
+  ref,
+  watch,
+} from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import DetailTechs from '../components/DeatilTechs.vue';
-import Overview from '../components/Overview.vue';
-import NextProject from '../components/NextProject.vue';
-import Stack from '../components/Stack.vue';
-import VisitButton from '../components/VisitButton.vue';
 import Footer from '../components/Footer.vue';
+import NextProject from '../components/NextProject.vue';
+import Overview from '../components/Overview.vue';
+import Stack from '../components/Stack.vue';
 import Title from '../components/Title.vue';
+import VisitButton from '../components/VisitButton.vue';
 import { getAsset } from '../utils';
 
 export default defineComponent({
-  name: 'Polartypes',
+  name: 'Project',
   props: {
-    projects: {
+    PROJECTS: {
       required: true,
-      type: Map as PropType<Map<PATH_KEY, IProject>>,
+      type: Array as PropType<Array<IProject>>,
     },
   },
   components: {
@@ -64,11 +80,16 @@ export default defineComponent({
   setup(props) {
     const route = useRoute();
     const router = useRouter();
+    const { getters } = useStore();
+
     const { scrollRef, ScrollTrigger } = useLocomitive();
-    const projectName = computed(() => route.params.projectName as PATH_KEY);
+
+    const language = computed(() => getters[GETTERS.GET_LANGUAGE]);
+    const pathKey = computed(() => route.params.projectName as PATH_KEY);
     const state = reactive({
-      project: props.projects.get(projectName.value),
+      project: props.PROJECTS.find((project) => project.path === pathKey.value),
     });
+
     const heroImgRef = ref<HTMLImageElement | null>(null);
     const nameRef = ref<HTMLHeadingElement | null>(null);
 
@@ -179,10 +200,12 @@ export default defineComponent({
       heroImgRef,
       nameRef,
       getAsset,
+      language,
       isValid: Boolean(state.project),
       heroImgUrl: state.project?.detail.heroImgUrl,
       name: state.project?.name,
       href: state.project?.href,
+      overviews: state.project?.detail.overviews,
       techArrays: state.project?.detail.backendTechs
         ? [state.project?.detail.frontendTechs, state.project?.detail.backendTechs]
         : [state.project?.detail.frontendTechs],
@@ -190,59 +213,62 @@ export default defineComponent({
       backendGithubUrl: state.project?.detail.backendGithubUrl,
       descs: state.project?.detail.descs,
       nextPath: state.project?.nextPath,
-      nextName: state.project ? props.projects.get(state.project.nextPath)?.name : '',
+      nextName: state.project?.nextPath,
     };
   },
 });
 </script>
 
 <style lang="scss" scoped>
-.landing {
-  height: 85vh;
-}
-.visit-btn__wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-}
-.hero-img__container {
-  @include mobile-23-desktop-2345__paddings;
+main {
   position: relative;
-  opacity: 0.5;
-  img {
-    width: 100%;
-    min-height: 300px;
-    object-fit: cover;
-    object-position: left;
+  .landing {
+    height: 85vh;
   }
-}
-.heading {
-  @include mobile-23-desktop-23456__margins;
-  position: absolute;
-  top: 30vh;
-  padding: 2rem 0;
-  overflow: hidden;
-  h1 {
-    @media screen and (min-width: 600px) {
-      font-size: 6rem;
-    }
-    @media screen and (min-width: 1000px) {
-      font-size: 9rem;
-    }
-    width: 100%;
-    max-width: 1000px;
-    color: white;
-    font-size: 2.5rem;
-    font-weight: 600;
+  .visit-btn__wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
   }
-}
+  .hero-img__container {
+    @include mobile-23-desktop-2345__paddings;
+    position: relative;
+    opacity: 0.5;
+    img {
+      width: 100%;
+      min-height: 300px;
+      object-fit: cover;
+      object-position: left;
+    }
+  }
+  .heading {
+    @include mobile-23-desktop-23456__margins;
+    position: absolute;
+    top: 30vh;
+    padding: 2rem 0;
+    overflow: hidden;
+    h1 {
+      @media screen and (min-width: 600px) {
+        font-size: 6rem;
+      }
+      @media screen and (min-width: 1000px) {
+        font-size: 9rem;
+      }
+      width: 100%;
+      max-width: 1000px;
+      color: white;
+      font-size: 2.5rem;
+      font-weight: 600;
+    }
+  }
 
-.stacks__wrapper {
-  @include mobile-23-desktop-2345__margins;
-  display: grid;
-  gap: 2rem;
+  .stacks__wrapper {
+    @include mobile-23-desktop-2345__margins;
+    display: grid;
+    gap: 2rem;
+  }
 }
 </style>
