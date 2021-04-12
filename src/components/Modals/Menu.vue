@@ -28,9 +28,17 @@
         </ul>
       </nav>
       <div class="menu__languages" ref="langContainerRef">
-        <span class="menu__language" @click="useKorean">한글</span>
+        <span
+          :class="[language === 'ko' ? 'menu__language--active' : 'menu__language']"
+          @click="useKorean"
+          >한글</span
+        >
         <span> / </span>
-        <span class="menu__language" @click="useEnglish">English</span>
+        <span
+          :class="[language === 'en' ? 'menu__language--active' : 'menu__language']"
+          @click="useEnglish"
+          >English</span
+        >
       </div>
     </div>
   </div>
@@ -106,13 +114,14 @@ export default defineComponent({
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     .menu__bg-column {
       width: 0%;
       border-left: solid lightgray;
       border-width: 0px;
       background-color: white;
     }
+    .menu__bg-column-3,
     .menu__bg-column-4,
     .menu__bg-column-5 {
       @media screen and (min-width: 1000px) {
@@ -134,7 +143,7 @@ export default defineComponent({
         li {
           a {
             @media screen and (min-width: 400px) {
-              font-size: 7rem;
+              font-size: 6rem;
             }
             @media screen and (min-width: 600px) {
               font-size: 10rem;
@@ -144,6 +153,7 @@ export default defineComponent({
             overflow: hidden;
             font-weight: 600;
             font-size: 4rem;
+            font-family: 'Playfair Display', serif;
             color: black;
             pointer-events: auto;
             white-space: nowrap;
@@ -165,12 +175,16 @@ export default defineComponent({
       opacity: 0;
       pointer-events: none;
       font-size: 1.2rem;
+      font-weight: 500;
+      font-family: 'Poppins', sans-serif;
       .menu__language {
-        font-weight: 500;
         cursor: pointer;
         &:hover {
           color: $primary;
         }
+      }
+      .menu__language--active {
+        border-bottom: 2px solid black;
       }
     }
   }
