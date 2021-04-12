@@ -2,10 +2,7 @@
   <LeaveAnimation />
   <Title />
   <article class="about__text-container">
-    <p ref="paragraphRef">
-      안녕하세요. 여러분은 지금 개발자가 되고자 하는 비전공 무경력자의 포트폴리오를 보고 있어요.
-      만약 여기서 창을 닫지 않았다면 계속 읽어주세요.
-    </p>
+    <p ref="paragraphRef"></p>
   </article>
   <main ref="scrollRef">
     <article class="about__pannels-wrapper" ref="pannelsRef">
@@ -13,10 +10,8 @@
         <img v-if="panel.bgUrl" :src="getAsset(panel.bgUrl)" />
         <div class="about__img-overlay">
           <ColumnLines />
-          <div class="about__img-desc" v-html="panel.bgDesc"></div>
-          <div v-if="index === ABOUT_PANELS.length - 1" class="about__last-panel__container">
-            <span>Hello World</span>
-          </div>
+          <div class="about__img-desc" v-html="panel.bgDesc[language]"></div>
+          <Me v-if="index === ABOUT_PANELS.length - 1" />
         </div>
       </section>
     </article>
@@ -29,27 +24,55 @@ import LeaveAnimation from '@/components/LeaveAnimation.vue';
 import { IAboutPanel } from '@/data';
 import useLocomitive from '@/hooks/useLocomotive.vue';
 import useShuffleString from '@/hooks/useShuffleString.vue';
+import { GETTERS, TLanguage, useStore } from '@/store';
 import gsap from 'gsap';
-import { defineComponent, onMounted, PropType, ref } from 'vue';
+import { computed, defineComponent, onMounted, PropType, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import ColumnLines from '../components/ColumnLines.vue';
 import Footer from '../components/Footer.vue';
 import Title from '../components/Title.vue';
+import Me from '../components/Me.vue';
 import { getAsset } from '../utils';
 
 export default defineComponent({
-  components: { LeaveAnimation, Title, ColumnLines, Footer },
+  components: { LeaveAnimation, Title, ColumnLines, Me, Footer },
   props: { ABOUT_PANELS: { required: true, type: Array as PropType<Array<IAboutPanel>> } },
   setup(props) {
+    const { getters } = useStore();
+    const routeName = useRoute().name;
+    const language = computed<TLanguage>(() => getters[GETTERS.GET_LANGUAGE]);
     const paragraphRef = ref<HTMLParagraphElement | null>(null);
     const pannelsRef = ref<HTMLDivElement | null>(null);
-    const routeName = useRoute().name;
+    const pannelIndex = ref<number | null>(0);
 
     const { scrollRef, ScrollTrigger } = useLocomitive();
 
     const { shuffleString } = useShuffleString();
 
-    onMounted(() => {
+    watch(
+      () => getters[GETTERS.GET_LANGUAGE],
+      async () => {
+        if (!paragraphRef.value) return;
+        if (pannelIndex.value === null) {
+          await shuffleString(
+            paragraphRef.value,
+            language.value === 'ko' ? '방진석' : 'Jinseok Bang',
+            true
+          );
+          return;
+        }
+        await shuffleString(
+          paragraphRef.value,
+          props.ABOUT_PANELS[pannelIndex.value].text[language.value],
+          true
+        );
+      }
+    );
+
+    onMounted(async () => {
+      if (!paragraphRef.value) return;
+      paragraphRef.value.innerText = props.ABOUT_PANELS[0].text[language.value];
+
       if (!pannelsRef.value) return;
       const panels = pannelsRef.value.querySelectorAll('.about__panel');
       panels.forEach((panel, i) => {
@@ -67,7 +90,6 @@ export default defineComponent({
         if (!overlay) return;
 
         const overlayAnim = gsap.to(overlay, { yPercent: '-100', ease: 'power2' });
-        // const overlayAnim = gsap.to(overlay, { yPercent: '-100', ease: 'none' });
         ScrollTrigger.create({
           trigger: overlay,
           animation: overlayAnim,
@@ -79,19 +101,55 @@ export default defineComponent({
 
         ScrollTrigger.create({
           trigger: panels[i],
-          start: `top +=${window.innerHeight * 0.75}`,
-          end: `top +=${window.innerHeight * 0.75}`,
+          start: `top +=${window.innerHeight * 0.8}`,
+          end: `top +=${window.innerHeight * 0.8}`,
           scroller: scrollRef.value,
-          markers: true,
           toggleActions: 'play reverse play reverse',
           onEnter: async () => {
             if (i !== 0) {
-              await shuffleString(paragraphRef.value, props.ABOUT_PANELS[i].text, true);
+              await shuffleString(
+                paragraphRef.value,
+                props.ABOUT_PANELS[i].text[language.value],
+                true
+              );
+              pannelIndex.value = i;
             }
           },
-          onEnterBack: async () =>
-            shuffleString(paragraphRef.value, props.ABOUT_PANELS[Math.max(0, i - 1)].text, true),
+          onEnterBack: async () => {
+            shuffleString(
+              paragraphRef.value,
+              props.ABOUT_PANELS[Math.max(0, i - 1)].text[language.value],
+              true
+            );
+            pannelIndex.value = i - 1;
+          },
         });
+      });
+
+      const meWrapper = pannelsRef.value.querySelector('.me__wrapper');
+      if (!meWrapper || !scrollRef.value) return;
+      ScrollTrigger.create({
+        trigger: meWrapper,
+        start: '40% center',
+        end: '40% center',
+        scroller: scrollRef.value,
+        markers: true,
+        onEnter: async () => {
+          await shuffleString(
+            paragraphRef.value,
+            language.value === 'ko' ? '방진석' : 'Jinseok Bang',
+            true
+          );
+          pannelIndex.value = null;
+        },
+        onEnterBack: () => {
+          shuffleString(
+            paragraphRef.value,
+            props.ABOUT_PANELS[props.ABOUT_PANELS.length - 1].text[language.value],
+            true
+          );
+          pannelIndex.value = props.ABOUT_PANELS.length - 1;
+        },
       });
 
       gsap.from(paragraphRef.value, { duration: 1, delay: 1.8, opacity: 0 });
@@ -101,28 +159,34 @@ export default defineComponent({
       }, 1000);
     });
 
-    return { routeName, scrollRef, paragraphRef, pannelsRef, getAsset };
+    return { routeName, scrollRef, paragraphRef, pannelsRef, getAsset, language };
   },
 });
 </script>
 
 <style lang="scss" scoped>
 .about__text-container {
-  @include mobile-23-desktop-2345__margins;
+  @include mobile-23-desktop-2345__paddings;
   position: fixed;
   top: 50%;
   left: 0;
   z-index: 10;
   transform: translateY(-50%);
+  width: 100%;
   pointer-events: none;
   p {
+    @media screen and (min-width: 600px) {
+      font-size: 2.2rem;
+      line-height: 3rem;
+    }
     @media screen and (min-width: 1000px) {
-      font-size: 2rem;
+      font-size: 2.6rem;
       line-height: 3.5rem;
     }
+    text-align: center;
+
     color: white;
-    margin-bottom: 5rem;
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     font-weight: 600;
     line-height: 2rem;
   }
@@ -154,20 +218,17 @@ main {
       }
       .about__img-desc {
         @media screen and (min-width: 1000px) {
-          display: inline-block;
+          display: grid;
+          gap: 1rem;
         }
         display: none;
         position: absolute;
-        bottom: -3rem;
+        top: 102%;
         left: $column-line-5-left;
         font-size: 0.8rem;
         opacity: 0.8;
         color: white;
       }
-    }
-    .about__last-panel__container {
-      @include mobile-23-desktop-2345__margins;
-      height: 100vh;
     }
   }
 }
