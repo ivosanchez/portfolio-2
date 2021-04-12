@@ -39,16 +39,7 @@ import { IProject, PATH_KEY } from '@/data/projects';
 import useLocomitive from '@/hooks/useLocomotive.vue';
 import { GETTERS, useStore } from '@/store';
 import gsap from 'gsap';
-import {
-  computed,
-  defineComponent,
-  nextTick,
-  onMounted,
-  PropType,
-  reactive,
-  ref,
-  watch,
-} from 'vue';
+import { computed, defineComponent, onMounted, PropType, reactive, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import DetailTechs from '../components/DeatilTechs.vue';
 import Footer from '../components/Footer.vue';
@@ -160,6 +151,29 @@ export default defineComponent({
         });
       }
 
+      const overviewContainer = document.querySelector('.overview__container');
+      if (!overviewContainer) return;
+      const overviewHeadings = overviewContainer.querySelectorAll('h5');
+      const overviewParagraphs = overviewContainer.querySelectorAll('p');
+      overviewHeadings.forEach((heading) => {
+        if (!scrollRef.value) return;
+        const animation = gsap.from(heading, { duration: 1, x: 50, opacity: 0 });
+        ScrollTrigger.create({
+          trigger: heading,
+          scroller: scrollRef.value,
+          animation,
+        });
+      });
+      overviewParagraphs.forEach((paragraph) => {
+        if (!scrollRef.value) return;
+        const animation = gsap.from(paragraph, { duration: 1, y: 50, opacity: 0 });
+        ScrollTrigger.create({
+          trigger: paragraph,
+          scroller: scrollRef.value,
+          animation,
+        });
+      });
+
       const techsContainers = document.querySelectorAll('.techs__container');
 
       if (!techsContainers) return;
@@ -192,6 +206,31 @@ export default defineComponent({
         });
       });
 
+      const stackContainers = document.querySelectorAll('.stack__container');
+      stackContainers.forEach((stack) => {
+        if (!scrollRef.value) return;
+
+        const heading = stack.querySelector('h5');
+        if (!heading) return;
+        const headingAnim = gsap.from(heading, { duration: 1, x: 50, opacity: 0 });
+        ScrollTrigger.create({
+          trigger: heading,
+          scroller: scrollRef.value,
+          animation: headingAnim,
+        });
+
+        const paragraphs = stack.querySelectorAll('p');
+        paragraphs.forEach((paragraph) => {
+          if (!scrollRef.value) return;
+          const pAnim = gsap.from(paragraph, { duration: 1, y: 50, opacity: 0 });
+          ScrollTrigger.create({
+            trigger: paragraph,
+            scroller: scrollRef.value,
+            animation: pAnim,
+          });
+        });
+      });
+
       ScrollTrigger.refresh(true);
     });
 
@@ -220,18 +259,18 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.visit-btn__wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
 main {
   position: relative;
   .landing {
     height: 85vh;
-  }
-  .visit-btn__wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
   }
   .hero-img__container {
     @include mobile-23-desktop-2345__paddings;
@@ -257,6 +296,7 @@ main {
       @media screen and (min-width: 1000px) {
         font-size: 9rem;
       }
+      font-family: 'Playfair Display', serif;
       width: 100%;
       max-width: 1000px;
       color: white;
