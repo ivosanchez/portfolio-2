@@ -9,6 +9,7 @@ import { defineComponent, ref, onMounted } from 'vue';
 import gsap from 'gsap';
 import { useRoute } from 'vue-router';
 import MenuIcon from './Icons/Menu.vue';
+import { DELAY_3_HALF } from '../constants/gsap';
 
 export default defineComponent({
   name: 'AsideLeft',
@@ -20,7 +21,7 @@ export default defineComponent({
 
     onMounted(() => {
       if (!routeNameRef.value) return;
-      gsap.from(routeNameRef.value, { duration: 2, delay: 3.5, width: 0 });
+      gsap.from(routeNameRef.value, { duration: 2, delay: DELAY_3_HALF, width: 0 });
     });
 
     return { routeName: route.name ?? 'Works', routeNameRef };
@@ -33,6 +34,7 @@ export default defineComponent({
   @include aside;
   left: 0;
   padding: 2rem 1rem;
+  font-family: 'Playfair Display', serif;
   h1 {
     @media screen and (min-width: 1000px) {
       display: block;

@@ -31,8 +31,8 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .container {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   position: fixed;
   z-index: -1;
   top: 0;

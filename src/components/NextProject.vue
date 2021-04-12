@@ -35,12 +35,15 @@ export default defineComponent({
   a {
     display: block;
     .next-project {
+      @media screen and (min-width: 500px) {
+        font-size: 3rem; // For browsers not supporting font-size based on vw
+        font-size: calc(3rem + 4vw);
+      }
+      font-size: 2.5rem;
       display: inline-block;
       margin-bottom: 1rem;
       color: black;
       text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
-      font-size: 3rem; // For browsers not supporting font-size based on vw
-      font-size: calc(3rem + 4vw);
     }
   }
 }

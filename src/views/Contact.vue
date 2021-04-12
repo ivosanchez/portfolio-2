@@ -23,6 +23,7 @@
 </template>
 
 <script lang="ts">
+import { DELAY_1 } from '@/constants/gsap';
 import { GETTERS, TLanguage, useStore } from '@/store';
 import gsap from 'gsap';
 import { computed, defineComponent, onMounted, ref } from 'vue';
@@ -67,7 +68,7 @@ export default defineComponent({
       const headings = mainRef.value.querySelectorAll('h3');
       const copyContainers = mainRef.value.querySelectorAll('.contact__copy-container');
       const tl = gsap.timeline({ defaults: { duration: 0.5 } });
-      tl.from(brs, { width: 0, delay: 1.5 });
+      tl.from(brs, { width: 0, delay: DELAY_1 + 0.5 });
       tl.from(headings, { width: 0, overflow: 'hidden' });
       tl.from(copyContainers, { opacity: 0 }, '+=0.2');
     });

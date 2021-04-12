@@ -13,6 +13,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue';
 import gsap from 'gsap';
+import { DELAY_3_HALF } from '@/constants/gsap';
 
 export default defineComponent({
   name: 'Footer',
@@ -21,7 +22,7 @@ export default defineComponent({
     onMounted(() => {
       const rows = footerRef.value?.querySelectorAll('.footer__row');
       if (!rows) return;
-      gsap.from(rows, { duration: 0.5, delay: 3.5, width: 0, overflow: 'hidden' });
+      gsap.from(rows, { duration: 0.5, delay: DELAY_3_HALF, width: 0, overflow: 'hidden' });
     });
 
     return { footerRef };

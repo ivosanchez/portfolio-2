@@ -52,7 +52,7 @@ export default defineComponent({
 .visit-btn__container {
   display: block;
   position: absolute;
-  top: 65vh;
+  top: 70vh;
   right: 0;
   width: 100%;
   display: flex;
@@ -75,6 +75,7 @@ export default defineComponent({
       letter-spacing: 2px;
       font-size: 1.2rem;
       font-weight: 600;
+      font-family: 'Poppins', sans-serif;
     }
     &:hover {
       span {

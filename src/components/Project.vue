@@ -62,6 +62,7 @@ export default defineComponent({
       @media screen and (min-width: 1000px) {
         font-size: 6rem;
       }
+      font-family: 'Playfair Display', serif;
       margin-top: 1rem;
       margin-bottom: 1rem;
       color: white;

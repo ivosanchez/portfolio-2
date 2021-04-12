@@ -33,7 +33,7 @@ export default defineComponent({
   @media screen and (min-width: 1000px) {
     grid-template-columns: 1fr 1fr;
   }
-  margin-bottom: 6rem;
+  margin-bottom: 12rem;
   display: grid;
   color: white;
   .overview__left-column,
@@ -49,6 +49,7 @@ export default defineComponent({
   }
   .overview__right-column {
     border-top: 1px solid white;
+    overflow: hidden;
     span {
       font-size: 0.8rem;
     }

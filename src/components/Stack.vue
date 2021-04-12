@@ -1,8 +1,9 @@
 <template>
   <article :class="['stack__container', index % 2 !== 0 && 'right-column']">
     <h5>{{ desc.heading[language] }}</h5>
-    <div></div>
-    <p v-for="(paragraph, index) in desc.paragraphs" v-html="paragraph[language]" :key="index" />
+    <div>
+      <p v-for="(paragraph, index) in desc.paragraphs" v-html="paragraph[language]" :key="index" />
+    </div>
   </article>
 </template>
 
@@ -30,23 +31,22 @@ export default defineComponent({
     margin-bottom: 2rem;
   }
   width: 100%;
-  display: grid;
-  gap: 1rem;
   color: white;
+  overflow: hidden;
   h5 {
+    margin-bottom: 2rem;
     font-size: 2rem;
     font-weight: 600;
   }
-
-  img {
-    width: 90%;
-    object-fit: center;
-  }
-  p {
-    font-size: 0.9rem;
-    font-weight: 300;
-    line-height: 1.5rem;
-    width: 90%;
+  div {
+    display: grid;
+    gap: 1rem;
+    p {
+      font-size: 0.9rem;
+      font-weight: 300;
+      line-height: 1.5rem;
+      width: 90%;
+    }
   }
 }
 
