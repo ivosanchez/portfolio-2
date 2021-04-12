@@ -13,8 +13,28 @@
     "heroImgUrl": "mediumrare/screenshot.png",
     "overviews": [
       {
-        "heading": { "ko": "", "en": "" },
-        "paragraphs": [{ "ko": "", "en": "" }]
+        "heading": {
+          "ko": "Medium과 Medium-rare",
+          "en": "Medium and Medium-rare"
+        },
+        "paragraphs": [
+          {
+            "ko": "<a class='v-html__anchor-white' href='https://medium.com/' target='_blank'>Medium</a>의 풀스택 클론 코딩이에요.",
+            "en": "Fullstack cloning <a class='v-html__anchor-white' href='https://medium.com/' target='_blank'>Medium</a>."
+          }
+        ]
+      },
+      {
+        "heading": {
+          "ko": "No SPA",
+          "en": "No SPA"
+        },
+        "paragraphs": [
+          {
+            "ko": "리액트로만 개발하다가 기본기를 다지고자 SPA(Single Page Application)없이 시도해 봤어요. 리액트가 얼마나 소중한지 알게 됐어요.",
+            "en": "Back to basics without SPA(Single Page Application). I realized how React made our lives so easier."
+          }
+        ]
       }
     ],
     "frontendTechs": ["Typescript", "Webpack", "Pug", "EditorJS", "Sass"],
@@ -26,8 +46,16 @@
         "heading": { "ko": "힘들었던 점", "en": "Obstacles" },
         "paragraphs": [
           {
-            "ko": "WYSIWYG 에디터를 구현하는 것이었어요. 결국 editorjs라는 라이브러리를 사용해야 했어요. 규모가 점점 커지면서 Pug와 Sass, Typescript만으로 모든걸 제어하기가 힘들었어요. React 생각이 많이 났어요. 파일 구조도 깔끔하게 정리가 되지 않았어요. ",
-            "en": ""
+            "ko": "WYSIWYG 에디터를 구현하는 것이었어요. 결국 EditorJS라는 라이브러리를 사용해야 했어요.",
+            "en": "Creating WYSIWYG Editor on my own was very frustrating work. I ended up using EditorJS."
+          },
+          {
+            "ko": "규모가 점점 커지면서 Pug와 Sass, Typescript만으로 모든걸 제어하기가 힘들었어요. 파일 구조도 깔끔하게 정리가 되지 않았어요. React 생각이 많이 났어요.",
+            "en": "As the project grew bigger, managing everything with only Pug, Sass and Typescript was not very good developing experience. Also it was hard to keep file structure clean. I really missed React."
+          },
+          {
+            "ko": "그리고 Go에서 Pug(Jade) 엔진이 작동하는 방식이 Javascript와 다른 점이 있었는데, 부실한 문서와 부족한 정보로 고생했어요. Go의 다른 템플릿 엔진들의 작동방식도 검색해서 여러가지를 시도하면서 답을 찾아내야 하는 경우가 종종 있었어요.",
+            "en": "Go's Pug(Jade) engine works differently with Javascript's Pug engine. But documentation was not very good and information was limited on the internet. I had to search how Go's other template engines work and try them on my Pug file. Sometimes I found an answer, sometimes didn't."
           }
         ]
       },
@@ -38,7 +66,7 @@
         },
         "paragraphs": [
           {
-            "ko": "",
+            "ko": "처음에는 MVC 패턴으로 구축돼 있었어요. 모두 만든 다음에 Go의 Clean Architecture를 접하게 됐고, 이쪽으로 바꿔보고자 했는데 생각만큼 깔끔하게 코드가 정리가 되지 않고 있어요. ",
             "en": ""
           }
         ]

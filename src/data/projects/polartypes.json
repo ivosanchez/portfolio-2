@@ -38,8 +38,8 @@
       "Typescript",
       "React",
       "Apollo",
-      "React Hook Form",
-      "Moment Timezone",
+      "React-Hook-Form",
+      "Moment-Timezone",
       "Mapbox",
       "TailwindCSS"
     ],
@@ -70,7 +70,7 @@
         },
         "paragraphs": [
           {
-            "ko": "최근 대대적인 리팩토링을 거쳤어요. 하지만 프론트엔드쪽에는 아직 수정할 코드들이 많이 남아 있어요. 그리고 테스팅도 주로 백엔드에서만 실행되고 있어요. 그래서 추가적인 프론트엔드 리팩토링과 테스팅(Jset와 Cypress)을 계획하고 있습니다. 그리고 건너뛰었던 스코롤바 구현도 마무리 짓고 싶어요",
+            "ko": "최근 대대적인 리팩토링을 거쳤어요. 하지만 프론트엔드쪽에는 아직 수정할 코드들이 많이 남아 있어요. 그리고 테스팅도 주로 백엔드에서만 실행되고 있어요. 그래서 추가적인 프론트엔드 리팩토링과 테스팅(Jest와 Cypress)을 계획하고 있습니다. 그리고 건너뛰었던 스코롤바 구현도 마무리 짓고 싶어요",
             "en": "Recently there was a big code refactoring. But many lines of codes are waiting for refining process on frontend. Testings are also mostly implemented on backend. So additional refactoring and testings(with Jest and Cypress) on frontend are on my todo list. Also I wanted to create Polarstep's scrollbar on my Polartypes."
           }
         ]

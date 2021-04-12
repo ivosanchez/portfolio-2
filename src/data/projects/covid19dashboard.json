@@ -10,32 +10,49 @@
     "heroImgUrl": "covid19/screenshot.png",
     "overviews": [
       {
-        "heading": { "ko": "전세계 코로나 진행상황과 관련 뉴스", "en": "" },
-        "paragraphs": [{ "ko": "", "en": "" }]
+        "heading": {
+          "ko": "스스로 완성한 첫번째 프로젝트",
+          "en": "First project by myself"
+        },
+        "paragraphs": [
+          {
+            "ko": "튜토리얼이나 수업이 아닌 저의 첫번째 완성작이에요. ",
+            "en": "This is my very first completed project by my own hand. "
+          }
+        ]
       },
       {
-        "heading": { "ko": "스스로 완성한 첫번째 프로젝트", "en": "" },
-        "paragraphs": [{ "ko": "", "en": "" }]
+        "heading": { "ko": "개선 사항", "en": "Improvements" },
+        "paragraphs": [
+          {
+            "ko": "존스 홉킨스 대학의 <a class='v-html__anchor-white' href='https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6' target='_blank'>코로나 바이러스 현황판</a>을 더 보기 좋게 바꿔 봤어요. 그리고 나라별 코로나 바이러스 관련 뉴스도 제공하게 했어요.",
+            "en": "Original site is <a class='v-html__anchor-white' href='https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6' target='_blank'>Covid 19 Dashboard</a> by Johns Hopkins University (JHU). My goal was providing better user experience by improvments in visual design with covid 19 news feature."
+          }
+        ]
       }
     ],
-    "frontendTechs": [
-      "Typescript",
-      "React",
-      "D3",
-      "React Leaflet",
-      "Chakra UI"
-    ],
+    "frontendTechs": ["Typescript", "React", "D3", "React-Leaflet", "ChakraUI"],
     "backendTechs": ["Typescript", "Express", "Cheerio"],
     "frontendGithubUrl": "https://github.com/jonganebski/covid-19-dashboard",
     "backendGithubUrl": "https://github.com/jonganebski/covid-19-dashboard-backend",
     "descs": [
       {
-        "heading": { "ko": "", "en": "" },
-        "paragraphs": [{ "ko": "", "en": "" }]
+        "heading": { "ko": "힘들었던 점", "en": "Obstacles" },
+        "paragraphs": [
+          {
+            "ko": "D3로 React에서 그래프를 만드는 과정이 힘들었어요. 여기 보강 필요!!!",
+            "en": "Creating graphs with D3 library on React was the biggest obstacle. After many times of failure and a lot of research, these graphs now performs as I intended."
+          }
+        ]
       },
       {
-        "heading": { "ko": "한계와 앞으로의 계획", "en": "" },
-        "paragraphs": [{ "ko": "", "en": "" }]
+        "heading": { "ko": "지속적인 업데이트", "en": "Continuous updates" },
+        "paragraphs": [
+          {
+            "ko": "맨 처음 만든 프로젝트였기 때문에 가장 오래 된 프로젝트이기도 해요. 그래서 그 동안 React Leaflet, ChakraUI 두 라이브러리들의 메이져 버전 업그레이드가 있었어요. 그리고 이 프로젝트도 버전 업데이트를 따라가고 있어요.",
+            "en": "Since this is the first project, this is also the oldest project. There were major version upgrades on React Leaflet and ChakraUI libraries, and all migrations were taken care of."
+          }
+        ]
       }
     ]
   }

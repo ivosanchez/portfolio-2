@@ -12,7 +12,7 @@ export enum PATH_KEY {
   PATHFINDER = 'pathfinder',
 }
 
-interface ILanguageVariation {
+export interface ILanguageVariation {
   ko: string;
   en: string;
 }
