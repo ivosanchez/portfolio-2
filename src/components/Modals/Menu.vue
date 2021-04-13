@@ -31,7 +31,7 @@
         <span
           :class="[language === 'ko' ? 'menu__language--active' : 'menu__language']"
           @click="useKorean"
-          >한글</span
+          >한국어</span
         >
         <span> / </span>
         <span
