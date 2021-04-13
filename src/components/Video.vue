@@ -1,11 +1,13 @@
 <template>
   <video
-    src="@/assets/polartypes/record.webm"
+    :src="getAsset(videoSrc)"
     :poster="getAsset(posterUrl)"
     @click="togglePlayVideo"
     @mouseenter="onMouseEnter"
     @mouseleave="onMouseLeave"
     @mousemove="onMouseMove"
+    @play="onPlay"
+    @ended="onEnded"
     ref="videoRef"
   />
 </template>
@@ -17,7 +19,10 @@ import { getAsset } from '../utils';
 
 export default defineComponent({
   name: 'Video',
-  props: { posterUrl: String },
+  props: {
+    posterUrl: { required: true, type: String },
+    videoSrc: { required: true, type: String },
+  },
   setup() {
     const videoRef = ref<HTMLVideoElement | null>(null);
     const videoCursor = document.getElementById('video-cursor');
@@ -56,10 +61,24 @@ export default defineComponent({
       changeCursor();
     };
 
+    const onPlay = () => {
+      if (!videoRef.value) return;
+      videoRef.value.style.opacity = '1';
+      changeCursor();
+    };
+
+    const onEnded = () => {
+      if (!videoRef.value) return;
+      videoRef.value.style.opacity = '0.7';
+      changeCursor();
+    };
+
     return {
       getAsset,
       onMouseEnter,
       onMouseLeave,
+      onPlay,
+      onEnded,
       togglePlayVideo,
       videoRef,
     };
@@ -72,5 +91,6 @@ video {
   width: 100%;
   opacity: 0.7;
   cursor: none;
+  transition: opacity 1s ease-in-out;
 }
 </style>

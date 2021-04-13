@@ -12,7 +12,7 @@
       <li class="project__tech" v-for="tech in techs" v-bind:key="tech.name">{{ tech }}</li>
     </ul>
     <div class="video__wrapper">
-      <Video :posterUrl="posterUrl" />
+      <Video :videoSrc="videoSrc" :posterUrl="posterUrl" />
     </div>
     <p class="project__desc">{{ desc }}</p>
   </div>
@@ -29,6 +29,7 @@ export default defineComponent({
     name: String,
     path: String,
     techs: Array,
+    videoSrc: String,
     posterUrl: String,
     desc: String,
     index: Number,
@@ -41,6 +42,7 @@ export default defineComponent({
   @include mobile-23-desktop-2345__paddings;
   width: 100%;
   display: grid;
+  position: relative;
   grid-template:
     'header' 1fr
     'list' auto
@@ -51,26 +53,29 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    span {
-      @media screen and (min-width: 1000px) {
-        font-size: 3rem;
-      }
+    .project__number {
       color: $primary;
-      font-size: 1.5rem;
+      font-size: 2rem;
     }
-    .project__name {
-      @media screen and (min-width: 1000px) {
-        font-size: 6rem;
-      }
-      font-family: 'Playfair Display', serif;
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-      color: white;
-      font-size: 2.5rem;
-      font-weight: 600;
-      transition: color 0.3s;
-      &:hover {
-        color: $primary;
+    a {
+      z-index: 10;
+      .project__name {
+        @media screen and (min-width: 500px) {
+          font-size: 5rem;
+        }
+        @media screen and (min-width: 1000px) {
+          font-size: 7rem;
+        }
+        font-family: 'Playfair Display', serif;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        color: white;
+        font-size: 2.5rem;
+        font-weight: 600;
+        transition: color 0.3s;
+        &:hover {
+          color: $primary;
+        }
       }
     }
   }
