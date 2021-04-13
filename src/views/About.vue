@@ -128,12 +128,21 @@ export default defineComponent({
 
       const meWrapper = pannelsRef.value.querySelector('.me__wrapper');
       if (!meWrapper || !scrollRef.value) return;
+      const meCircles = meWrapper.querySelectorAll('.me__circle');
+      const circlesAnim = gsap.from(meCircles, {
+        duration: 1.5,
+        delay: 1.5,
+        opacity: 0,
+        stagger: 0.8,
+      });
       ScrollTrigger.create({
         trigger: meWrapper,
         start: '40% center',
         end: '40% center',
         scroller: scrollRef.value,
         markers: true,
+        toggleActions: 'play none none reverse',
+        animation: circlesAnim,
         onEnter: async () => {
           await shuffleString(
             paragraphRef.value,
