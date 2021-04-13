@@ -13,9 +13,9 @@
             <span>Developed on WSL2.</span>
           </div>
         </div>
-        <h1 ref="h1Ref">Portfolio</h1>
+        <h1 ref="h1Ref">I make your ideas alive on the web</h1>
         <div></div>
-        <span class="arrow-down" ref="arrDownRef"> &darr;</span>
+        <span class="arrow-down" ref="arrDownRef">&darr;</span>
       </div>
       <ul class="home__projects">
         <li v-for="(project, index) in projects" v-bind:key="index">
@@ -24,6 +24,7 @@
             :path="project.path"
             :techs="project.summary.techs"
             :desc="project.summary.desc[language]"
+            :videoSrc="project.summary.videoSrc"
             :posterUrl="project.summary.posterUrl"
             :index="index"
           />
@@ -159,7 +160,7 @@ main {
     display: grid;
     grid-template-rows: repeat(4, 1fr);
     align-items: center;
-    overflow-x: hidden;
+    overflow: hidden;
     .intro__top {
       @media screen and (min-width: 1000px) {
         padding-left: $column-line-2-left;
@@ -179,15 +180,14 @@ main {
     }
     h1 {
       @media screen and (min-width: 600px) {
-        font-size: 6rem;
+        font-size: 4rem;
       }
       @media screen and (min-width: 1000px) {
-        font-size: 9rem;
+        font-size: 6rem;
       }
       display: inline-block;
-      width: 100%;
-      color: white;
-      font-size: 3rem;
+      color: $primary;
+      font-size: 2rem;
       font-weight: 600;
       box-sizing: content-box;
     }
