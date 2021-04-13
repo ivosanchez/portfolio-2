@@ -33,8 +33,8 @@
     },
     "bgUrl": "shoulder.jpg",
     "bgDesc": {
-      "ko": "<span>Photo by <a class='v-html__anchor-white' href='https://unsplash.com/@harlsta?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText' target='_blank'>Harlie Raethel</a> on <a class='v-html__anchor-white' href='https://unsplash.com/s/photos/shoulder?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText' target='_blank'>Unsplash</a></span> <span>저 아니에요.</span>",
-      "en": "<span>Photo by <a class='v-html__anchor-white' href='https://unsplash.com/@harlsta?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText' target='_blank'>Harlie Raethel</a> on <a class='v-html__anchor-white' href='https://unsplash.com/s/photos/shoulder?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText' target='_blank'>Unsplash</a></span> <span>It's not me.</span>"
+      "ko": "<span>Photo by <a class='v-html__anchor-white' href='https://unsplash.com/@harlsta?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText' target='_blank'>Harlie Raethel</a> on <a class='v-html__anchor-white' href='https://unsplash.com/s/photos/shoulder?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText' target='_blank'>Unsplash</a></span> <span>제 어깨는 아니에요.</span>",
+      "en": "<span>Photo by <a class='v-html__anchor-white' href='https://unsplash.com/@harlsta?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText' target='_blank'>Harlie Raethel</a> on <a class='v-html__anchor-white' href='https://unsplash.com/s/photos/shoulder?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText' target='_blank'>Unsplash</a></span> <span>It's not my shoulder.</span>"
     }
   },
   {

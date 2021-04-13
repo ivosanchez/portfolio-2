@@ -25,6 +25,7 @@ export interface IProject {
   summary: {
     techs: string[];
     desc: ILanguageVariation;
+    videoSrc: string;
     posterUrl: string;
   };
   detail: {

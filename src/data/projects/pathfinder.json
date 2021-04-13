@@ -7,6 +7,7 @@
       "ko": "다익스트라 알고리즘, A* 알고리즘, 미로 생성을 시각화했어요.",
       "en": "Visualizing Dijkstra's algorithm, A* algorithm and Maze Generation."
     },
+    "videoSrc": "pathfinder/video.webm",
     "posterUrl": "pathfinder/screenshot.png"
   },
   "detail": {

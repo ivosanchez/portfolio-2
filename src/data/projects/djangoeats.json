@@ -7,6 +7,7 @@
       "ko": "UberEats의 풀스택 클론 코딩이에요. 레스토랑, 배달원, 소비자 3가지 역할로 가입이 가능하며, Django-channels를 통해 주문의 상황이 실시간으로 업데이트돼요.",
       "en": "Fullstack cloning UberEats with 3 roles(Restaurant owner, Delivery and Customer) and real-time order through Django-channels."
     },
+    "videoSrc": "covid19/video.webm",
     "posterUrl": "djangoeats/screenshot.png"
   },
   "detail": {
@@ -80,8 +81,8 @@
         },
         "paragraphs": [
           {
-            "ko": "UI/UX 디자인이 마음에 들지 않아요. 특히 레스토랑 계정의 페이지들은 제가 가입해서 확인하지 못했기 때문에 클로닝이 아닌, 제가 직접 디자인한 페이지들이에요. 저는 디자이너는 아니기 때문에, 이 부분에서 미숙함이 묻어 나온 것 같아요. 그리고 메뉴 작성 Form이 복잡해지면서 그게 그대로 표출된 것 같아요. 그래서 일차적인 목표는 이걸 보완하는게 되겠네요.",
-            "en": "I don't like UI/UX design, especially Restaurant owner's pages. I designed them by myself because I was not able to check how it really looks like on UberEats. As I'm not a designer, I could not manage well with the design when I was focusing on functionalities of the pages and complicated forms. So this needs to be fixed."
+            "ko": "UI/UX 디자인을 고쳐야 해요. 특히 레스토랑 계정의 페이지들은 제가 가입해서 확인하지 못했기 때문에 클로닝이 아닌, 제가 직접 디자인한 페이지들이에요. 저는 디자이너는 아니기 때문에, 이 부분에서 미숙함이 묻어 나온 것 같아요. 그리고 메뉴 작성 Form이 복잡해지면서 그게 그대로 표출된 것 같아요. 그래서 일차적인 목표는 이걸 보완하는게 되겠네요.",
+            "en": "UI/UX design on Restaurant owner's pages needs improvements. I designed them by myself because I was not able to check how it really looks like on UberEats. As I'm not a designer, I could not manage well with the design when I was focusing on functionalities of the pages and complicated forms. So this needs to be fixed."
           },
           {
             "ko": "그리고 방문하시는 분들이 실제로 메뉴를 만들기에는 분명 한계가 있으리라 생각해요. 사이즈에서부터 옵션, 가격까지 고려해야 할 게 많아요. 그래서 Faker를 사용해서 랜덤한 메뉴를 자동적으로 만들어주는 기능을 추가할 계획이에요.",

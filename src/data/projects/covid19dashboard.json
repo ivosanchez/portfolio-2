@@ -3,7 +3,11 @@
   "href": "https://see-covid19.netlify.app/",
   "summary": {
     "techs": ["React", "Express"],
-    "desc": { "ko": "", "en": "This is a description of the project." },
+    "desc": {
+      "ko": "코로나 19의 전세계 현황을 살펴보고, 비교해 보세요.",
+      "en": "Check status of covid-19's conquest and feel frustration."
+    },
+    "videoSrc": "covid19/video.webm",
     "posterUrl": "covid19/screenshot.png"
   },
   "detail": {
