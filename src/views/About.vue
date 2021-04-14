@@ -129,26 +129,29 @@ export default defineComponent({
       const meWrapper = pannelsRef.value.querySelector('.me__wrapper');
       if (!meWrapper || !scrollRef.value) return;
       const meCircles = meWrapper.querySelectorAll('.me__circle');
-      const circlesAnim = gsap.from(meCircles, {
-        duration: 1.5,
-        delay: 1.5,
-        opacity: 0,
-        stagger: 0.8,
-      });
+      const circlesAnim = gsap
+        .from(meCircles, {
+          duration: 1.5,
+          delay: 0.8,
+          opacity: 0,
+          stagger: 0.8,
+        })
+        .pause();
       ScrollTrigger.create({
         trigger: meWrapper,
         start: '40% center',
         end: '40% center',
+
         scroller: scrollRef.value,
         markers: true,
         toggleActions: 'play none none reverse',
-        animation: circlesAnim,
         onEnter: async () => {
           await shuffleString(
             paragraphRef.value,
             language.value === 'ko' ? '방진석' : 'Jinseok Bang',
             true
           );
+          circlesAnim.restart(true);
           pannelIndex.value = null;
         },
         onEnterBack: () => {
@@ -157,6 +160,7 @@ export default defineComponent({
             props.ABOUT_PANELS[props.ABOUT_PANELS.length - 1].text[language.value],
             true
           );
+          circlesAnim.reverse();
           pannelIndex.value = props.ABOUT_PANELS.length - 1;
         },
       });
