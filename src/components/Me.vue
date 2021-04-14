@@ -3,16 +3,18 @@
     <div class="me__container">
       <div class="me__circle" @click="copy">
         <span class="me__confirm-copy">{{ language === 'ko' ? '복사됨!' : 'Copied!' }}</span>
-        <img src="@/assets/mail.svg" />
+        <MailIcon />
       </div>
       <div class="me__circle">
         <a :href="CONTACT.github" target="_blank">
-          <img src="@/assets/github.svg" />
+          <!-- <img src="@/assets/github.svg" /> -->
+          <GithubIcon />
         </a>
       </div>
       <div class="me__circle">
         <a :href="CONTACT.instagram" target="_blank">
-          <img src="@/assets/instagram.svg" />
+          <!-- <img src="@/assets/instagram.svg" /> -->
+          <InstagramIcon />
         </a>
       </div>
     </div>
@@ -25,9 +27,13 @@ import { CONTACT } from '@/data';
 import gsap from 'gsap';
 import useClipboard from '@/hooks/useClipboard';
 import { GETTERS, useStore } from '@/store';
+import MailIcon from './Icons/Mail.vue';
+import GithubIcon from './Icons/Github.vue';
+import InstagramIcon from './Icons/Instagram.vue';
 
 export default defineComponent({
   name: 'Me',
+  components: { MailIcon, GithubIcon, InstagramIcon },
   setup() {
     const { getters } = useStore();
     const { toClipboard } = useClipboard();
@@ -80,6 +86,17 @@ export default defineComponent({
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+      &:hover {
+        background-color: transparent;
+        .mail-icon {
+          stroke: white;
+        }
+        .github-icon,
+        .instagram-icon {
+          fill: white;
+        }
+      }
       a {
         width: 100%;
         height: 100%;
@@ -87,8 +104,11 @@ export default defineComponent({
         align-items: center;
         justify-content: center;
       }
-      img {
+      .mail-icon,
+      .github-icon,
+      .instagram-icon {
         width: 1.2rem;
+        transition: all 0.2s ease-in-out;
       }
       .me__confirm-copy {
         position: absolute;
