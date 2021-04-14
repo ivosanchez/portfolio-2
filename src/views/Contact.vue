@@ -68,7 +68,7 @@ export default defineComponent({
       const headings = mainRef.value.querySelectorAll('h3');
       const copyContainers = mainRef.value.querySelectorAll('.contact__copy-container');
       const tl = gsap.timeline({ defaults: { duration: 0.5 } });
-      tl.from(brs, { width: 0, delay: DELAY_1 + 0.5 });
+      tl.fromTo(brs, { width: '0%' }, { width: '50%', delay: DELAY_1 + 0.5 });
       tl.from(headings, { width: 0, overflow: 'hidden' });
       tl.from(copyContainers, { opacity: 0 }, '+=0.2');
     });
@@ -96,7 +96,7 @@ export default defineComponent({
       width: $column-line-width;
     }
     display: inline-block;
-    width: 42vw;
+    width: 50%;
     height: 2px;
     background-color: white;
   }
@@ -104,13 +104,13 @@ export default defineComponent({
     @media screen and (min-width: 1000px) {
       width: $column-line-width;
     }
-    @media screen and (min-width: 600px) {
+    @media screen and (min-width: 400px) {
       font-size: 4rem;
     }
     width: 42vw;
     padding: 1rem 0;
     margin-bottom: 1rem;
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: white;
     white-space: nowrap;
   }
@@ -120,6 +120,9 @@ export default defineComponent({
     cursor: pointer;
     color: white;
     span {
+      @media screen and (min-width: 400px) {
+        font-size: 1.4rem;
+      }
       @media screen and (min-width: 600px) {
         font-size: 2rem;
       }
