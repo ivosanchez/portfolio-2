@@ -42,8 +42,8 @@
       "ko": "그런데 어깨를 다치는 바람에 다른 일을 찾아봐야 했어요.",
       "en": "My shoulder went wrong and had to look for another job."
     },
-    "bgUrl": "coding.jpg",
-    "bgDesc": { "ko": "집에서 코딩 중", "en": "Coding at home" }
+    "bgUrl": "DSCF2885.jpg",
+    "bgDesc": { "ko": "", "en": "" }
   },
   {
     "text": {
@@ -51,31 +51,58 @@
       "en": "That's how I started programming. Typing didn't hurt my shoulder."
     },
     "bgUrl": "DSCF1157.jpg",
-    "bgDesc": { "ko": "조지아", "en": "Georgia" }
+    "bgDesc": { "ko": "", "en": "" }
   },
   {
     "text": {
       "ko": "프로그래밍에 대한 열정, 사랑 그런거 없었어요. 먹고 살 길은 있어야 되니까 시작했어요.",
       "en": "There was no enthusiasm or love in programming. I just needed to keep alive."
     },
-    "bgUrl": "bicycle.jpg",
+    "bgUrl": "coding.jpg",
+    "bgDesc": { "ko": "집에서 코딩 중", "en": "Coding at home" }
+  },
+  {
+    "text": {
+      "ko": "그런데 나쁘지 않았어요. 재미있어요.",
+      "en": "It ain't that bad. It's interesting."
+    },
+    "bgUrl": "OIXT7436.jpg",
+    "bgDesc": { "ko": "고통", "en": "Pain" }
+  },
+  {
+    "text": {
+      "ko": "물론 에러들로 마음 고생을 해요.",
+      "en": "Yes, suffering from the errors, always."
+    },
+    "bgUrl": "DSCF1145.jpg",
     "bgDesc": { "ko": "", "en": "" }
   },
   {
     "text": {
-      "ko": "그런데 나쁘지 않았어요. 재미있어요. 남들을 도울 수도 있고요.",
-      "en": "But it ain't bad. It's interesting. I can help other people."
+      "ko": "그래도 제가 실현할 수 있는 많은 가능성들이 있다고 믿어요.",
+      "en": "But I believe there are many possibilities I can make come true."
+    },
+    "bgUrl": "climbing.jpg",
+    "bgDesc": { "ko": "", "en": "" }
+  },
+  {
+    "text": {
+      "ko": "기회가 주어진다면 놓치지 않을거에요.",
+      "en": "If there'a chance, I'm not gonna miss it."
+    },
+    "bgUrl": "DSCF9464.jpg",
+    "bgDesc": { "ko": "", "en": "" }
+  },
+  {
+    "text": {
+      "ko": "Be my chance, I will be your chance.",
+      "en": "Be my chance, I will be your chance."
     },
     "bgUrl": "bicycle.jpg",
     "bgDesc": { "ko": "", "en": "" }
   },
   {
-    "text": { "ko": "이제는 웹개발로 ", "en": "dss" },
-    "bgUrl": "bicycle.jpg",
-    "bgDesc": { "ko": "", "en": "" }
-  },
-  {
-    "text": { "ko": "고마워요.", "en": "Thank you" },
+    "text": { "ko": "고맙습니다.", "en": "Thank you" },
     "bgUrl": "",
     "bgDesc": { "ko": "", "en": "" }
   }
