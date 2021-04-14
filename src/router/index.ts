@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import { ABOUT_PANELS, CONTACT } from '../data';
 import { PROJECTS } from '../data/projects';
+import { greetings } from '../utils';
+
+greetings(CONTACT.email);
 
 const routes: Array<RouteRecordRaw> = [
   {
