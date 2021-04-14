@@ -40,8 +40,8 @@
         },
         "paragraphs": [
           {
-            "ko": "",
-            "en": "This project can grow endlessly depends on where I put my goal. Maybe I can add more algorithms, or add weighted nodes, or make algorithms to consider turns. This is a fun project and this helps me to understand software engineering basics, but for now I want to focus on frontend web development skills then solving algorithms. So maybe adding few more algorithms will be the plan."
+            "ko": "이 프로젝트는 제가 목표를 어디에 두느냐에 확장 가능성이 무한해요. 다른 알고리즘을 추가할 수도 있고, 노드에 가중치를 부여할 수도 있고, 또는 회전도 고려하게 바꿀 수도 있겠죠. 이 프로젝트는 컴퓨터 공학의 기초에 대해 다뤄볼 수 있는 재미있는 프로젝트에요. 하지만 현재로서는 웹 개발에 투자하는 시간이 더 많았으면 해요. 그래서 일단은 알고리즘을 몇 가지 추가해 보는 것을 고려하고 있어요.",
+            "en": "This project can grow endlessly depends on where I put my goal. Maybe I can add more algorithms, or add weighted nodes, or make algorithms to consider turns. This is a fun project and this helps me to glance some computer science basics, but for now I want to focus on frontend web development skills then solving algorithms. So maybe adding few more algorithms will be the plan."
           }
         ]
       }
