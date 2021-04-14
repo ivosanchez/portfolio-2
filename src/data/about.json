@@ -28,7 +28,7 @@
   },
   {
     "text": {
-      "ko": "그리고 자전거로 서울에서 모로코까지 2년이 동안 21,012km를 다녀왔어요.",
+      "ko": "그리고 자전거로 서울에서 모로코까지 2년 동안 21,012km를 다녀왔어요.",
       "en": "I cycled from South Korea to Morocco. 2 years, 21,012km."
     },
     "bgUrl": "shoulder.jpg",
@@ -42,16 +42,16 @@
       "ko": "그런데 어깨를 다치는 바람에 다른 일을 찾아봐야 했어요.",
       "en": "My shoulder went wrong and had to look for another job."
     },
-    "bgUrl": "bicycle.jpg",
-    "bgDesc": { "ko": "", "en": "" }
+    "bgUrl": "coding.jpg",
+    "bgDesc": { "ko": "집에서 코딩 중", "en": "Coding at home" }
   },
   {
     "text": {
       "ko": "그래서 웹개발을 배우기 시작했어요. 키보드를 치는건 어깨가 아프지 않았거든요.",
       "en": "That's how I started programming. Typing didn't hurt my shoulder."
     },
-    "bgUrl": "bicycle.jpg",
-    "bgDesc": { "ko": "", "en": "" }
+    "bgUrl": "DSCF1157.jpg",
+    "bgDesc": { "ko": "조지아", "en": "Georgia" }
   },
   {
     "text": {
