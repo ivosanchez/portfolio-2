@@ -27,18 +27,17 @@
           </li>
         </ul>
       </nav>
-      <div class="menu__languages" ref="langContainerRef">
-        <span
-          :class="[language === 'ko' ? 'menu__language--active' : 'menu__language']"
-          @click="useKorean"
-          >한국어</span
-        >
-        <span> / </span>
-        <span
-          :class="[language === 'en' ? 'menu__language--active' : 'menu__language']"
-          @click="useEnglish"
-          >English</span
-        >
+      <div class="menu__misc" ref="langContainerRef">
+        <div class="menu__github">
+          <a :href="CONTACT.github" target="_blank">{{
+            language === 'ko' ? '깃허브' : 'Github'
+          }}</a>
+        </div>
+        <div class="menu__languages">
+          <span class="menu__language" @click="toggleLanguage">{{
+            language === 'ko' ? 'English' : '한국어'
+          }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -49,6 +48,7 @@ import { GETTERS, useStore } from '@/store';
 import { computed, defineComponent, onMounted, ref, watch } from 'vue';
 import gsap from 'gsap';
 import { useLanguage } from '@/hooks/useLanguage';
+import { CONTACT } from '../../data';
 
 export default defineComponent({
   name: 'MenuModal',
@@ -57,7 +57,7 @@ export default defineComponent({
     const linksContainerRef = ref<HTMLUListElement | null>(null);
     const langContainerRef = ref<HTMLDivElement | null>(null);
     const { getters } = useStore();
-    const { useKorean, useEnglish } = useLanguage();
+    const { useKorean, useEnglish, toggleLanguage } = useLanguage();
     const language = computed(() => getters[GETTERS.GET_LANGUAGE]);
 
     onMounted(() => {
@@ -93,7 +93,16 @@ export default defineComponent({
       );
     });
 
-    return { bgContainerRef, linksContainerRef, langContainerRef, useKorean, useEnglish, language };
+    return {
+      bgContainerRef,
+      linksContainerRef,
+      langContainerRef,
+      useKorean,
+      useEnglish,
+      toggleLanguage,
+      language,
+      CONTACT,
+    };
   },
 });
 </script>
@@ -168,23 +177,36 @@ export default defineComponent({
         }
       }
     }
-    .menu__languages {
+    .menu__misc {
       @media screen and (min-width: 600px) {
         font-size: 2rem;
       }
-      opacity: 0;
-      pointer-events: none;
+      @media screen and (min-width: 1000px) {
+        width: $column-line-4-left;
+      }
+      width: calc((#{$mobile-column-line-3-left} - #{$mobile-column-line-1-left}) * 2);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      justify-items: flex-end;
       font-size: 1.2rem;
-      font-weight: 500;
       font-family: 'Poppins', sans-serif;
-      .menu__language {
-        cursor: pointer;
-        &:hover {
-          color: $primary;
+      pointer-events: none;
+      font-weight: 500;
+      opacity: 0;
+      .menu__languages {
+        .menu__language {
+          cursor: pointer;
+          /* border-bottom: 2px solid black; */
+          &:hover {
+            /* border-bottom: 4px solid black; */
+          }
         }
       }
-      .menu__language--active {
-        border-bottom: 2px solid black;
+      .menu__github {
+        a {
+          /* border-bottom: 2px solid black; */
+          color: black;
+        }
       }
     }
   }

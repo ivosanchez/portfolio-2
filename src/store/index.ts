@@ -55,7 +55,15 @@ const mutations: MutationTree<IState> = {
     state.isMenuOpen = payload;
   },
   [MUTAIONS.TOGGLE_LANGUAGE](state, payload: TLanguage) {
-    state.language = payload;
+    if (payload) {
+      state.language = payload;
+      return;
+    }
+    if (state.language === 'en') {
+      state.language = 'ko';
+      return;
+    }
+    state.language = 'en';
   },
 };
 

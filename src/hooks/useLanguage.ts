@@ -11,5 +11,9 @@ export const useLanguage = () => {
     commit(MUTAIONS.TOGGLE_LANGUAGE, 'en');
   };
 
-  return { useKorean, useEnglish };
+  const toggleLanguage = () => {
+    commit(MUTAIONS.TOGGLE_LANGUAGE);
+  };
+
+  return { useKorean, useEnglish, toggleLanguage };
 };
