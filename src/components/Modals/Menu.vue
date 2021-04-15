@@ -29,14 +29,26 @@
       </nav>
       <div class="menu__misc" ref="langContainerRef">
         <div class="menu__github">
-          <a :href="CONTACT.github" target="_blank">{{
-            language === 'ko' ? '깃허브' : 'Github'
-          }}</a>
+          <a
+            :href="CONTACT.github"
+            target="_blank"
+            @mouseenter="drawUnderline"
+            @mouseleave="eraseUnderline"
+            >{{ language === 'ko' ? '깃허브' : 'Github' }}
+            <span class="menu__underline menu__underline--in"></span>
+            <span class="menu__underline menu__underline--out"></span>
+          </a>
         </div>
         <div class="menu__languages">
-          <span class="menu__language" @click="toggleLanguage">{{
-            language === 'ko' ? 'English' : '한국어'
-          }}</span>
+          <span
+            class="menu__language"
+            @click="toggleLanguage"
+            @mouseenter="drawUnderline"
+            @mouseleave="eraseUnderline"
+            >{{ language === 'ko' ? 'English' : '한국어'
+            }}<span class="menu__underline menu__underline--in"></span>
+            <span class="menu__underline menu__underline--out"></span>
+          </span>
         </div>
       </div>
     </div>
@@ -60,6 +72,30 @@ export default defineComponent({
     const { useKorean, useEnglish, toggleLanguage } = useLanguage();
     const language = computed(() => getters[GETTERS.GET_LANGUAGE]);
 
+    const drawUnderline = (e: Event) => {
+      const currentElement = e.currentTarget as HTMLElement | null;
+      if (!currentElement) return;
+      const underlineIn = currentElement.querySelector<HTMLElement>('.menu__underline--in');
+      const underlineOut = currentElement.querySelector<HTMLElement>('.menu__underline--out');
+      if (!underlineIn || !underlineOut) return;
+      underlineIn.style.visibility = 'visible';
+      underlineIn.style.clipPath = 'inset(0% 0% 0% 0%)';
+      underlineOut.style.visibility = 'hidden';
+      underlineOut.style.clipPath = 'inset(0% 0% 0% 0%)';
+    };
+
+    const eraseUnderline = (e: Event) => {
+      const currentElement = e.currentTarget as HTMLElement | null;
+      if (!currentElement) return;
+      const underlineIn = currentElement.querySelector<HTMLElement>('.menu__underline--in');
+      const underlineOut = currentElement.querySelector<HTMLElement>('.menu__underline--out');
+      if (!underlineIn || !underlineOut) return;
+      underlineIn.style.visibility = 'hidden';
+      underlineIn.style.clipPath = 'inset(0% 100% 0% 0%)';
+      underlineOut.style.visibility = 'visible';
+      underlineOut.style.clipPath = 'inset(0% 0% 0% 100%)';
+    };
+
     onMounted(() => {
       const columns = bgContainerRef.value?.querySelectorAll('.menu__bg-column');
       const links = linksContainerRef.value?.querySelectorAll('a');
@@ -73,7 +109,7 @@ export default defineComponent({
         .to(
           links,
           {
-            width: '100%',
+            clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
           },
           '+=0.3'
         )
@@ -101,6 +137,8 @@ export default defineComponent({
       useEnglish,
       toggleLanguage,
       language,
+      drawUnderline,
+      eraseUnderline,
       CONTACT,
     };
   },
@@ -157,8 +195,8 @@ export default defineComponent({
             @media screen and (min-width: 600px) {
               font-size: 10rem;
             }
-            display: block;
-            width: 0%;
+            display: inline-block;
+            clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
             overflow: hidden;
             font-weight: 600;
             font-size: 4rem;
@@ -195,18 +233,35 @@ export default defineComponent({
       opacity: 0;
       .menu__languages {
         .menu__language {
+          position: relative;
+          display: inline-block;
           cursor: pointer;
-          /* border-bottom: 2px solid black; */
-          &:hover {
-            /* border-bottom: 4px solid black; */
-          }
         }
       }
       .menu__github {
         a {
-          /* border-bottom: 2px solid black; */
+          position: relative;
+          display: inline-block;
           color: black;
         }
+      }
+      .menu__underline {
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        height: 3px;
+        display: inline;
+        background-color: black;
+        width: 100%;
+        transition: clip-path 0.3s;
+      }
+      .menu__underline--in {
+        visibility: hidden;
+        clip-path: inset(0% 100% 0% 0%);
+      }
+      .menu__underline--out {
+        visibility: hidden;
+        clip-path: inset(0% 0% 0% 0%);
       }
     }
   }
