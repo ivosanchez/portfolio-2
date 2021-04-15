@@ -1,5 +1,6 @@
 {
-  "name": "jonganebski.github.io",
+  "name": "portfolio",
+  "author": "Jinseok Bang",
   "version": "0.1.0",
   "private": true,
   "scripts": {

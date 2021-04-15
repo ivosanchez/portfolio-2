@@ -11,10 +11,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import ColumnLines from './components/ColumnLines.vue';
-import CustomCursor from './components/CustomCursor.vue';
 import AsideLeft from './components/AsideLeft.vue';
 import AsideRight from './components/AsideRight.vue';
+import ColumnLines from './components/ColumnLines.vue';
+import CustomCursor from './components/CustomCursor.vue';
 import MenuModal from './components/Modals/Menu.vue';
 
 export default defineComponent({

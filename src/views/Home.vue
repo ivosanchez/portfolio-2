@@ -44,8 +44,8 @@ import Footer from '../components/Footer.vue';
 import LeaveAnimation from '../components/LeaveAnimation.vue';
 import Project from '../components/Project.vue';
 import Title from '../components/Title.vue';
-import { IProject } from '../data/projects';
 import { DELAY_1, DELAY_2, DELAY_3_HALF } from '../constants/gsap';
+import { IProject } from '../data/projects';
 
 export default defineComponent({
   name: 'Home',

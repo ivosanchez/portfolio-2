@@ -28,7 +28,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/:projectName',
     name: 'Project',
     props: { PROJECTS },
-    component: () => import(/* webpackChunkName: "polartypes" */ '../views/Project.vue'),
+    component: () => import(/* webpackChunkName: "project" */ '../views/Project.vue'),
   },
   {
     path: '/:pathMatch(.*)*',
