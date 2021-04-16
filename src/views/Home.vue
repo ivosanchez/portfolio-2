@@ -202,7 +202,7 @@ main {
   }
   .home__projects {
     li {
-      margin-bottom: 15rem;
+      margin-bottom: clamp(1rem, 30vw, 15rem);
     }
   }
 }

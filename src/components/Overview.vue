@@ -33,7 +33,7 @@ export default defineComponent({
   @media screen and (min-width: 1000px) {
     grid-template-columns: 1fr 1fr;
   }
-  margin-bottom: 12rem;
+  margin-bottom: 6rem;
   display: grid;
   color: white;
   .overview__left-column,
