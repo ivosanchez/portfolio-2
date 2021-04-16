@@ -8,7 +8,7 @@ export interface IAboutPanel {
   bgDesc?: ILanguageVariation;
 }
 
-interface IContact {
+export interface IContact {
   email: string;
   phone: string;
   github: string;

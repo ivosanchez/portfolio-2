@@ -1,32 +1,40 @@
 <template>
   <LeaveAnimation />
   <Title />
-  <main class="contact__wrapper" ref="mainRef">
-    <div class="contact__email-container">
-      <span class="contact__br" />
-      <h3>{{ language === 'ko' ? '이메일' : 'Email' }}</h3>
-      <div class="contact__copy-container" @click="copy">
-        <span class="contact__content">{{ CONTACT.email }}</span>
-        <span class="contact__copy">{{ language === 'ko' ? '복사하기' : 'Copy' }}</span>
-      </div>
-    </div>
-    <div class="contact__mobile-container">
-      <span class="contact__br" />
-      <h3>{{ language === 'ko' ? '전화번호' : 'Mobile' }}</h3>
-      <div class="contact__copy-container" @click="copy">
-        <span class="contact__content">{{ CONTACT.phone }}</span>
-        <span class="contact__copy">{{ language === 'ko' ? '복사하기' : 'Copy' }}</span>
-      </div>
-    </div>
+  <main ref="scrollRef">
+    <h1>{{ language === 'ko' ? '연락처' : 'Contact' }}</h1>
+    <ul>
+      <li @click="copyEmail">
+        <div></div>
+        <span>{{ language === 'ko' ? '이메일' : 'Email' }}</span>
+        <span class="contact__copy">{{ language === 'ko' ? '복사' : 'Copy' }}</span>
+      </li>
+      <li>
+        <div></div>
+        <a :href="CONTACT.github" target="_blank">
+          <span>{{ language === 'ko' ? '깃허브' : 'Github' }}</span>
+          <span class="contact__link">{{ language === 'ko' ? '열기' : 'Link' }}</span>
+        </a>
+      </li>
+      <li>
+        <div></div>
+        <a :href="CONTACT.instagram" target="_blank">
+          <span>{{ language === 'ko' ? '인스타그램' : 'Instagram' }}</span>
+          <span class="contact__link">{{ language === 'ko' ? '열기' : 'Link' }}</span>
+        </a>
+      </li>
+    </ul>
     <Footer />
   </main>
 </template>
 
 <script lang="ts">
 import { DELAY_1 } from '@/constants/gsap';
+import { IContact } from '@/data';
+import useLocomitive from '@/hooks/useLocomotive.vue';
 import { GETTERS, TLanguage, useStore } from '@/store';
 import gsap from 'gsap';
-import { computed, defineComponent, onMounted, ref } from 'vue';
+import { computed, defineComponent, onMounted, PropType, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import Footer from '../components/Footer.vue';
 import LeaveAnimation from '../components/LeaveAnimation.vue';
@@ -37,24 +45,20 @@ import useShuffleString from '../hooks/useShuffleString.vue';
 export default defineComponent({
   name: 'Contact',
   components: { LeaveAnimation, Title, Footer },
-  props: { CONTACT: { required: true, type: Object } },
-  setup() {
+  props: { CONTACT: { required: true, type: Object as PropType<IContact> } },
+  setup(props) {
     const { getters } = useStore();
     const routeName = useRoute().name;
-    const mainRef = ref<HTMLDivElement | null>(null);
     const language = computed<TLanguage>(() => getters[GETTERS.GET_LANGUAGE]);
     const { toClipboard } = useClipboard();
     const { shuffleString } = useShuffleString();
+    const { scrollRef } = useLocomitive();
 
-    const copy = async (e: Event) => {
+    const copyEmail = async (e: Event) => {
       const el = e.currentTarget as HTMLDivElement;
-      const span = el.querySelector<HTMLSpanElement>('.contact__content');
       const copy = el.querySelector<HTMLSpanElement>('.contact__copy');
-      const text = span?.innerText;
-      if (!text) return;
       try {
-        const cleaned = text.replaceAll('-', '');
-        await toClipboard(cleaned);
+        await toClipboard(props.CONTACT.email);
         const shuffleTo = language.value === 'ko' ? '복사완료!' : 'Copied!';
         await shuffleString(copy, shuffleTo, true);
       } catch (err) {
@@ -63,68 +67,80 @@ export default defineComponent({
     };
 
     onMounted(() => {
-      if (!mainRef.value) return;
-      const brs = mainRef.value.querySelectorAll('.contact__br');
-      const headings = mainRef.value.querySelectorAll('h3');
-      const copyContainers = mainRef.value.querySelectorAll('.contact__copy-container');
-      const tl = gsap.timeline({ defaults: { duration: 0.5 } });
-      tl.to(brs, { clipPath: 'inset(0% 0% 0% 0%)', delay: DELAY_1 + 0.5 });
-      tl.from(headings, { width: 0, overflow: 'hidden' });
-      tl.from(copyContainers, { opacity: 0 }, '+=0.2');
+      if (!scrollRef.value) return;
+      const heading = scrollRef.value.querySelector('h1');
+      const lists = scrollRef.value.querySelectorAll('li');
+      const tl = gsap.timeline({ defaults: { duration: 0.6 } });
+      tl.from(heading, { delay: DELAY_1, clipPath: 'inset(0% 100% 0% 0%)' });
+      tl.from(lists, { opacity: 0, stagger: 0.4 }, '+=0.4');
     });
 
-    return { mainRef, copy, routeName, language };
+    return { scrollRef, copyEmail, routeName, language };
   },
 });
 </script>
 
 <style lang="scss" scoped>
-.contact__wrapper {
+main {
   position: relative;
-  height: 100vh;
+  height: calc(100vh + #{$footer-height});
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  display: grid;
-  padding-bottom: 10vh;
-  .contact__email-container {
-    @include mobile-23-desktop-234__paddings;
-  }
-  .contact__mobile-container {
-    @include mobile-23-desktop-456__paddings;
-  }
-  .contact__br {
-    @media screen and (min-width: 1000px) {
-      width: $column-line-width;
-    }
-    display: block;
-    clip-path: inset(0% 100% 0% 0%);
-    width: $mobile-column-width;
-    height: 2px;
-    background-color: white;
-  }
-  h3 {
-    width: $mobile-column-width;
-    padding: 1rem 0;
-    margin-bottom: 1rem;
+  h1 {
+    margin-bottom: 1em;
     font-size: $font-size-l;
     color: white;
-    white-space: nowrap;
+    letter-spacing: 5px;
   }
-  .contact__copy-container {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    color: white;
-    span {
-      font-size: $font-size-m;
-    }
-    .contact__copy {
-      opacity: 0.6;
-      font-size: 1rem;
-      margin-left: 2rem;
-      white-space: nowrap;
-    }
-    &:hover {
-      color: $primary;
+  ul {
+    @include mobile-23-desktop-34__paddings;
+    display: grid;
+    align-content: center;
+    width: 100%;
+    li {
+      position: relative;
+      padding: 0.5em 0;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid white;
+      cursor: pointer;
+      font-size: $font-size-s;
+      transition: padding 0.3s;
+      a {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+      span {
+        color: white;
+        font-weight: 600;
+      }
+      div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 0%;
+        background-color: white;
+        transition: height 0.3s;
+      }
+      .contact__copy,
+      .contact__link {
+        opacity: 0.6;
+        font-weight: 300;
+      }
+      &:hover {
+        padding: 0.5em;
+        span {
+          color: black;
+        }
+        div {
+          height: 100%;
+        }
+      }
     }
   }
 }
