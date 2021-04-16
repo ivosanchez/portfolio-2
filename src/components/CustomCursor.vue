@@ -6,17 +6,17 @@
 </template>
 
 <script lang="ts">
-import { CURSOR, GETTERS, useStore } from '@/store';
-import { defineComponent, ref, onMounted, watch, onUnmounted } from 'vue';
+import { GETTERS, useStore } from '@/store';
+import { defineComponent, onMounted, onUnmounted, ref, watch } from 'vue';
 
 export default defineComponent({
   name: 'CustomCursor',
   setup() {
     const cursorRef = ref<HTMLDivElement | null>(null);
     const isPlaying = ref(false);
-    const cursor = ref(CURSOR.DEFAULT);
 
     const { getters } = useStore();
+    const cursor = ref(getters[GETTERS.GET_CURSOR]);
 
     const onMouseMove = (e: MouseEvent) => {
       if (!cursorRef.value) return;
@@ -50,7 +50,7 @@ export default defineComponent({
   z-index: 100;
   width: 60px;
   height: 60px;
-  opacity: 1;
+  opacity: 0;
   pointer-events: none;
 }
 </style>
