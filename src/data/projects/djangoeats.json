@@ -60,7 +60,7 @@
         "heading": { "ko": "힘들었던 점", "en": "Obstacles" },
         "paragraphs": [
           {
-            "ko": "메뉴는 PostgreSQL에 JSON 필드에 저장되는데, 메뉴의 크기가 커지고 깊어지면서 Form작성과 검증이 큰 난관이었어요. Form 작성에서는 React Hook Form로 다이나믹한 Form을 만들 수 있었어요. 백엔드에서는 Cerberus로 JSON필드의 형태에 대한 검증을 하도록 했어요.",
+            "ko": "메뉴는 PostgreSQL에 JSON 필드에 저장되는데, 메뉴의 크기가 커지고 깊어지면서 Form작성과 검증이 큰 난관이었어요. Form 작성에서는 React Hook Form으로 다이나믹한 Form을 만들 수 있었어요. 백엔드에서는 Cerberus로 JSON필드의 형태에 대한 검증을 하도록 했어요.",
             "en": "Menu was JSON field of PostgreSQL. Creating and validating menu form became very complicated. React Hook Form library helped me to create dynamic form. And on the backend I used Cerberus library to validate JSON menu data before save it."
           }
         ]

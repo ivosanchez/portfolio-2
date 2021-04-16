@@ -10,7 +10,6 @@ export interface IAboutPanel {
 
 export interface IContact {
   email: string;
-  phone: string;
   github: string;
   instagram: string;
 }

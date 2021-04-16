@@ -44,8 +44,12 @@
         "heading": { "ko": "힘들었던 점", "en": "Obstacles" },
         "paragraphs": [
           {
-            "ko": "D3로 React에서 그래프를 만드는 과정이 힘들었어요. 여기 보강 필요!!!",
-            "en": "Creating graphs with D3 library on React was the biggest obstacle. After many times of failure and a lot of research, these graphs now performs as I intended."
+            "ko": "D3로 React에서 그래프를 만드는 과정이 힘들었어요. 대부분의 정보는 바닐라 자바스크립트에서 그래프를 만드는 것에 대한 것이었고, React에 적용하는 방법을 다룬 글들도 타입스크립트로 다룬 것은 매우 한정적이었어요. 이걸 취합해서 제 사정에 맞춰 적용하기까지 많은 시도가 필요했어요. 이제는 제가 생각한대로 잘 작동해서 기분이 좋아요.",
+            "en": "Creating graphs with D3 library on React was the biggest obstacle. Most of the information was about using D3 in vanilla javascript. And articles about adopting d3 into React were not using typescript. I had to try many times to apply this information to my own environment. Now I'm happy it's working as I intended."
+          },
+          {
+            "ko": "이 당시에는 얕은 복사와 깊은 복사에 대해서도 알지 못했던 때였어요. 어쩌면 이걸 몰라서 굉장히 돌아가게 쓴 코드가 어딘가에 아직 남아있을 거에요... 이 프로젝트를 완성할 때에도 이 개념이 익숙하지 못했지만, 다음 프로젝트들을 하면서 이해할 수 있게 되는 교두보가 됐어요.",
+            "en": "I didn't know about shallow copy and deep copy back then. Maybe there are still some inefficient codes somewhere becasuse of this... But yhis project helped me to understand those javascript concepts in future projects."
           }
         ]
       },

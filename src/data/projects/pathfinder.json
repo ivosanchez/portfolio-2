@@ -20,8 +20,8 @@
         },
         "paragraphs": [
           {
-            "ko": "다익스트라 알고리즘이나 A* 알고리즘으로 소가 물을 찾을 수 있도록 도와주세요.",
-            "en": "You can help this poor cow with Dijkstra's algorithm or A* algorithm."
+            "ko": "다익스트라 알고리즘과 A* 알고리즘으로 소가 물을 찾을 수 있도록 도와주세요.",
+            "en": "You can help this poor cow with Dijkstra's algorithm and A* algorithm."
           }
         ]
       }
@@ -29,10 +29,6 @@
     "frontendTechs": ["React", "Styled-Components"],
     "frontendGithubUrl": "https://github.com/jonganebski/pathfinder",
     "descs": [
-      {
-        "heading": { "ko": "힘들었던 점", "en": "Obstacles" },
-        "paragraphs": [{ "ko": "", "en": "" }]
-      },
       {
         "heading": {
           "ko": "한계와 앞으로의 계획",
