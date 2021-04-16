@@ -32,8 +32,6 @@ const useLocomitive = () => {
       locoScroll.value = new LocomotiveScroll({
         el: scrollRef.value,
         smooth: true,
-        tablet: { smooth: true },
-        smartphone: { smooth: true },
       });
       locoScroll.value.stop();
       locoScroll.value.on('scroll', ScrollTrigger.update);
