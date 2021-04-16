@@ -6,7 +6,6 @@
     <AsideRight />
     <MenuModal />
   </router-view>
-  <CustomCursor />
 </template>
 
 <script lang="ts">
@@ -14,11 +13,10 @@ import { defineComponent } from 'vue';
 import AsideLeft from './components/AsideLeft.vue';
 import AsideRight from './components/AsideRight.vue';
 import ColumnLines from './components/ColumnLines.vue';
-import CustomCursor from './components/CustomCursor.vue';
 import MenuModal from './components/Modals/Menu.vue';
 
 export default defineComponent({
   name: 'App',
-  components: { ColumnLines, CustomCursor, AsideLeft, AsideRight, MenuModal },
+  components: { ColumnLines, AsideLeft, AsideRight, MenuModal },
 });
 </script>

@@ -25,11 +25,11 @@ export default defineComponent({
   },
   setup() {
     const videoRef = ref<HTMLVideoElement | null>(null);
-    const videoCursor = document.getElementById('video-cursor');
 
     const { commit, getters } = useStore();
 
     const changeCursor = () => {
+      const videoCursor = document.getElementById('video-cursor');
       if (!videoCursor || !videoRef.value) return;
       if (videoRef.value.paused && getters[GETTERS.GET_CURSOR] !== CURSOR.PLAY) {
         commit(MUTAIONS.SET_CURSOR, CURSOR.PLAY);
@@ -41,12 +41,14 @@ export default defineComponent({
     };
 
     const onMouseEnter = () => {
+      const videoCursor = document.getElementById('video-cursor');
       if (!videoCursor) return;
       videoCursor.style.opacity = '1';
       changeCursor();
     };
 
     const onMouseLeave = () => {
+      const videoCursor = document.getElementById('video-cursor');
       if (!videoCursor) return;
       videoCursor.style.opacity = '0';
     };

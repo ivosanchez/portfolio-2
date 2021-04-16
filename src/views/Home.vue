@@ -31,6 +31,7 @@
     </ul>
     <Footer />
   </main>
+  <CustomCursor />
 </template>
 
 <script lang="ts">
@@ -42,6 +43,7 @@ import Footer from '../components/Footer.vue';
 import LeaveAnimation from '../components/LeaveAnimation.vue';
 import Project from '../components/Project.vue';
 import Title from '../components/Title.vue';
+import CustomCursor from '../components/CustomCursor.vue';
 import { DELAY_1, DELAY_2, DELAY_3_HALF } from '../constants/gsap';
 import { IProject } from '../data/projects';
 
@@ -52,6 +54,7 @@ export default defineComponent({
     Title,
     Project,
     Footer,
+    CustomCursor,
   },
   props: {
     PROJECTS: {
