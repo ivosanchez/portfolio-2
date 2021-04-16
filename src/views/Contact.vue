@@ -68,7 +68,7 @@ export default defineComponent({
       const headings = mainRef.value.querySelectorAll('h3');
       const copyContainers = mainRef.value.querySelectorAll('.contact__copy-container');
       const tl = gsap.timeline({ defaults: { duration: 0.5 } });
-      tl.fromTo(brs, { width: '0%' }, { width: '50%', delay: DELAY_1 + 0.5 });
+      tl.to(brs, { clipPath: 'inset(0% 0% 0% 0%)', delay: DELAY_1 + 0.5 });
       tl.from(headings, { width: 0, overflow: 'hidden' });
       tl.from(copyContainers, { opacity: 0 }, '+=0.2');
     });
@@ -86,31 +86,26 @@ export default defineComponent({
   display: grid;
   padding-bottom: 10vh;
   .contact__email-container {
-    @include mobile-23-desktop-23__margins;
+    @include mobile-23-desktop-234__paddings;
   }
   .contact__mobile-container {
-    @include mobile-23-desktop-45__margins;
+    @include mobile-23-desktop-456__paddings;
   }
   .contact__br {
     @media screen and (min-width: 1000px) {
       width: $column-line-width;
     }
-    display: inline-block;
-    width: 50%;
+    display: block;
+    clip-path: inset(0% 100% 0% 0%);
+    width: $mobile-column-width;
     height: 2px;
     background-color: white;
   }
   h3 {
-    @media screen and (min-width: 1000px) {
-      width: $column-line-width;
-    }
-    @media screen and (min-width: 400px) {
-      font-size: 4rem;
-    }
-    width: 42vw;
+    width: $mobile-column-width;
     padding: 1rem 0;
     margin-bottom: 1rem;
-    font-size: 2.5rem;
+    font-size: $font-size-l;
     color: white;
     white-space: nowrap;
   }
@@ -120,13 +115,7 @@ export default defineComponent({
     cursor: pointer;
     color: white;
     span {
-      @media screen and (min-width: 400px) {
-        font-size: 1.4rem;
-      }
-      @media screen and (min-width: 600px) {
-        font-size: 2rem;
-      }
-      font-size: 1rem;
+      font-size: $font-size-m;
     }
     .contact__copy {
       opacity: 0.6;

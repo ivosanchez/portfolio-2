@@ -27,7 +27,7 @@
           </li>
         </ul>
       </nav>
-      <div class="menu__misc" ref="langContainerRef">
+      <div class="menu__misc" ref="miscRef">
         <div class="menu__github">
           <a
             :href="CONTACT.github"
@@ -67,7 +67,7 @@ export default defineComponent({
   setup() {
     const bgContainerRef = ref<HTMLDivElement | null>(null);
     const linksContainerRef = ref<HTMLUListElement | null>(null);
-    const langContainerRef = ref<HTMLDivElement | null>(null);
+    const miscRef = ref<HTMLDivElement | null>(null);
     const { getters } = useStore();
     const { useKorean, useEnglish, toggleLanguage } = useLanguage();
     const language = computed(() => getters[GETTERS.GET_LANGUAGE]);
@@ -99,12 +99,13 @@ export default defineComponent({
     onMounted(() => {
       const columns = bgContainerRef.value?.querySelectorAll('.menu__bg-column');
       const links = linksContainerRef.value?.querySelectorAll('a');
-      if (!columns || !links || !langContainerRef.value) return;
+      if (!columns || !links || !miscRef.value) return;
       const open = gsap
         .timeline({ defaults: { duration: 0.3 } })
         .to(columns, {
           width: '100%',
           borderWidth: 1,
+          pointerEvents: 'auto',
         })
         .to(
           links,
@@ -113,7 +114,7 @@ export default defineComponent({
           },
           '+=0.3'
         )
-        .to(langContainerRef.value, { opacity: 1, pointerEvents: 'auto' }, '<')
+        .to(miscRef.value, { opacity: 1, pointerEvents: 'auto' }, '<')
         .pause();
 
       watch(
@@ -132,7 +133,7 @@ export default defineComponent({
     return {
       bgContainerRef,
       linksContainerRef,
-      langContainerRef,
+      miscRef,
       useKorean,
       useEnglish,
       toggleLanguage,
@@ -189,17 +190,11 @@ export default defineComponent({
       .menu__links {
         li {
           a {
-            @media screen and (min-width: 400px) {
-              font-size: 6rem;
-            }
-            @media screen and (min-width: 600px) {
-              font-size: 10rem;
-            }
             display: inline-block;
             clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
             overflow: hidden;
             font-weight: 600;
-            font-size: 4rem;
+            font-size: $font-size-xl;
             font-family: 'Playfair Display', serif;
             color: black;
             pointer-events: auto;
@@ -216,17 +211,14 @@ export default defineComponent({
       }
     }
     .menu__misc {
-      @media screen and (min-width: 600px) {
-        font-size: 2rem;
-      }
       @media screen and (min-width: 1000px) {
         width: $column-line-4-left;
       }
-      width: calc((#{$mobile-column-line-3-left} - #{$mobile-column-line-1-left}) * 2);
+      width: calc(#{$mobile-column-width} * 2);
       display: grid;
       grid-template-columns: 1fr 1fr;
       justify-items: flex-end;
-      font-size: 1.2rem;
+      font-size: $font-size-s;
       font-family: 'Poppins', sans-serif;
       pointer-events: none;
       font-weight: 500;

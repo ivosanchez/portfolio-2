@@ -141,9 +141,7 @@ export default defineComponent({
         trigger: meWrapper,
         start: '40% center',
         end: '40% center',
-
         scroller: scrollRef.value,
-        markers: true,
         toggleActions: 'play none none reverse',
         onEnter: async () => {
           await shuffleString(
@@ -188,20 +186,11 @@ export default defineComponent({
   width: 100%;
   pointer-events: none;
   p {
-    @media screen and (min-width: 600px) {
-      font-size: 2.2rem;
-      line-height: 3rem;
-    }
-    @media screen and (min-width: 1000px) {
-      font-size: 2.6rem;
-      line-height: 3.5rem;
-    }
     text-align: center;
-
     color: white;
-    font-size: 1.8rem;
-    font-weight: 600;
-    line-height: 2rem;
+    font-weight: 300;
+    font-size: $font-size-m;
+    line-height: 1.5em;
   }
 }
 main {

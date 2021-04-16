@@ -55,22 +55,15 @@ export default defineComponent({
     overflow: hidden;
     .project__number {
       color: $primary;
-      font-size: 2rem;
+      font-size: $font-size-m;
     }
     a {
       z-index: 10;
       .project__name {
-        @media screen and (min-width: 500px) {
-          font-size: 5rem;
-        }
-        @media screen and (min-width: 1000px) {
-          font-size: 7rem;
-        }
         font-family: 'Playfair Display', serif;
-        margin-top: 3rem;
-        margin-bottom: 3rem;
+        margin: 0.4em 0;
         color: white;
-        font-size: 2.5rem;
+        font-size: $font-size-xl;
         font-weight: 600;
         transition: color 0.3s;
         &:hover {
@@ -87,12 +80,9 @@ export default defineComponent({
     align-self: center;
     margin-bottom: 1rem;
     li {
-      @media screen and (min-width: 1000px) {
-        font-size: 2rem;
-      }
       display: block;
       color: white;
-      font-size: 1.3rem;
+      font-size: $font-size-s;
       font-weight: 300;
     }
   }

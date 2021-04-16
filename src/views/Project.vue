@@ -290,17 +290,11 @@ main {
     padding: 2rem 0;
     overflow: hidden;
     h1 {
-      @media screen and (min-width: 600px) {
-        font-size: 6rem;
-      }
-      @media screen and (min-width: 1000px) {
-        font-size: 9rem;
-      }
       font-family: 'Playfair Display', serif;
       width: 100%;
       max-width: 1000px;
       color: white;
-      font-size: 2.5rem;
+      font-size: $font-size-xl;
       font-weight: 600;
     }
   }
