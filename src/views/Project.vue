@@ -25,12 +25,12 @@
         :index="index"
       />
     </section>
+    <section class="wave-btn__wrapper">
+      <WaveButton :name="name" :href="href" :language="language" :imgSrc="heroImgUrl" />
+    </section>
     <NextProject :nextName="nextName" :to="nextPath" />
     <Footer />
   </main>
-  <div class="visit-btn__wrapper" v-if="isValid">
-    <VisitButton :name="name" :href="href" />
-  </div>
 </template>
 
 <script lang="ts">
@@ -47,7 +47,7 @@ import NextProject from '../components/NextProject.vue';
 import Overview from '../components/Overview.vue';
 import Stack from '../components/Stack.vue';
 import Title from '../components/Title.vue';
-import VisitButton from '../components/VisitButton.vue';
+import WaveButton from '../components/WaveButton.vue';
 import { getAsset } from '../utils';
 
 export default defineComponent({
@@ -61,10 +61,10 @@ export default defineComponent({
   components: {
     LeaveAnimation,
     Title,
-    VisitButton,
     Overview,
     Stack,
     DetailTechs,
+    WaveButton,
     NextProject,
     Footer,
   },
@@ -102,54 +102,7 @@ export default defineComponent({
         x: -nameRef.value.getBoundingClientRect().right,
       });
 
-      const visitBtnWrapper = document.querySelector('.visit-btn__wrapper');
-      const visitBtnContainer = visitBtnWrapper?.querySelector('.visit-btn__container');
-      const visitBtn = visitBtnContainer?.querySelector('.visit-btn');
-      const visitBtnText = visitBtn?.querySelector('span');
-      const visitBtnSvg = visitBtnContainer?.querySelector('svg');
-
       if (!scrollRef.value) return;
-      if (visitBtnContainer && visitBtn && visitBtnText && visitBtnSvg) {
-        const tl = gsap.timeline({ defaults: { duration: 0.6 } });
-        tl.to(visitBtnText, { opacity: 0 });
-        tl.to(
-          visitBtnContainer,
-          {
-            position: 'absolute',
-            top: '85vh',
-            right: '2rem',
-            padding: 0,
-            width: 100,
-            height: 100,
-          },
-          '-=0.4'
-        );
-        tl.to(
-          visitBtn,
-          {
-            width: 0,
-            height: 0,
-            borderRadius: '50%',
-          },
-          '<'
-        );
-        tl.to(
-          visitBtnSvg,
-          {
-            opacity: 1,
-            pointerEvents: 'auto',
-          },
-          '-=0.3'
-        );
-        ScrollTrigger.create({
-          trigger: visitBtnContainer,
-          scroller: scrollRef.value,
-          start: 'center 60%',
-          toggleActions: 'play none none reverse',
-          animation: tl,
-          invalidateOnRefresh: true,
-        });
-      }
 
       const overviewContainer = document.querySelector('.overview__container');
       if (!overviewContainer) return;
@@ -231,6 +184,17 @@ export default defineComponent({
         });
       });
 
+      const horizonBtnWrapper = document.querySelector<HTMLElement>('.wave-btn__wrapper');
+      if (horizonBtnWrapper) {
+        const animation = gsap.to(horizonBtnWrapper, { clipPath: 'inset(0% 0% 0% 0%)' });
+        ScrollTrigger.create({
+          trigger: horizonBtnWrapper,
+          scroller: scrollRef.value,
+          start: 'top 80%',
+          animation,
+        });
+      }
+
       ScrollTrigger.refresh(true);
     });
 
@@ -270,7 +234,8 @@ export default defineComponent({
 main {
   position: relative;
   .landing {
-    height: 85vh;
+    margin-bottom: 1em;
+    font-size: $font-size-xl;
   }
   .hero-img__container {
     @include mobile-23-desktop-2345__paddings;
@@ -294,15 +259,19 @@ main {
       width: 100%;
       max-width: 1000px;
       color: white;
-      font-size: $font-size-xl;
       font-weight: 600;
     }
   }
 
   .stacks__wrapper {
     @include mobile-23-desktop-2345__margins;
+    margin-bottom: 12rem;
     display: grid;
     gap: 2rem;
+  }
+
+  .wave-btn__wrapper {
+    clip-path: inset(0 0 100% 0);
   }
 }
 </style>

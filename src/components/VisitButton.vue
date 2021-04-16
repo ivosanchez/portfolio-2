@@ -1,10 +1,9 @@
 <template>
-  <a class="visit-btn__container" ref="containerRef" :href="href" target="_blank">
-    <div class="visit-btn" ref="btnRef" role="button">
-      <span ref="spanRef">Visit {{ name }}</span>
+  <a class="visit-btn__container" :href="href" target="_blank">
+    <div class="visit-btn" role="button">
+      <span>Visit {{ name }}</span>
     </div>
     <svg
-      ref="svgRef"
       xmlns="http://www.w3.org/2000/svg"
       xml:lang="en"
       xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -29,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'VisitButton',
@@ -37,24 +36,15 @@ export default defineComponent({
     name: { required: true, type: String },
     href: { required: true, type: String },
   },
-  setup() {
-    const containerRef = ref<HTMLDivElement | null>(null);
-    const btnRef = ref<HTMLDivElement | null>(null);
-    const spanRef = ref<HTMLSpanElement | null>(null);
-    const svgRef = ref<SVGElement | null>(null);
-
-    return { containerRef, btnRef, spanRef, svgRef };
-  },
 });
 </script>
 
 <style lang="scss" scoped>
 .visit-btn__container {
-  display: block;
+  width: 100%;
   position: absolute;
   top: 70vh;
   right: 0;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
