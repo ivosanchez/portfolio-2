@@ -34,7 +34,7 @@ import { IContact } from '@/data';
 import useLocomitive from '@/hooks/useLocomotive.vue';
 import { GETTERS, TLanguage, useStore } from '@/store';
 import gsap from 'gsap';
-import { computed, defineComponent, onMounted, PropType, ref } from 'vue';
+import { computed, defineComponent, onMounted, PropType } from 'vue';
 import { useRoute } from 'vue-router';
 import Footer from '../components/Footer.vue';
 import LeaveAnimation from '../components/LeaveAnimation.vue';
@@ -52,7 +52,7 @@ export default defineComponent({
     const language = computed<TLanguage>(() => getters[GETTERS.GET_LANGUAGE]);
     const { toClipboard } = useClipboard();
     const { shuffleString } = useShuffleString();
-    const { scrollRef } = useLocomitive();
+    const { scrollRef, ScrollTrigger } = useLocomitive();
 
     const copyEmail = async (e: Event) => {
       const el = e.currentTarget as HTMLDivElement;
@@ -73,6 +73,8 @@ export default defineComponent({
       const tl = gsap.timeline({ defaults: { duration: 0.6 } });
       tl.from(heading, { delay: DELAY_1, clipPath: 'inset(0% 100% 0% 0%)' });
       tl.from(lists, { opacity: 0, stagger: 0.4 }, '+=0.4');
+
+      setTimeout(() => ScrollTrigger.refresh(true), 1000);
     });
 
     return { scrollRef, copyEmail, routeName, language };
