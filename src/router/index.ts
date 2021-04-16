@@ -32,7 +32,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/:pathMatch(.*)*',
-    name: 'NotFound404',
+    name: 'NotFound',
     component: () => import(/* webpackChunkName: "notFound404" */ '../views/NotFound404.vue'),
   },
 ];
