@@ -33,7 +33,8 @@ export default defineComponent({
 .aside-left {
   @include aside;
   left: 0;
-  padding: 2rem 1rem;
+  padding-top: 2rem;
+  padding-left: 1rem;
   font-family: 'Playfair Display', serif;
   h1 {
     @media screen and (min-width: 1000px) {

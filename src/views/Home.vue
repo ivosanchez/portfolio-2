@@ -1,38 +1,36 @@
 <template>
   <LeaveAnimation />
   <Title />
-  <div ref="scrollRef">
-    <main>
-      <div class="intro">
-        <div class="intro__top" ref="introTopRef">
-          <div class="intro__top__row">
-            <span>Optimized for Google Chrome.</span>
-          </div>
-          <div class="intro__top__row">
-            <span>There are {{ count }} projects.</span>
-            <span>Developed on WSL2.</span>
-          </div>
+  <main ref="scrollRef">
+    <div class="intro">
+      <div class="intro__top" ref="introTopRef">
+        <div class="intro__top__row">
+          <span>Optimized for Google Chrome.</span>
         </div>
-        <h1 ref="h1Ref">I make your ideas alive on the web</h1>
-        <div></div>
-        <span class="arrow-down" ref="arrDownRef">&darr;</span>
+        <div class="intro__top__row">
+          <span>There are {{ count }} projects.</span>
+          <span>Developed on WSL2.</span>
+        </div>
       </div>
-      <ul class="home__projects">
-        <li v-for="(project, index) in projects" v-bind:key="index">
-          <Project
-            :name="project.name"
-            :path="project.path"
-            :techs="project.summary.techs"
-            :desc="project.summary.desc[language]"
-            :videoSrc="project.summary.videoSrc"
-            :posterUrl="project.summary.posterUrl"
-            :index="index"
-          />
-        </li>
-      </ul>
-      <Footer />
-    </main>
-  </div>
+      <h1 ref="h1Ref">I make your ideas alive on the web</h1>
+      <div></div>
+      <span class="arrow-down" ref="arrDownRef">&darr;</span>
+    </div>
+    <ul class="home__projects">
+      <li v-for="(project, index) in projects" v-bind:key="index">
+        <Project
+          :name="project.name"
+          :path="project.path"
+          :techs="project.summary.techs"
+          :desc="project.summary.desc[language]"
+          :videoSrc="project.summary.videoSrc"
+          :posterUrl="project.summary.posterUrl"
+          :index="index"
+        />
+      </li>
+    </ul>
+    <Footer />
+  </main>
 </template>
 
 <script lang="ts">
