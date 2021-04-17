@@ -20,6 +20,15 @@
   pointer-events: none;
 }
 
+@mixin mobile-23-desktop-123456__paddings {
+  padding-left: $mobile-column-line-1-left;
+  padding-right: $mobile-column-line-5-right;
+  @media screen and (min-width: 1000px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 @mixin menu-modal {
   @include mobile-23-desktop-23456__margins;
   @media screen and (min-width: 1000px) {

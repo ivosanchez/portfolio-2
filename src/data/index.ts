@@ -17,3 +17,5 @@ export interface IContact {
 export const ABOUT_PANELS: IAboutPanel[] = aboutData;
 
 export const CONTACT: IContact = contactData;
+
+export const THIS_SITE_GITHUB_URL = 'https://github.com/jonganebski/portfolio';
