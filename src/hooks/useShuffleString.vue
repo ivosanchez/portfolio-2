@@ -23,7 +23,6 @@ const useSpinString = (input?: IUseSpinStringArgs) => {
     for (let i = 0; i < 6; i += 1) {
       const randomOrder = cryptoRandomString({ length: result.length, characters: result });
       targetElement.innerText = randomOrder;
-      /* eslint-disable-next-line */
       await sleep();
     }
     if (isRoleBack) {

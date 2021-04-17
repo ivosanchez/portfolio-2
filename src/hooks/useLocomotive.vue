@@ -7,7 +7,6 @@ import { GETTERS, useStore } from '@/store';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// eslint-disable-next-line
 const useLocomitive = () => {
   const scrollRef = ref<HTMLDivElement | null>(null);
   const locoScroll = ref();
@@ -43,7 +42,12 @@ const useLocomitive = () => {
           return locoScroll.value.scroll.instance.scroll.y;
         },
         getBoundingClientRect() {
-          return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+          return {
+            top: 0,
+            left: 0,
+            width: window.innerWidth,
+            height: window.innerHeight,
+          };
         },
         pinType: scrollRef.value.style.transform ? 'transform' : 'fixed',
       });

@@ -20,5 +20,6 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'no-plusplus': 'off',
     yoda: 'off',
+    'no-await-in-loop': 'off',
   },
 };
