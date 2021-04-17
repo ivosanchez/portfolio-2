@@ -41,7 +41,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 svg {
-  display: none;
+  position: absolute;
 }
 .wave-btn__container {
   @include mobile-23-desktop-2345__margins;
