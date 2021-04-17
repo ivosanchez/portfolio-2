@@ -63,7 +63,7 @@ export default defineComponent({
         font-family: 'Playfair Display', serif;
         margin: 0.4em 0;
         color: white;
-        font-size: $font-size-xl;
+        font-size: $font-size-xxl;
         font-weight: 600;
         transition: color 0.3s;
         &:hover {

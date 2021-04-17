@@ -44,7 +44,7 @@ export default defineComponent({
     p {
       font-size: 0.9rem;
       font-weight: 300;
-      line-height: 1.5rem;
+      line-height: 2em;
       width: 90%;
     }
   }

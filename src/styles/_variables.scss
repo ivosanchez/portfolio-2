@@ -14,7 +14,9 @@ $column-line-3-left: calc(#{$column-line-width} * 3);
 $column-line-4-left: calc(#{$column-line-width} * 4);
 $column-line-5-left: calc(#{$column-line-width} * 5);
 
-$font-size-xl: clamp(3rem, 10vw, 10rem);
+$font-size-xxl: clamp(3.5rem, 10vw, 10rem);
+$font-size-xl: clamp(3rem, 9vw, 6rem);
 $font-size-l: clamp(2.5rem, 8vw, 4rem);
 $font-size-m: clamp(1.5rem, 6vw, 3rem);
 $font-size-s: clamp(1.2rem, 4vw, 2.2rem);
+$font-size-xs: clamp(0.9rem, 2vw, 1.2rem);

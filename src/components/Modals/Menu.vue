@@ -194,7 +194,7 @@ export default defineComponent({
             clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
             overflow: hidden;
             font-weight: 600;
-            font-size: $font-size-xl;
+            font-size: $font-size-xxl;
             font-family: 'Playfair Display', serif;
             color: black;
             pointer-events: auto;
