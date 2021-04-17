@@ -1,5 +1,4 @@
 <script lang="ts">
-import cryptoRandomString from 'crypto-random-string';
 import { ref } from 'vue';
 
 interface IUseSpinStringArgs {
@@ -20,9 +19,16 @@ const useSpinString = (input?: IUseSpinStringArgs) => {
   ) => {
     if (!el) return;
     const targetElement = el;
+    const strArr = result.split('');
     for (let i = 0; i < 6; i += 1) {
-      const randomOrder = cryptoRandomString({ length: result.length, characters: result });
-      targetElement.innerText = randomOrder;
+      // Fisher Yates Algorithm
+      for (let j = 0; j < strArr.length; j++) {
+        const k = Math.floor(Math.random() * j + 1);
+        const temp = strArr[j];
+        strArr[j] = strArr[k];
+        strArr[k] = temp;
+      }
+      targetElement.innerText = strArr.join('');
       await sleep();
     }
     if (isRoleBack) {
