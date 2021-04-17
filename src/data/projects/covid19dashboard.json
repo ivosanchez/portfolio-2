@@ -4,8 +4,8 @@
   "summary": {
     "techs": ["React", "Express"],
     "desc": {
-      "ko": "코로나 19의 전세계 현황을 살펴보고, 비교해 보세요.",
-      "en": "Check status of covid-19's conquest and feel frustration."
+      "ko": "전 세계의 사람들은 어떻게 코로나바이러스와 싸우고 있을까요? 확인해 보세요.",
+      "en": "Do you want to know how people are handling covid-19? Visit and see what's going on."
     },
     "videoSrc": "covid19/video.mp4",
     "posterUrl": "covid19/screenshot.png"
@@ -15,13 +15,13 @@
     "overviews": [
       {
         "heading": {
-          "ko": "스스로 완성한 첫번째 프로젝트",
-          "en": "First project by myself"
+          "ko": "스스로 완성한 첫 번째 프로젝트",
+          "en": "The first project by myself"
         },
         "paragraphs": [
           {
-            "ko": "튜토리얼이나 수업이 아닌 저의 첫번째 완성작이에요. ",
-            "en": "This is my very first completed project by my own hand. "
+            "ko": "튜토리얼이나 수업이 아닌 저의 첫 번째 완성작이에요.",
+            "en": "This is my very first completed project by my hand."
           }
         ]
       },
@@ -29,8 +29,8 @@
         "heading": { "ko": "개선 사항", "en": "Improvements" },
         "paragraphs": [
           {
-            "ko": "존스 홉킨스 대학의 <a class='v-html__anchor-white' href='https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6' target='_blank'>코로나 바이러스 현황판</a>을 더 보기 좋게 바꿔 봤어요. 그리고 나라별 코로나 바이러스 관련 뉴스도 제공하게 했어요.",
-            "en": "Original site is <a class='v-html__anchor-white' href='https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6' target='_blank'>Covid 19 Dashboard</a> by Johns Hopkins University (JHU). My goal was providing better user experience by improvments in visual design with covid 19 news feature."
+            "ko": "존스 홉킨스 대학의 <a class='v-html__anchor-white' href='https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6' target='_blank'>코로나바이러스 현황판</a>을 더 보기 좋게 바꿔 봤어요. 그리고 나라별 코로나바이러스 관련 뉴스도 제공하게 했어요.",
+            "en": "Original site is <a class='v-html__anchor-white' href='https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6' target='_blank'>Covid 19 Dashboard</a> by Johns Hopkins University (JHU). My goal was to provide a better user experience by improvements in visual design with the covid 19 news feature."
           }
         ]
       }
@@ -44,12 +44,12 @@
         "heading": { "ko": "힘들었던 점", "en": "Obstacles" },
         "paragraphs": [
           {
-            "ko": "D3로 React에서 그래프를 만드는 과정이 힘들었어요. 대부분의 정보는 바닐라 자바스크립트에서 그래프를 만드는 것에 대한 것이었고, React에 적용하는 방법을 다룬 글들도 타입스크립트로 다룬 것은 매우 한정적이었어요. 이걸 취합해서 제 사정에 맞춰 적용하기까지 많은 시도가 필요했어요. 이제는 제가 생각한대로 잘 작동해서 기분이 좋아요.",
-            "en": "Creating graphs with D3 library on React was the biggest obstacle. Most of the information was about using D3 in vanilla javascript. And articles about adopting d3 into React were not using typescript. I had to try many times to apply this information to my own environment. Now I'm happy it's working as I intended."
+            "ko": "D3로 React에서 그래프를 만드는 과정이 힘들었어요. 정보 대부분은 바닐라 자바스크립트에서 그래프를 만드는 것에 대한 것이었고, React에 적용하는 방법을 다룬 글들도 타입스크립트로 다룬 것은 매우 한정적이었어요. 이걸 취합해서 제 사정에 맞춰 적용하기까지 많은 시도가 필요했어요. 이제는 제가 생각한 대로 잘 작동해서 기분이 좋아요.",
+            "en": "Creating graphs with the D3 library on React was the biggest obstacle. Most of the information was about using D3 in vanilla javascript. And articles about adopting d3 into React were not using typescript. I had to try many times to apply this information to my environment. Now I'm happy it's working as I intended."
           },
           {
             "ko": "이 당시에는 얕은 복사와 깊은 복사에 대해서도 알지 못했던 때였어요. 어쩌면 이걸 몰라서 굉장히 돌아가게 쓴 코드가 어딘가에 아직 남아있을 거에요... 이 프로젝트를 완성할 때에도 이 개념이 익숙하지 못했지만, 다음 프로젝트들을 하면서 이해할 수 있게 되는 교두보가 됐어요.",
-            "en": "I didn't know about shallow copy and deep copy back then. Maybe there are still some inefficient codes somewhere becasuse of this... But yhis project helped me to understand those javascript concepts in future projects."
+            "en": "I didn't know about shallow copy and deep copy back then. Maybe there are still some inefficient codes somewhere because of this... But this project helped me to understand those javascript concepts in future projects."
           }
         ]
       },
@@ -57,7 +57,7 @@
         "heading": { "ko": "지속적인 업데이트", "en": "Continuous updates" },
         "paragraphs": [
           {
-            "ko": "맨 처음 만든 프로젝트였기 때문에 가장 오래 된 프로젝트이기도 해요. 그래서 그 동안 React Leaflet, ChakraUI 두 라이브러리들의 메이져 버전 업그레이드가 있었어요. 그리고 이 프로젝트도 버전 업데이트를 따라가고 있어요.",
+            "ko": "맨 처음 만든 프로젝트였기 때문에 가장 오래된 프로젝트이기도 해요. 그래서 그동안 React Leaflet, ChakraUI 두 라이브러리의 메이저 버전 업그레이드가 있었어요. 그리고 이 프로젝트도 버전 업데이트를 따라가고 있어요.",
             "en": "Since this is the first project, this is also the oldest project. There were major version upgrades on React Leaflet and ChakraUI libraries, and all migrations were taken care of."
           }
         ]

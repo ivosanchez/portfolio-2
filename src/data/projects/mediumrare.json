@@ -4,7 +4,7 @@
   "summary": {
     "techs": ["Typescript", "Go"],
     "desc": {
-      "ko": "미디엄의 풀스택 클론 코딩이에요. 여러분의 생각을 여러 사람들과 공유하세요!",
+      "ko": "미디엄의 풀스택 클론 코딩이에요. 여러분의 생각을 여러 사람과 공유하세요!",
       "en": "Fullstack cloning Medium. Write and share your thoughts!"
     },
     "videoSrc": "mediumrare/video.mp4",
@@ -51,11 +51,11 @@
             "en": "Creating WYSIWYG Editor on my own was very frustrating work. I ended up using EditorJS."
           },
           {
-            "ko": "규모가 점점 커지면서 Pug와 Sass, Typescript만으로 모든걸 제어하기가 힘들었어요. 파일 구조도 깔끔하게 정리가 되지 않았어요. React 생각이 많이 났어요.",
-            "en": "As the project grew bigger, managing everything with only Pug, Sass and Typescript was not very good developing experience. Also it was hard to keep file structure clean. I really missed React."
+            "ko": "규모가 점점 커지면서 Pug와 Sass, Typescript만으로 모든 걸 제어하기가 힘들었어요. 파일 구조도 깔끔하게 정리가 되지 않았어요. React 생각이 많이 났어요.",
+            "en": "As the project grew bigger, managing everything with the only Pug, Sass and Typescript was not a very good developing experience. Also, it was hard to keep the file structure clean. I missed React."
           },
           {
-            "ko": "그리고 Go에서 Pug(Jade) 엔진이 작동하는 방식이 Javascript와 다른 점이 있었는데, 부실한 문서와 부족한 정보로 고생했어요. Go의 다른 템플릿 엔진들의 작동방식도 검색해서 여러가지를 시도하면서 답을 찾아내야 하는 경우가 종종 있었어요.",
+            "ko": "그리고 Go에서 Pug(Jade) 엔진이 작동하는 방식이 Javascript와 다른 점이 있었는데, 부실한 문서와 부족한 정보로 고생했어요. Go의 다른 템플릿 엔진들의 작동방식도 검색해서 여러 가지를 시도하면서 답을 찾아내야 하는 경우가 종종 있었어요.",
             "en": "Go's Pug(Jade) engine works differently with Javascript's Pug engine. But documentation was not very good and information was limited on the internet. I had to search how Go's other template engines work and try them on my Pug file. Sometimes I found an answer, sometimes didn't."
           }
         ]
@@ -67,12 +67,12 @@
         },
         "paragraphs": [
           {
-            "ko": "처음에는 MVC 패턴으로 구축돼 있었어요. 모두 만든 다음에 Go의 Clean Architecture를 접하게 됐고, 이쪽으로 바꿔보고자 했는데 생각만큼 깔끔하게 코드가 정리가 되지 않고 있어요. 좀 더 가다듬을 수 있을 것 같아요.",
-            "en": "I started building project with MVC pattern. After first deployment, I came to know Clean Architecture and trying to implement this architecture. I don't think it is not really in a good shape for now, but I will spend some more time on this."
+            "ko": "처음에는 MVC 패턴으로 구축돼 있었어요. 모두 만든 다음에 Go의 Clean Architecture를 접하게 됐고, 이쪽으로 바꿔보고자 했는데 생각만큼 깔끔하게 코드가 정리되지 않고 있어요. 좀 더 가다듬을 수 있을 것 같아요.",
+            "en": "I started building the project with an MVC pattern. After the first deployment, I came to know Clean Architecture and trying to implement this architecture. I don't think it is not really in a good shape for now, but I will spend some more time on this."
           },
           {
             "ko": "자바스크립트의 Mongoose ODM과는 다르게 오로지 bson으로만 MongoDB를 제어해야 했는데, bson에 대한 지식이 얕아서 현재 코드가 매우 비효율적으로 작성됐다고 여겨져요. 이 부분을 개선하고 싶어요.",
-            "en": "Unlike Mongoose ODM in Javascript, I had to control MongoDB with only bson. I'm pretty sure there are ton of inefficiencies in my code and I want to figure it out and fix this."
+            "en": "Unlike Mongoose ODM in Javascript, I had to control MongoDB with only bson. I'm pretty sure there are a ton of inefficiencies in my code and I want to figure it out and fix this."
           }
         ]
       }

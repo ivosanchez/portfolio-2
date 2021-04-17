@@ -20,8 +20,8 @@
         },
         "paragraphs": [
           {
-            "ko": "Polarsteps는 전세계의 여행자들과 모험가들을 위한 소셜 네트워크 서비스를 제공하고 있어요. 자바스크립트를 처음 배울 때부터 꼭 클론코딩을 해보고자 마음 먹었던 곳이에요. 그래서 저에겐 다른 프로젝트들보다도 더 의미가 깊어요. 그래서 지속적으로 코드를 개선하는 데에 더 신경을 쓰고 있어요.",
-            "en": "Polarsteps provides social network service for travelers and adventurers. Polartypes is special one cause it was my clone coding goal since I was learning javascript for loop. So I am more paying attention to maintaining and refactoring codes of this project."
+            "ko": "Polarsteps는 전 세계의 여행자들과 모험가들을 위한 소셜 네트워크 서비스를 제공하고 있어요. 자바스크립트를 처음 배울 때부터 꼭 클론코딩을 해보고자 마음먹었던 곳이에요. 그래서 저에겐 다른 프로젝트들보다도 더 의미가 깊어요. 그래서 지속해서 코드를 개선하는 데에 더 신경을 쓰고 있어요.",
+            "en": "Polarsteps provides a social network service for travelers and adventurers. Polartypes is a special one cause it was my clone coding goal since I was learning javascript for loop. So I am more paying attention to maintaining and refactoring the codes of this project."
           }
         ]
       },
@@ -30,7 +30,7 @@
         "paragraphs": [
           {
             "ko": "단순히 눈에 보이는 것만 클론코딩 한 것이 아니에요. Nestjs와 GraphQL을 사용해서 Account, Trip, Step 그리고 Comment까지 CRUD를 구축했어요.",
-            "en": "Whole CRUD functionality on User Accounts, Trips, Steps and Comments is working on backend server. This is created with Nestjs and GraphQL."
+            "en": "The whole CRUD functionality on User Accounts, Trips, Steps, and Comments is working on the backend server. This is created with Nestjs and GraphQL."
           }
         ]
       }
@@ -59,8 +59,8 @@
         "heading": { "ko": "힘들었던 것들", "en": "Obstacles" },
         "paragraphs": [
           {
-            "ko": "각 Trip들의 기간이 겹쳐지지 않게 다이나믹하게 검증하는 달력을 만드는 것이 기억에 남네요. 특히 여기에 타임존을 함께 고려해야 해서 바닐라 자바스크립트만으로는 한계가 있었는데, 이 부분은 Moment Timezone라이브러리를 사용해야 했어요.",
-            "en": "I struggled with creating a calendar dynamically compares and validates dates between Trips. Timezones also had to be considered. It was not a good deveoping experience with only pure javascript, so I ended up adopting Moment Timezone library."
+            "ko": "각 Trip의 기간이 겹쳐지지 않게 다이나믹하게 검증하는 달력을 만드는 것이 기억에 남네요. 특히 여기에 타임 존을 함께 고려해야 해서 바닐라 자바스크립트만으로는 한계가 있었는데, 이 부분은 Moment Timezone라이브러리를 사용해야 했어요.",
+            "en": "I struggled with creating a calendar dynamically compares and validates dates between Trips. Timezones also had to be considered. It was not a good developing experience with only pure javascript, so I ended up adopting the Moment Timezone library."
           }
         ]
       },
@@ -71,12 +71,12 @@
         },
         "paragraphs": [
           {
-            "ko": "반응형 디자인이 미흡해요. 화면의 큰 부분을 차지하는 지도때문에 반응형으로 만들기 위해서는 스타일 자체를 거의 새로 만들어야 해요. 본래 사이트인 Polarsteps에서도 되도록 앱으로 접속할 것을 추천하고 있어요. 저는 현재 사이트를 반응형으로 보강하는 대신에 리액트 네이티브로 앱을 클론코딩하려고 하고 있어요. 스마트폰으로 사이트에 접속하시는 분들께는 미리 양해를 부탁드려요.",
-            "en": "This site is not responsive for smartphones. Since map takes huge portion of the screen, whole styles need to be reinvented. Polarsteps, the original site also recommends to use their app in the smartphones. Instead of making this site fully responsive, I 'm planning to clone the app using React Native. Please understand lack of responsiveness of this site."
+            "ko": "반응형 디자인이 미흡해요. 화면의 큰 부분을 차지하는 지도 때문에 반응형으로 만들기 위해서는 스타일 자체를 거의 새로 만들어야 해요. 본래 사이트인 Polarsteps에서도 되도록 앱으로 접속할 것을 추천하고 있어요. 저는 현재 사이트를 반응형으로 보강하는 대신에 리액트 네이티브로 앱을 클론코딩하려고 하고 있어요. 스마트폰으로 사이트에 접속하시는 분들께는 미리 양해를 부탁드려요.",
+            "en": "This site is not responsive for smartphones. Since the map takes a huge portion of the screen, whole styles need to be reinvented. Polarsteps, the original site also recommends using their app on smartphones. Instead of making this site fully responsive, I'm planning to clone the app using React Native. Please understand the lack of responsiveness of this site."
           },
           {
-            "ko": "최근 대대적인 리팩토링을 거쳤어요. 하지만 프론트엔드쪽에는 아직 수정할 코드들이 많이 남아 있어요. 그리고 테스팅도 주로 백엔드에서만 실행되고 있어요. 그래서 추가적인 프론트엔드 리팩토링과 테스팅(Jest와 Cypress)을 계획하고 있어요. 그리고 건너뛰었던 스코롤바 구현도 마무리 짓고 싶어요.",
-            "en": "Recently there was a big code refactoring. But many lines of codes are waiting for refining process on frontend. Testings are also mostly implemented on backend. So additional refactoring and testings(with Jest and Cypress) on frontend are on my todo list. Also I wanted to create Polarstep's scrollbar on my Polartypes."
+            "ko": "최근 대대적인 리팩토링을 거쳤어요. 하지만 프론트엔드쪽에는 아직 수정할 코드들이 많이 남아 있어요. 그리고 테스팅도 주로 백엔드에서만 실행되고 있어요. 그래서 추가적인 프론트엔드 리팩토링과 테스팅(Jest와 Cypress)을 계획하고 있어요. 그리고 건너뛰었던 스크롤바 구현도 마무리 짓고 싶어요.",
+            "en": "Recently there was a big code refactoring. But many lines of codes are waiting for the refining process on the frontend. Testings are also mostly implemented on the backend. So additional refactoring and testings(with Jest and Cypress) on the frontend are on my to-do list. Also, I wanted to create Polarstep's scrollbar on my Polartypes."
           }
         ]
       }
