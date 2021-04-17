@@ -15,7 +15,7 @@
   </svg>
   <div class="wave-btn__container">
     <a :href="href" target="_blank">
-      <img :src="getAsset(imgSrc)" alt="" />
+      <img :src="getAsset(imgSrc)" alt="Project screenshot" />
       <span>{{ language === 'ko' ? `${name} 방문하기` : `Go to ${name}` }}</span>
     </a>
   </div>

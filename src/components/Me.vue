@@ -7,13 +7,11 @@
       </div>
       <div class="me__circle">
         <a :href="CONTACT.github" target="_blank">
-          <!-- <img src="@/assets/github.svg" /> -->
           <GithubIcon />
         </a>
       </div>
       <div class="me__circle">
         <a :href="CONTACT.instagram" target="_blank">
-          <!-- <img src="@/assets/instagram.svg" /> -->
           <InstagramIcon />
         </a>
       </div>

@@ -4,7 +4,7 @@
   <main ref="scrollRef" v-if="isValid">
     <section class="landing">
       <div class="hero-img__container">
-        <img :src="getAsset(heroImgUrl)" ref="heroImgRef" />
+        <img :src="getAsset(heroImgUrl)" ref="heroImgRef" alt="Project screenshot" />
       </div>
       <div class="heading">
         <h1 ref="nameRef">{{ name }}</h1>

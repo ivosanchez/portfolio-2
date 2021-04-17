@@ -1,7 +1,7 @@
 <template>
   <div id="video-cursor" class="video-cursor__play" ref="cursorRef">
-    <img src="@/assets/play.svg" v-show="cursor === 'PLAY'" />
-    <img src="@/assets/pause.svg" v-show="cursor === 'PAUSE'" />
+    <img src="@/assets/play.svg" v-show="cursor === 'PLAY'" alt="Click to play video" />
+    <img src="@/assets/pause.svg" v-show="cursor === 'PAUSE'" alt="Click to puase video" />
   </div>
 </template>
 

@@ -8,7 +8,7 @@
     <article class="about__pannels-wrapper" ref="pannelsRef">
       <section class="about__panel" v-for="(panel, index) in ABOUT_PANELS" :key="index">
         <div class="about__img-container">
-          <img v-if="panel.bgUrl" :src="getAsset(panel.bgUrl)" />
+          <img v-if="panel.bgUrl" :src="getAsset(panel.bgUrl)" alt="Story photo" />
         </div>
         <div class="about__img-overlay">
           <ColumnLines />

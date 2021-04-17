@@ -3,7 +3,7 @@
     <div class="footer__row footer__row-vue">
       <a :href="THIS_SITE_GITHUB_URL" target="_blank">
         <span>Built with&nbsp;</span>
-        <img src="@/assets/logo.png" />
+        <img src="@/assets/logo.png" alt="Vue logo" />
       </a>
     </div>
     <div class="footer__row footer__row-copy">
