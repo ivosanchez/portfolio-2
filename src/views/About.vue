@@ -98,7 +98,7 @@ export default defineComponent({
           start: 'top top',
           end: 'bottom top',
           scroller: scrollRef.value,
-          scrub: true,
+          scrub: i !== panels.length - 1,
           pin: true,
         });
 
