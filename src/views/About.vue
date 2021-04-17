@@ -7,7 +7,9 @@
   <main ref="scrollRef">
     <article class="about__pannels-wrapper" ref="pannelsRef">
       <section class="about__panel" v-for="(panel, index) in ABOUT_PANELS" :key="index">
-        <img v-if="panel.bgUrl" :src="getAsset(panel.bgUrl)" />
+        <div class="about__img-container">
+          <img v-if="panel.bgUrl" :src="getAsset(panel.bgUrl)" />
+        </div>
         <div class="about__img-overlay">
           <ColumnLines />
           <div class="about__img-desc" v-html="panel.bgDesc[language]"></div>
@@ -91,18 +93,19 @@ export default defineComponent({
 
         const overlayAnim = gsap.to(overlay, { yPercent: '-100', ease: 'power2' });
         ScrollTrigger.create({
-          trigger: overlay,
+          trigger: panel,
           animation: overlayAnim,
           start: 'top top',
           end: 'bottom top',
           scroller: scrollRef.value,
-          scrub: 0,
+          scrub: true,
+          pin: true,
         });
 
         ScrollTrigger.create({
-          trigger: panels[i],
-          start: `top +=${window.innerHeight * 0.8}`,
-          end: `top +=${window.innerHeight * 0.8}`,
+          trigger: panel,
+          start: 'top 80%',
+          end: 'top 80%',
           scroller: scrollRef.value,
           toggleActions: 'play reverse play reverse',
           onEnter: async () => {
@@ -138,11 +141,11 @@ export default defineComponent({
         })
         .pause();
       ScrollTrigger.create({
-        trigger: meWrapper,
-        start: '40% center',
-        end: '40% center',
+        trigger: panels[panels.length - 1],
+        start: '30% center',
+        end: '30% center',
         scroller: scrollRef.value,
-        toggleActions: 'play none none reverse',
+        invalidateOnRefresh: true,
         onEnter: async () => {
           await shuffleString(
             paragraphRef.value,
@@ -202,18 +205,23 @@ main {
     position: relative;
     height: 100vh;
     overflow: hidden;
-    img {
+    .about__img-container {
       position: absolute;
       top: 0;
       z-index: 0;
-      filter: brightness(50%);
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      width: 100vw;
+      height: 100vh;
+      img {
+        width: 100%;
+        height: 100%;
+        filter: brightness(50%);
+        object-fit: cover;
+      }
     }
     .about__img-overlay {
-      width: 100%;
-      height: 100%;
+      position: relative;
+      width: 100vw;
+      height: 100vh;
       background-color: black;
       span {
         color: white;
