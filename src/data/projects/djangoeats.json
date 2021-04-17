@@ -62,6 +62,10 @@
           {
             "ko": "메뉴는 PostgreSQL에 JSON 필드에 저장되는데, 메뉴의 크기가 커지고 깊어지면서 Form 작성과 검증이 큰 난관이었어요. Form 작성에서는 React Hook Form으로 다이나믹한 Form을 만들 수 있었어요. 백엔드에서는 Cerberus로 JSON필드의 형태에 대해 검증을 하도록 했어요.",
             "en": "The menu was JSON field of PostgreSQL. Creating and validating the menu form became very complicated. React Hook Form library helped me to create a dynamic form. And on the backend, I used Cerberus library to validate JSON menu data before saving it."
+          },
+          {
+            "ko": "처음에는 Django-seed를 사용해서 기본 레스토랑 데이터들을 만들 계획이었어요. 하지만 Django-seed가 아직 PostgreSQL의 JSON field를 인식하지 못한다는 걸 뒤늦게 알게 됐어요. 이 부분은 어쩔 도리가 없었어요. 두 레스토랑과 메뉴의 데이터를 하드코딩해서 JSON파일로 만들어야 했어요. 지루한 작업이었지만 이제 load 명령어로 언제든지 레스토랑과 메뉴를 생성할 수 있어요.",
+            "en": "I was going to seed default restaurants using Django-seed library. But I came to know that Django-seed doesn't support JSON field yet. I couldn't help with it. I hard-coded two restaurants' data and their menu into JSON files. It was a boring job, but the default restaurants and the menu can be created with 'load' anytime."
           }
         ]
       },
