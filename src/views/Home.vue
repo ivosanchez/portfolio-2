@@ -14,7 +14,9 @@
       </div>
       <h1 ref="h1Ref">I make your ideas alive on the web</h1>
       <div></div>
-      <span class="arrow-down" ref="arrDownRef">&darr;</span>
+      <div class="arrow-down" ref="arrDownRef">
+        <span>&darr;</span>
+      </div>
     </div>
     <ul class="home__projects">
       <li v-for="(project, index) in projects" v-bind:key="index">
@@ -130,7 +132,6 @@ export default defineComponent({
           duration: 1,
           delay: DELAY_2,
           opacity: 0,
-          y: -20,
         });
       }
       setTimeout(() => {
@@ -193,8 +194,9 @@ main {
       box-sizing: content-box;
     }
     .arrow-down {
-      display: block;
-      text-align: center;
+      width: 100%;
+      display: flex;
+      justify-content: center;
       color: white;
       font-size: 3rem;
       opacity: 0.5;
