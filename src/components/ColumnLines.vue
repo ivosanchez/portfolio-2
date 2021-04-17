@@ -20,7 +20,7 @@ export default defineComponent({
     onMounted(() => {
       if (containerRef.value) {
         const lines = containerRef.value.querySelectorAll('div');
-        gsap.from(lines, { duration: 1, height: 0, stagger: 0.3 });
+        gsap.to(lines, { duration: 1, height: '100vh', stagger: 0.3 });
       }
     });
 
@@ -31,8 +31,8 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .container {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 0vh;
   position: fixed;
   z-index: -1;
   top: 0;
