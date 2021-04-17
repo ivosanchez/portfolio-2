@@ -37,7 +37,7 @@ export default defineComponent({
   padding-left: 1rem;
   font-family: 'Playfair Display', serif;
   h1 {
-    @media screen and (min-width: 1000px) {
+    @media screen and (min-width: 1024px) {
       display: block;
     }
     display: none;

@@ -35,7 +35,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .techs__wrapper {
   @include mobile-23-desktop-2345__margins;
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     grid-template-columns: 1fr 1fr;
   }
   margin-bottom: 12rem;
@@ -46,7 +46,7 @@ export default defineComponent({
     padding-top: 1rem;
     border-top: 1px solid white;
     h5 {
-      @media screen and (min-width: 1000px) {
+      @media screen and (min-width: 1024px) {
         font-size: 0.8rem;
       }
       margin-bottom: 2rem;
@@ -55,7 +55,7 @@ export default defineComponent({
     .techs__ul {
       margin-bottom: 2.5rem;
       li {
-        @media screen and (min-width: 1000px) {
+        @media screen and (min-width: 1024px) {
           font-size: 3rem;
         }
         font-size: 1.8rem;
@@ -67,7 +67,7 @@ export default defineComponent({
     }
   }
   .techs__container:last-child {
-    @media screen and (min-width: 1000px) {
+    @media screen and (min-width: 1024px) {
       margin-top: 9rem;
     }
     margin-top: 3rem;

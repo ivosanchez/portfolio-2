@@ -63,7 +63,7 @@ export default defineComponent({
   visibility: hidden;
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1024px) {
   .column-line-1 {
     left: $column-line-1-left;
   }

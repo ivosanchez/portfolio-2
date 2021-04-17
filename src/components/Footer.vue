@@ -36,7 +36,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .footer {
   @include mobile-23-desktop-123456__paddings;
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     padding: 0 1rem;
     grid-template-columns: 1fr 1fr;
   }
@@ -58,7 +58,7 @@ export default defineComponent({
     }
   }
   .footer__row-copy {
-    @media screen and (min-width: 1000px) {
+    @media screen and (min-width: 1024px) {
       justify-content: flex-end;
     }
     justify-content: flex-start;

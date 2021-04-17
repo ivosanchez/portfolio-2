@@ -163,7 +163,7 @@ main {
     align-items: center;
     overflow: hidden;
     .intro__top {
-      @media screen and (min-width: 1000px) {
+      @media screen and (min-width: 1024px) {
         padding-left: $column-line-2-left;
       }
       padding-top: 2rem;
@@ -183,7 +183,7 @@ main {
       @media screen and (min-width: 600px) {
         font-size: 4rem;
       }
-      @media screen and (min-width: 1000px) {
+      @media screen and (min-width: 1024px) {
         font-size: 6rem;
       }
       display: inline-block;

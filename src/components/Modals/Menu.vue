@@ -156,7 +156,7 @@ export default defineComponent({
   z-index: 10;
   pointer-events: none;
   .menu__bg {
-    @media screen and (min-width: 1000px) {
+    @media screen and (min-width: 1024px) {
       grid-template-columns: repeat(5, 1fr);
     }
     width: 100%;
@@ -172,7 +172,7 @@ export default defineComponent({
     .menu__bg-column-3,
     .menu__bg-column-4,
     .menu__bg-column-5 {
-      @media screen and (min-width: 1000px) {
+      @media screen and (min-width: 1024px) {
         display: block;
       }
       display: none;
@@ -211,7 +211,7 @@ export default defineComponent({
       }
     }
     .menu__misc {
-      @media screen and (min-width: 1000px) {
+      @media screen and (min-width: 1024px) {
         width: $column-line-4-left;
       }
       width: calc(#{$mobile-column-width} * 2);

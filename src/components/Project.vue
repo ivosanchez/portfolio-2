@@ -96,7 +96,7 @@ export default defineComponent({
 }
 
 .project-left {
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     grid-template:
       'header header header header' auto
       'list video video video' 1fr
@@ -114,7 +114,7 @@ export default defineComponent({
   }
 }
 .project-right {
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     grid-template:
       'header header header header' auto
       'video video video list' 1fr

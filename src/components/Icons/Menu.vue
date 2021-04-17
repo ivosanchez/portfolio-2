@@ -42,7 +42,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .menu-icon__container {
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     left: 1.5rem;
   }
   position: absolute;
@@ -67,7 +67,7 @@ export default defineComponent({
     }
   }
   .menu-icon__text {
-    @media screen and (min-width: 1000px) {
+    @media screen and (min-width: 1024px) {
       display: inline-block;
     }
     display: none;

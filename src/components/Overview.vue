@@ -30,7 +30,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .overview__container {
   @include mobile-23-desktop-2345__margins;
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     grid-template-columns: 1fr 1fr;
   }
   margin-bottom: 6rem;

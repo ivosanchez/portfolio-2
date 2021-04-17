@@ -10,7 +10,7 @@
 }
 
 @mixin aside {
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     width: $column-line-width;
   }
   width: $mobile-column-line-1-left;
@@ -23,7 +23,7 @@
 @mixin mobile-23-desktop-123456__paddings {
   padding-left: $mobile-column-line-1-left;
   padding-right: $mobile-column-line-5-right;
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     padding-left: 0;
     padding-right: 0;
   }
@@ -31,7 +31,7 @@
 
 @mixin menu-modal {
   @include mobile-23-desktop-23456__margins;
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     width: calc(100vw - #{$column-line-width});
   }
   width: calc(100vw - #{$mobile-column-line-1-left} * 2);
@@ -40,7 +40,7 @@
 @mixin mobile-23-desktop-23456__margins {
   margin-left: $mobile-column-line-1-left;
   margin-right: $mobile-column-line-5-right;
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     margin-left: $column-line-width;
     margin-right: 0;
   }
@@ -49,7 +49,7 @@
 @mixin mobile-23-desktop-2345__margins {
   margin-left: $mobile-column-line-1-left;
   margin-right: $mobile-column-line-5-right;
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     margin-left: $column-line-width;
     margin-right: $column-line-width;
   }
@@ -58,7 +58,7 @@
 @mixin mobile-23-desktop-2345__paddings {
   padding-left: $mobile-column-line-1-left;
   padding-right: $mobile-column-line-5-right;
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     padding-left: $column-line-width;
     padding-right: $column-line-width;
   }
@@ -67,7 +67,7 @@
 @mixin mobile-23-desktop-3456__margins {
   margin-left: $mobile-column-line-1-left;
   margin-right: $mobile-column-line-5-right;
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     margin-left: $column-line-2-left;
     margin-right: 0;
   }
@@ -76,7 +76,7 @@
 @mixin mobile-23-desktop-3456__paddings {
   padding-left: $mobile-column-line-1-left;
   padding-right: $mobile-column-line-5-right;
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     padding-left: $column-line-2-left;
     padding-right: 0;
   }
@@ -85,7 +85,7 @@
 @mixin mobile-23-desktop-234__paddings {
   padding-left: $mobile-column-line-1-left;
   padding-right: $mobile-column-line-5-right;
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     padding-left: $column-line-width;
     padding-right: $column-line-2-left;
   }
@@ -94,7 +94,7 @@
 @mixin mobile-23-desktop-345__paddings {
   padding-left: $mobile-column-line-1-left;
   padding-right: $mobile-column-line-5-right;
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     padding-left: $column-line-2-left;
     padding-right: $column-line-1-left;
   }
@@ -103,7 +103,7 @@
 @mixin mobile-23-desktop-456__paddings {
   padding-left: $mobile-column-line-1-left;
   padding-right: $mobile-column-line-5-right;
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     padding-left: $column-line-3-left;
     padding-right: 0;
   }
@@ -112,7 +112,7 @@
 @mixin mobile-23-desktop-23__margins {
   margin-left: $mobile-column-line-1-left;
   margin-right: $mobile-column-line-5-right;
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     margin-left: $column-line-1-left;
     margin-right: $column-line-3-left;
   }
@@ -121,7 +121,7 @@
 @mixin mobile-23-desktop-34__margins {
   margin-left: $mobile-column-line-1-left;
   margin-right: $mobile-column-line-5-right;
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     margin-left: $column-line-2-left;
     margin-right: $column-line-2-left;
   }
@@ -130,7 +130,7 @@
 @mixin mobile-23-desktop-34__paddings {
   padding-left: $mobile-column-line-1-left;
   padding-right: $mobile-column-line-5-right;
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     padding-left: $column-line-2-left;
     padding-right: $column-line-2-left;
   }
@@ -139,7 +139,7 @@
 @mixin mobile-23-desktop-45__paddings {
   padding-left: $mobile-column-line-1-left;
   padding-right: $mobile-column-line-5-right;
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     padding-left: $column-line-3-left;
     padding-right: $column-line-width;
   }
@@ -148,7 +148,7 @@
 @mixin mobile-23-desktop-45__margins {
   margin-left: $mobile-column-line-1-left;
   margin-right: $mobile-column-line-5-right;
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     margin-left: $column-line-3-left;
     margin-right: $column-line-width;
   }
@@ -157,7 +157,7 @@
 @mixin mobile-23-desktop-3__margins {
   margin-left: $mobile-column-line-1-left;
   margin-right: $mobile-column-line-5-right;
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     margin-left: $column-line-2-left;
     margin-right: $column-line-3-left;
   }
@@ -166,7 +166,7 @@
 @mixin mobile-23-desktop-4__margins {
   margin-left: $mobile-column-line-1-left;
   margin-right: $mobile-column-line-5-right;
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     margin-left: $column-line-3-left;
     margin-right: $column-line-2-left;
   }

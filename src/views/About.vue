@@ -219,7 +219,7 @@ main {
         color: white;
       }
       .about__img-desc {
-        @media screen and (min-width: 1000px) {
+        @media screen and (min-width: 1024px) {
           display: grid;
           gap: 1rem;
         }

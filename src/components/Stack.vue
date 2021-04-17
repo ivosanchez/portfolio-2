@@ -26,7 +26,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .stack__container {
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     width: 50%;
     margin-bottom: 2rem;
   }
@@ -51,7 +51,7 @@ export default defineComponent({
 }
 
 .right-column {
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 1024px) {
     margin-left: auto;
   }
 }

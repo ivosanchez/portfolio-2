@@ -35,7 +35,7 @@ main {
   justify-content: center;
   overflow: hidden;
   h1 {
-    @media screen and (min-width: 1000px) {
+    @media screen and (min-width: 1024px) {
       font-size: 10rem;
     }
     width: 100%;

@@ -52,7 +52,7 @@ export default defineComponent({
   padding-top: 2rem;
   padding-right: 1.5rem;
   .aside-right__langs-container {
-    @media screen and (min-width: 1000px) {
+    @media screen and (min-width: 1024px) {
       display: flex;
       justify-content: flex-end;
     }
