@@ -235,15 +235,16 @@ main {
   position: relative;
   .landing {
     margin-bottom: 1em;
-    font-size: $font-size-xl;
+    font-size: $font-size-xxl;
   }
   .hero-img__container {
-    @include mobile-23-desktop-2345__paddings;
+    @include mobile-23-desktop-2345__margins;
     position: relative;
     opacity: 0.5;
+    aspect-ratio: 1920 / 936;
     img {
       width: 100%;
-      min-height: 300px;
+      height: 100%;
       object-fit: cover;
       object-position: left;
     }
@@ -267,7 +268,7 @@ main {
     @include mobile-23-desktop-2345__margins;
     margin-bottom: 12rem;
     display: grid;
-    gap: 2rem;
+    gap: 4rem;
   }
 
   .wave-btn__wrapper {
