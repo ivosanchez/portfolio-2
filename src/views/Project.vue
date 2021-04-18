@@ -93,7 +93,7 @@ export default defineComponent({
       const tl = gsap.timeline();
       tl.from(heroImgRef.value, {
         delay: 0.2,
-        duration: 0.8,
+        duration: 1,
         opacity: 0,
         y: '100px',
       });
@@ -238,9 +238,9 @@ main {
     font-size: $font-size-xxl;
   }
   .hero-img__container {
-    @include mobile-23-desktop-2345__margins;
+    @include mobile-full-desktop-2345__margins;
     position: relative;
-    opacity: 0.5;
+    filter: brightness(60%);
     aspect-ratio: 1920 / 936;
     img {
       width: 100%;
