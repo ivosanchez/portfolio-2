@@ -11,7 +11,8 @@
       :key="index"
     >
       <img v-if="panel.bgUrl" class="about__bg" :src="getAsset(panel.bgUrl)" />
-      <ColumnLines v-if="!panel.bgUrl" class="about__bg" />
+      <div v-if="!panel.bgUrl" class="about__bg" />
+      <div class="about__bg-desc" v-html="panel.bgDesc[language]"></div>
     </div>
     <Me />
   </main>
@@ -27,14 +28,12 @@ import gsap from 'gsap';
 import { computed, defineComponent, onMounted, PropType, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import Title from '../components/Title.vue';
-import ColumnLines from '../components/ColumnLines.vue';
 import Me from '../components/Me.vue';
 import { getAsset } from '../utils';
 
 export default defineComponent({
   components: {
     LeaveAnimation,
-    ColumnLines,
     Title,
     Me,
   },
@@ -74,6 +73,7 @@ export default defineComponent({
       const panels = document.querySelectorAll('.about__panel');
       panels.forEach((panel, i) => {
         const image = panel.querySelector<HTMLImageElement>('.about__bg');
+        const desc = panel.querySelector<HTMLImageElement>('.about__bg-desc');
         if (!scrollRef.value || !image) return;
         const tl = gsap.timeline({ defaults: { ease: 'none' } });
         tl.fromTo(
@@ -81,11 +81,13 @@ export default defineComponent({
           { clipPath: 'inset(100% 0% 0% 0%)' },
           { clipPath: 'inset(30% 0% 30% 0%)' }
         );
+        tl.to(desc, { top: '32vh', opacity: 0.8 }, '<');
         tl.fromTo(
           image,
           { clipPath: 'inset(30% 0% 30% 0%)' },
           { clipPath: 'inset(0% 0% 100% 0%)' }
         );
+        tl.to(desc, { top: '0vh', opacity: 0 }, '<');
         ScrollTrigger.create({
           trigger: panel,
           scroller: scrollRef.value,
@@ -186,6 +188,7 @@ main {
   }
   .about__panel,
   .about__panel--short {
+    position: relative;
     width: 100%;
     img {
       width: 100%;
@@ -193,6 +196,19 @@ main {
       filter: brightness(60%);
       object-fit: cover;
       clip-path: inset(100% 0% 0% 0%);
+    }
+    .about__bg-desc {
+      @media screen and (min-width: 1024px) {
+        display: grid;
+      }
+      display: none;
+      position: absolute;
+      top: 100vh;
+      right: 1rem;
+      opacity: 0;
+      gap: 1rem;
+      font-size: 0.8rem;
+      color: white;
     }
   }
   .about__panel {
