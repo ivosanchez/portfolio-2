@@ -4,7 +4,7 @@ import { ILanguageVariation } from './projects';
 
 export interface IAboutPanel {
   text: ILanguageVariation;
-  bgUrl?: string;
+  bgUrl: string;
   bgDesc?: ILanguageVariation;
 }
 

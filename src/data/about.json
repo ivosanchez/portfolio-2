@@ -6,12 +6,23 @@
     },
     "bgUrl": "about/welding.jpg",
     "bgDesc": {
+      "ko": "",
+      "en": ""
+    }
+  },
+  {
+    "text": { "ko": "저는 용접사였어요.", "en": "I was a welder." },
+    "bgUrl": "about/welding.jpg",
+    "bgDesc": {
       "ko": "경기도 작업 현장",
       "en": "Welding site in Gyeonggi-do, South Korea"
     }
   },
   {
-    "text": { "ko": "저는 용접사였어요.", "en": "I was a welder." },
+    "text": {
+      "ko": "바리스타였던 적도 있어요. 프랜차이즈 커피 전문점 부점장이었죠.",
+      "en": "I was a Barista, supervisor of a franchise coffee shop."
+    },
     "bgUrl": "about/portafilter.jpg",
     "bgDesc": {
       "ko": "<span>Photo by <a class='v-html__anchor-white' href='https://unsplash.com/@davelundgren?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText' target='_blank'>David Lundgren</a> on <a class='v-html__anchor-white' href='https://unsplash.com/s/photos/portafilter?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText' target='_blank'>Unsplash</a></span>",
@@ -20,16 +31,16 @@
   },
   {
     "text": {
-      "ko": "바리스타였던 적도 있어요. 프랜차이즈 커피 전문점 부점장이었죠.",
-      "en": "I was a Barista, supervisor of a franchise coffee shop."
+      "ko": "그리고 자전거로 서울에서 모로코까지 2년 동안 21,012km를 다녀왔어요.",
+      "en": "I cycled from South Korea to Morocco. 2 years, 21,012km."
     },
     "bgUrl": "about/bicycle.jpg",
     "bgDesc": { "ko": "몽골", "en": "Mongolia" }
   },
   {
     "text": {
-      "ko": "그리고 자전거로 서울에서 모로코까지 2년 동안 21,012km를 다녀왔어요.",
-      "en": "I cycled from South Korea to Morocco. 2 years, 21,012km."
+      "ko": "그런데 어깨를 다치는 바람에 다른 일을 찾아봐야 했어요.",
+      "en": "My shoulder went wrong and had to look for another job."
     },
     "bgUrl": "about/shoulder.jpg",
     "bgDesc": {
@@ -39,18 +50,10 @@
   },
   {
     "text": {
-      "ko": "그런데 어깨를 다치는 바람에 다른 일을 찾아봐야 했어요.",
-      "en": "My shoulder went wrong and had to look for another job."
-    },
-    "bgUrl": "about/typing.jpg",
-    "bgDesc": { "ko": "", "en": "" }
-  },
-  {
-    "text": {
       "ko": "그래서 웹 개발을 배우기 시작했어요. 키보드를 치는 건 어깨가 아프지 않았거든요.",
       "en": "That's how I started programming. Typing didn't hurt my shoulder."
     },
-    "bgUrl": "about/dog.jpg",
+    "bgUrl": "about/typing.jpg",
     "bgDesc": { "ko": "", "en": "" }
   },
   {
@@ -58,31 +61,31 @@
       "ko": "프로그래밍에 대한 열정, 사랑 그런 거 없었어요. 먹고 살 길은 있어야 하니까 시작했어요.",
       "en": "There was no enthusiasm or love for programming. I just needed to keep alive."
     },
-    "bgUrl": "about/coding.jpg",
-    "bgDesc": { "ko": "집에서 코딩 중", "en": "Coding at home" }
+    "bgUrl": "about/dog.jpg",
+    "bgDesc": { "ko": "", "en": "" }
   },
   {
     "text": {
       "ko": "그런데 나쁘지 않았어요. 재미있어요.",
       "en": "It ain't that bad. It's interesting."
     },
-    "bgUrl": "about/errors.jpg",
-    "bgDesc": { "ko": "고통", "en": "Pain" }
+    "bgUrl": "about/coding.jpg",
+    "bgDesc": { "ko": "집에서 코딩 중", "en": "Coding at home" }
   },
   {
     "text": {
       "ko": "물론 에러들로 마음고생을 해요.",
       "en": "Yes, suffering from the errors, always."
     },
-    "bgUrl": "about/scenary.jpg",
-    "bgDesc": { "ko": "", "en": "" }
+    "bgUrl": "about/errors.jpg",
+    "bgDesc": { "ko": "고통", "en": "Pain" }
   },
   {
     "text": {
       "ko": "그래도 제가 실현할 수 있는 많은 가능성이 있다고 믿어요.",
       "en": "But I believe there are many possibilities I can make come true."
     },
-    "bgUrl": "about/climbing.jpg",
+    "bgUrl": "about/scenary.jpg",
     "bgDesc": { "ko": "", "en": "" }
   },
   {
@@ -90,7 +93,7 @@
       "ko": "기회가 주어진다면 놓치지 않을 거예요.",
       "en": "If there's a chance, I'm not gonna miss it."
     },
-    "bgUrl": "about/butterfly.jpg",
+    "bgUrl": "about/climbing.jpg",
     "bgDesc": { "ko": "", "en": "" }
   },
   {
@@ -98,12 +101,12 @@
       "ko": "Be my chance, I will be your chance.",
       "en": "Be my chance, I will be your chance."
     },
-    "bgUrl": "about/bicycle.jpg",
+    "bgUrl": "about/butterfly.jpg",
     "bgDesc": { "ko": "", "en": "" }
   },
   {
-    "text": { "ko": "고맙습니다.", "en": "Thank you" },
-    "bgUrl": "",
+    "text": { "ko": "고맙습니다", "en": "Thank you" },
+    "bgUrl": "about/bicycle.jpg",
     "bgDesc": { "ko": "", "en": "" }
   }
 ]
