@@ -5,8 +5,13 @@
     <p ref="paragraphRef"></p>
   </article>
   <main ref="scrollRef">
-    <div class="about__panel" v-for="(panel, index) in ABOUT_PANELS" :key="index">
+    <div
+      :class="['about__panel', !panel.bgUrl && 'about__panel--short']"
+      v-for="(panel, index) in ABOUT_PANELS"
+      :key="index"
+    >
       <img v-if="panel.bgUrl" class="about__bg" :src="getAsset(panel.bgUrl)" />
+      <ColumnLines v-if="!panel.bgUrl" class="about__bg" />
     </div>
     <Me />
   </main>
@@ -22,12 +27,14 @@ import gsap from 'gsap';
 import { computed, defineComponent, onMounted, PropType, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import Title from '../components/Title.vue';
+import ColumnLines from '../components/ColumnLines.vue';
 import Me from '../components/Me.vue';
 import { getAsset } from '../utils';
 
 export default defineComponent({
   components: {
     LeaveAnimation,
+    ColumnLines,
     Title,
     Me,
   },
@@ -177,9 +184,9 @@ main {
   .about__cushion {
     height: 10vh;
   }
-  .about__panel {
+  .about__panel,
+  .about__panel--short {
     width: 100%;
-    height: 100vh;
     img {
       width: 100%;
       height: 100%;
@@ -187,6 +194,12 @@ main {
       object-fit: cover;
       clip-path: inset(100% 0% 0% 0%);
     }
+  }
+  .about__panel {
+    height: 100vh;
+  }
+  .about__panel--short {
+    height: 20vh;
   }
 }
 </style>
