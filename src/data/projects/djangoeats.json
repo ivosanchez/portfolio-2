@@ -4,7 +4,7 @@
   "summary": {
     "techs": ["React", "Rest Framework"],
     "desc": {
-      "ko": "UberEats의 풀스택 클론 코딩이에요. 레스토랑, 배달원, 소비자 3가지 역할로 가입이 가능할 수 있고, Django-channels를 통해 주문의 상황이 실시간으로 업데이트돼요.",
+      "ko": "UberEats의 풀스택 클론 코딩이에요. 레스토랑, 배달원, 소비자 3가지 역할로 가입 할 수 있고, Django-channels를 통해 주문의 상황이 실시간으로 업데이트돼요.",
       "en": "Fullstack cloning UberEats with 3 roles(Restaurant owner, Delivery, and Customer) and real-time order through Django channels."
     },
     "videoSrc": "djangoeats/video.mp4",
